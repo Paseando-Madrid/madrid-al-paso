@@ -80,12 +80,49 @@ body{
   max-width: 60ch;
   font-size: 16px;
 }
+
+/* (UPDATED) Hero media stays as the framed container */
 .hero-media{
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
   overflow: hidden;
 }
+
+/* (NEW) Hero swap container (3:4) */
+.hero-photo-swap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #f3f3f3;
+}
+
+/* (NEW) Layered photos */
+.hero-photo{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* (NEW) Hover layers hidden by default */
+.hero-photo--hover{
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+/* (NEW) Desktop hover only:
+   - hover shows image 2
+   - active shows image 3
+*/
+@media (hover:hover) and (pointer:fine){
+  .hero-photo-swap:hover .hero-photo--hover2{ opacity: 1; }
+  .hero-photo-swap:active .hero-photo--hover3{ opacity: 1; }
+}
+
+/* (legacy/compat) If you still use .hero-image elsewhere, keep it */
 .hero-image{
   width: 100%;
   height: auto;
