@@ -1,200 +1,211 @@
-<main id="inicio" class="home">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paseando Madrid</title>
 
-  <!-- 1) HERO editorial -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="kicker">Paseando Madrid</p>
-        <h1 class="hero-title">Madrid, contado a pie.</h1>
-        <p class="hero-subtitle">
-          Paseos culturales con narrativa, historia y barrio. Ritmo tranquilo, contenido serio.
-        </p>
+  <!-- Debe llamarse EXACTAMENTE styles.css y estar junto a index.html -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
 
-        <!-- Nota: todavía no meto CTA (como pediste) -->
-      </div>
+<body>
 
-      <div class="hero-media" aria-hidden="true">
-        <!-- Sustituye por tu ilustración/imagen -->
-        <img
-          class="hero-image"
-          src="assets/hero/hero-illustration.png"
-          alt=""
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-    </div>
-  </section>
+  <main id="inicio" class="home">
 
-  <!-- 2) RUTAS ACTIVAS (actividad inmediata) -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Rutas activas</h2>
-        <p class="section-lead">Experiencias recurrentes, pensadas para repetirse semana a semana.</p>
-      </div>
-
-      <div class="cards-grid">
-        <article class="card">
-          <div class="card-body">
-            <h3 class="card-title">Centro histórico esencial</h3>
-            <p class="card-meta">Sol · Austrias · Plaza Mayor</p>
-            <p class="card-detail">Duración: 2 h · Ritmo medio</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-body">
-            <h3 class="card-title">Madrid oscuro y leyendas</h3>
-            <p class="card-meta">Callejones · Relatos · Intrahistoria</p>
-            <p class="card-detail">Duración: 2 h · Tarde/noche</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-body">
-            <h3 class="card-title">Literatura y cafés</h3>
-            <p class="card-meta">Barrio de las Letras</p>
-            <p class="card-detail">Duración: 2 h · Paradas seleccionadas</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-body">
-            <h3 class="card-title">Barrios con carácter</h3>
-            <p class="card-meta">Malasaña · Chueca · Lavapiés</p>
-            <p class="card-detail">Duración: 2 h · Barrio y contexto</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3) QUÉ TIPO DE EXPERIENCIA ES (editorial) -->
-  <section class="section section-soft">
-    <div class="container split">
-      <div class="split-main">
-        <h2 class="section-title">Una experiencia cultural, no un paseo genérico</h2>
-        <p class="prose">
-          Paseando Madrid está diseñado como un formato editorial: contexto, capas históricas,
-          anécdotas verificables y ritmo de relato. Menos “checklist”, más comprensión del lugar.
-        </p>
-        <p class="prose">
-          Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo
-          vas a disfrutar.
-        </p>
-      </div>
-
-      <aside class="split-aside">
-        <div class="factbox">
-          <p class="factbox-title">Enfoque</p>
-          <ul class="factbox-list">
-            <li>Historia + intrahistoria</li>
-            <li>Narrativa y lugares</li>
-            <li>Ritmo humano</li>
-            <li>Grupos medianos</li>
-          </ul>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- 4) REFUERZO DE SISTEMA (segunda tanda modular) -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Series y recorridos</h2>
-        <p class="section-lead">Bloques temáticos que vuelven en calendario (sin sensación de “evento único”).</p>
-      </div>
-
-      <div class="cards-grid cards-grid-3">
-        <article class="card card-compact">
-          <div class="card-body">
-            <h3 class="card-title">Arte y ciudad</h3>
-            <p class="card-meta">Museos · Arquitectura · Espacio público</p>
-          </div>
-        </article>
-
-        <article class="card card-compact">
-          <div class="card-body">
-            <h3 class="card-title">Madrid de los Austrias</h3>
-            <p class="card-meta">Poder · Plazas · Escenarios históricos</p>
-          </div>
-        </article>
-
-        <article class="card card-compact">
-          <div class="card-body">
-            <h3 class="card-title">Nocturno (leyenda y memoria)</h3>
-            <p class="card-meta">Relato · Misterio · Contexto</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5) CÓMO FUNCIONA (pasos) -->
-  <section class="section section-soft">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Cómo se desarrollan los paseos</h2>
-        <p class="section-lead">Estructura clara para que la experiencia sea cómoda y consistente.</p>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step">
-          <p class="step-title">1. Punto de encuentro</p>
-          <p class="step-text">Localización simple y sin pérdidas. Llegada y contexto breve.</p>
-        </div>
-        <div class="step">
-          <p class="step-title">2. Recorrido narrado</p>
-          <p class="step-text">Historia, capas del barrio y escenas que conectan lugares.</p>
-        </div>
-        <div class="step">
-          <p class="step-title">3. Paradas clave</p>
-          <p class="step-text">Sitios seleccionados (no “relleno”), con explicación con sentido.</p>
-        </div>
-        <div class="step">
-          <p class="step-title">4. Cierre y recomendaciones</p>
-          <p class="step-text">Orientación local: qué ver después, cafés, calles, miradores.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6) MADRID COMO TERRITORIO (imagen sobria) -->
-  <section class="section">
-    <div class="container">
-      <div class="banner">
-        <div class="banner-copy">
-          <h2 class="section-title">Madrid como territorio cultural</h2>
-          <p class="section-lead">
-            Barrios como capítulos. Calles como archivo. La ciudad se entiende andando.
+    <!-- 1) HERO editorial -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Paseando Madrid</p>
+          <h1 class="hero-title">Madrid, contado a pie.</h1>
+          <p class="hero-subtitle">
+            Paseos culturales con narrativa, historia y barrio. Ritmo tranquilo, contenido serio.
           </p>
         </div>
-        <div class="banner-media" aria-hidden="true">
-          <!-- Sustituye por una imagen sobria (skyline, calle, textura) -->
-          <img class="banner-image" src="assets/home/madrid-banner.jpg" alt="" loading="lazy" decoding="async" />
+
+        <div class="hero-media" aria-hidden="true">
+          <img
+            class="hero-image"
+            src="assets/hero/hero-illustration.png"
+            alt=""
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <!-- 2) RUTAS ACTIVAS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Rutas activas</h2>
+          <p class="section-lead">Experiencias recurrentes, pensadas para repetirse semana a semana.</p>
+        </div>
 
-<!-- Footer simple (si ya tienes, ignora esto) -->
-<footer class="footer" id="contacto">
-  <div class="container footer-grid">
-    <div>
-      <p class="footer-brand">Paseando Madrid</p>
-      <p class="footer-note">Paseos culturales en Madrid.</p>
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Centro histórico esencial</h3>
+              <p class="card-meta">Sol · Austrias · Plaza Mayor</p>
+              <p class="card-detail">Duración: 2 h · Ritmo medio</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Madrid oscuro y leyendas</h3>
+              <p class="card-meta">Callejones · Relatos · Intrahistoria</p>
+              <p class="card-detail">Duración: 2 h · Tarde/noche</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Literatura y cafés</h3>
+              <p class="card-meta">Barrio de las Letras</p>
+              <p class="card-detail">Duración: 2 h · Paradas seleccionadas</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Barrios con carácter</h3>
+              <p class="card-meta">Malasaña · Chueca · Lavapiés</p>
+              <p class="card-detail">Duración: 2 h · Barrio y contexto</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) EXPERIENCIA -->
+    <section class="section section-soft">
+      <div class="container split">
+        <div class="split-main">
+          <h2 class="section-title">Una experiencia cultural, no un paseo genérico</h2>
+          <p class="prose">
+            Paseando Madrid está diseñado como un formato editorial: contexto, capas históricas,
+            anécdotas verificables y ritmo de relato. Menos “checklist”, más comprensión del lugar.
+          </p>
+          <p class="prose">
+            Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo
+            vas a disfrutar.
+          </p>
+        </div>
+
+        <aside class="split-aside">
+          <div class="factbox">
+            <p class="factbox-title">Enfoque</p>
+            <ul class="factbox-list">
+              <li>Historia + intrahistoria</li>
+              <li>Narrativa y lugares</li>
+              <li>Ritmo humano</li>
+              <li>Grupos medianos</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4) SERIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Series y recorridos</h2>
+          <p class="section-lead">Bloques temáticos que vuelven en calendario (sin sensación de “evento único”).</p>
+        </div>
+
+        <div class="cards-grid cards-grid-3">
+          <article class="card card-compact">
+            <div class="card-body">
+              <h3 class="card-title">Arte y ciudad</h3>
+              <p class="card-meta">Museos · Arquitectura · Espacio público</p>
+            </div>
+          </article>
+
+          <article class="card card-compact">
+            <div class="card-body">
+              <h3 class="card-title">Madrid de los Austrias</h3>
+              <p class="card-meta">Poder · Plazas · Escenarios históricos</p>
+            </div>
+          </article>
+
+          <article class="card card-compact">
+            <div class="card-body">
+              <h3 class="card-title">Nocturno (leyenda y memoria)</h3>
+              <p class="card-meta">Relato · Misterio · Contexto</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) CÓMO FUNCIONA -->
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Cómo se desarrollan los paseos</h2>
+          <p class="section-lead">Estructura clara para que la experiencia sea cómoda y consistente.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step">
+            <p class="step-title">1. Punto de encuentro</p>
+            <p class="step-text">Localización simple y sin pérdidas. Llegada y contexto breve.</p>
+          </div>
+          <div class="step">
+            <p class="step-title">2. Recorrido narrado</p>
+            <p class="step-text">Historia, capas del barrio y escenas que conectan lugares.</p>
+          </div>
+          <div class="step">
+            <p class="step-title">3. Paradas clave</p>
+            <p class="step-text">Sitios seleccionados (no “relleno”), con explicación con sentido.</p>
+          </div>
+          <div class="step">
+            <p class="step-title">4. Cierre y recomendaciones</p>
+            <p class="step-text">Orientación local: qué ver después, cafés, calles, miradores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) MADRID TERRITORIO -->
+    <section class="section">
+      <div class="container">
+        <div class="banner">
+          <div class="banner-copy">
+            <h2 class="section-title">Madrid como territorio cultural</h2>
+            <p class="section-lead">
+              Barrios como capítulos. Calles como archivo. La ciudad se entiende andando.
+            </p>
+          </div>
+          <div class="banner-media" aria-hidden="true">
+            <img class="banner-image" src="assets/home/madrid-banner.jpg" alt="" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand">Paseando Madrid</p>
+        <p class="footer-note">Paseos culturales en Madrid.</p>
+      </div>
+      <div>
+        <p class="footer-title">Contacto</p>
+        <p class="footer-note">Email: tuemail@dominio.com</p>
+      </div>
+      <div>
+        <p class="footer-title">Secciones</p>
+        <p class="footer-note">Inicio · Tours · Sobre · Contacto</p>
+      </div>
     </div>
-    <div>
-      <p class="footer-title">Contacto</p>
-      <p class="footer-note">Email: tuemail@dominio.com</p>
-    </div>
-    <div>
-      <p class="footer-title">Secciones</p>
-      <p class="footer-note">Inicio · Tours · Sobre · Contacto</p>
-    </div>
-  </div>
-</footer>
+  </footer>
+
+</body>
+</html>
