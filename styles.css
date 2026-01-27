@@ -60,6 +60,7 @@ a:visited{ color: inherit; }
 ------------------------------ */
 .hero{
   padding: clamp(42px, 6vw, 78px) 0;
+  position: relative; /* clave para overlay */
 }
 
 .hero-grid{
@@ -183,6 +184,46 @@ a:visited{ color: inherit; }
 }
 
 /* -----------------------------
+   HERO OVERLAY (tour encima del hero)
+   - Se activa con class: .hero.is-tour-open
+------------------------------ */
+.hero-default{
+  transition: opacity 220ms ease;
+}
+
+.hero.is-tour-open .hero-default{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  background: var(--bg);
+  padding: clamp(42px, 6vw, 78px) 0;
+}
+
+.hero-overlay-grid{
+  display: grid;
+  gap: 14px;
+}
+
+/* Cabecera overlay con 40/60: kicker a la izq, tabs a la der */
+.hero-overlay-head{
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* 40/60 */
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.hero-tabs--overlay{
+  max-width: none;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* -----------------------------
    Cards / grids
 ------------------------------ */
 .cards-grid{
@@ -204,7 +245,9 @@ a:visited{ color: inherit; }
   cursor: default;
 }
 
-.card[data-tour]{
+/* soporta ambos atributos */
+.card[data-tour],
+.card[data-open-tour]{
   cursor: pointer;
 }
 
@@ -242,9 +285,14 @@ a:visited{ color: inherit; }
   box-shadow: 0 18px 46px rgba(0,0,0,.08);
 }
 
+/* cuando el panel vive dentro del overlay, NO margen inferior */
+.tour-panel--overlay{
+  margin: 0;
+}
+
 .tour-panel-grid{
   display: grid;
-  grid-template-columns: 1fr 1.5fr; /* ~40/60 */
+  grid-template-columns: 2fr 3fr; /* 40/60 correcto */
   min-height: 520px;
 }
 
@@ -397,6 +445,7 @@ a:visited{ color: inherit; }
   position: relative;
 }
 
+/* Brand pill (solo si lo quieres en el estado image; en overlay lo ocultamos) */
 .tour-right-brand{
   position: absolute;
   top: 14px;
@@ -433,11 +482,16 @@ a:visited{ color: inherit; }
   display: block;
 }
 
+/* Ocultar repetición de marca en overlay (tu requisito) */
+.hero.is-tour-open .tour-right-brand{
+  display: none;
+}
+
 /* Booking / Meeting */
 .tour-right-state--booking,
 .tour-right-state--meeting{
   background: #fff;
-  padding: 68px 18px 18px 18px;
+  padding: 18px; /* ya no reservamos espacio para el brand pill */
 }
 
 .tour-right-icon{
@@ -683,6 +737,15 @@ a[aria-disabled="true"]{
   .cards-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr; }
 
+  /* Overlay head en 1 columna */
+  .hero-overlay-head{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hero-tabs--overlay{
+    justify-content: center;
+  }
+
   /* Tour panel stacks */
   .tour-panel-grid{ grid-template-columns: 1fr; }
   .tour-panel-left{
@@ -740,9 +803,5 @@ a[aria-disabled="true"]{
   .tour-panel-left,
   .tour-panel-right{
     padding: 18px;
-  }
-  .tour-right-state--booking,
-  .tour-right-state--meeting{
-    padding: 64px 14px 14px 14px;
   }
 }
