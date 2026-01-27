@@ -17,7 +17,6 @@
 }
 
 *{ box-sizing: border-box; }
-
 html{ scroll-behavior: smooth; }
 
 body{
@@ -36,17 +35,33 @@ body{
 .section{ padding: var(--space-6) 0; }
 .section-soft{ background: var(--soft); }
 
-/* --------------------------------
-   BASE LINKS (evitar azul/subrayado)
--------------------------------- */
+/* -----------------------------
+   Base links (evitar azul)
+------------------------------ */
 a{ color: inherit; text-decoration: none; }
 a:hover{ color: inherit; }
 a:visited{ color: inherit; }
 
-/* --------------------------------
-   HERO
--------------------------------- */
+/* -----------------------------
+   Section head
+------------------------------ */
+.section-head{ margin-bottom: var(--space-4); }
 
+.section-title{
+  margin: 0 0 var(--space-2) 0;
+  font-size: clamp(22px, 2.4vw, 32px);
+  letter-spacing: -0.02em;
+}
+
+.section-lead{
+  margin: 0;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+/* -----------------------------
+   HERO
+------------------------------ */
 .hero{
   padding: clamp(42px, 6vw, 78px) 0;
 }
@@ -90,10 +105,9 @@ a:visited{ color: inherit; }
   letter-spacing: -0.01em;
 }
 
-/* --------------------------------
-   RIGHT COLUMN (tabs + photo)
--------------------------------- */
-
+/* -----------------------------
+   Right column (tabs + photo)
+------------------------------ */
 .hero-media-col{
   display: flex;
   flex-direction: column;
@@ -101,14 +115,13 @@ a:visited{ color: inherit; }
   gap: 14px;
 }
 
-/* Tabs — OUTSIDE the frame */
+/* Tabs OUTSIDE frame */
 .hero-tabs{
   display: flex;
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
   width: 100%;
-  /* importante: ancho alineado con el marco de la foto */
   max-width: 520px;
 }
 
@@ -131,12 +144,12 @@ a:visited{ color: inherit; }
   border-color: rgba(0,0,0,.18);
   transform: translateY(-1px);
 }
-
 .hero-tab:active{ transform: translateY(0); }
 
-/* Photo frame */
+/* Frame only for photo */
 .hero-media{
   width: 100%;
+  max-width: 520px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
@@ -182,27 +195,9 @@ a:visited{ color: inherit; }
   }
 }
 
-/* --------------------------------
-   SECTION HEAD (si lo usas en otras secciones)
--------------------------------- */
-.section-head{ margin-bottom: var(--space-4); }
-
-.section-title{
-  margin: 0 0 var(--space-2) 0;
-  font-size: clamp(22px, 2.4vw, 32px);
-  letter-spacing: -0.02em;
-}
-
-.section-lead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 70ch;
-}
-
-/* --------------------------------
-   CONTENT BLOCKS
--------------------------------- */
-
+/* -----------------------------
+   Cards / grids
+------------------------------ */
 .cards-grid{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -218,6 +213,10 @@ a:visited{ color: inherit; }
   border-radius: var(--radius);
   background: #fff;
   padding: var(--space-4);
+}
+
+.card-compact{
+  padding: var(--space-3);
 }
 
 .card-title{
@@ -238,6 +237,9 @@ a:visited{ color: inherit; }
   font-size: 13px;
 }
 
+/* -----------------------------
+   Split / prose / factbox
+------------------------------ */
 .split{
   display: grid;
   grid-template-columns: 1.2fr .8fr;
@@ -270,10 +272,9 @@ a:visited{ color: inherit; }
 
 .factbox-list li{ margin: 8px 0; }
 
-/* --------------------------------
-   CTA BUTTONS (Tours a medida)
--------------------------------- */
-
+/* -----------------------------
+   CTA Buttons (Tours a medida)
+------------------------------ */
 .cta-row{
   display: flex;
   gap: 12px;
@@ -294,7 +295,6 @@ a:visited{ color: inherit; }
   font-size: 13px;
   letter-spacing: -0.01em;
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, opacity 160ms ease;
-  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -302,7 +302,6 @@ a:visited{ color: inherit; }
   transform: translateY(-1px);
   border-color: rgba(0,0,0,.18);
 }
-
 .btn:active{ transform: translateY(0); }
 
 .btn-ghost{
@@ -315,17 +314,69 @@ a:visited{ color: inherit; }
   border-color: rgba(0,0,0,.18);
 }
 
-/* Si en algún momento vuelves a poner aria-disabled */
+/* preparado pero inactivo */
 a[aria-disabled="true"]{
   pointer-events: none;
   opacity: .55;
   cursor: not-allowed;
 }
 
-/* --------------------------------
-   FOOTER
--------------------------------- */
+/* -----------------------------
+   Steps (Cómo funciona)
+------------------------------ */
+.steps-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
 
+.step{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: var(--space-4);
+}
+
+.step-title{
+  margin: 0 0 var(--space-2) 0;
+  font-weight: 600;
+}
+
+.step-text{
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* -----------------------------
+   Banner (Madrid territorio)
+------------------------------ */
+.banner{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: stretch;
+}
+
+.banner-copy{ padding: var(--space-5); }
+
+.banner-media{
+  border-left: 1px solid var(--line);
+}
+
+.banner-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -----------------------------
+   Footer
+------------------------------ */
 .footer{
   border-top: 1px solid var(--line);
   padding: var(--space-5) 0;
@@ -352,20 +403,20 @@ a[aria-disabled="true"]{
   color: var(--muted);
 }
 
-/* --------------------------------
-   RESPONSIVE (PREMIUM)
--------------------------------- */
-
+/* -----------------------------
+   Responsive (premium)
+------------------------------ */
 @media (max-width: 980px){
-  .hero-grid, .split{ grid-template-columns: 1fr; }
+  .hero-grid, .split, .banner{ grid-template-columns: 1fr; }
   .hero-copy{ padding-top: 0; }
 
-  /* Tabs y marco centrados y con el mismo ancho */
-  .hero-media-col{ align-items: center; }
-  .hero-tabs{ max-width: 520px; }
-  .hero-media{ max-width: 520px; }
+  .banner-media{
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
 
   .cards-grid{ grid-template-columns: repeat(2, 1fr); }
+  .steps-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr; }
 }
 
@@ -386,4 +437,5 @@ a[aria-disabled="true"]{
   }
 
   .cards-grid{ grid-template-columns: 1fr; }
+  .steps-grid{ grid-template-columns: 1fr; }
 }
