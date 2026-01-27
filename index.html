@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paseando Madrid</title>
-
-  <!-- Debe llamarse EXACTAMENTE styles.css y estar junto a index.html -->
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -16,18 +14,17 @@
     <!-- 1) HERO editorial -->
     <section class="hero">
       <div class="container hero-grid">
+
         <div class="hero-copy">
           <p class="kicker">Paseando Madrid</p>
-
           <h1 class="hero-title">Madrid, contado a pie.</h1>
-
           <p class="hero-subtitle">
             Tours con narrativa e historia.
             <span class="hero-subclaim">La ciudad como camino.</span>
           </p>
         </div>
 
-        <!-- NEW: columna derecha (tabs arriba + foto debajo) -->
+        <!-- Columna derecha (tabs arriba + foto debajo) -->
         <div class="hero-media-col">
 
           <!-- Tabs (jump links) - FUERA del marco -->
@@ -40,52 +37,233 @@
           <!-- Marco SOLO para la foto -->
           <div class="hero-media" aria-hidden="true">
             <div class="hero-photo-swap">
-              <img
-                class="hero-photo hero-photo--base"
-                src="assets/images/hero/hero-madrid-calle-1.png"
-                alt=""
-                loading="eager"
-                decoding="async"
-              />
+              <img class="hero-photo hero-photo--base"
+                   src="assets/images/hero/hero-madrid-calle-1.png"
+                   alt=""
+                   loading="eager"
+                   decoding="async" />
 
-              <img
-                class="hero-photo hero-photo--hover hero-photo--hover2"
-                src="assets/images/hero/hero-madrid-calle-2.png"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                onerror="this.style.display='none'"
-              />
+              <img class="hero-photo hero-photo--hover hero-photo--hover2"
+                   src="assets/images/hero/hero-madrid-calle-2.png"
+                   alt=""
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.style.display='none'" />
 
-              <img
-                class="hero-photo hero-photo--hover hero-photo--hover3"
-                src="assets/images/hero/hero-madrid-calle-3.png"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                onerror="this.style.display='none'"
-              />
+              <img class="hero-photo hero-photo--hover hero-photo--hover3"
+                   src="assets/images/hero/hero-madrid-calle-3.png"
+                   alt=""
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.style.display='none'" />
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
     <!-- 2) RUTAS ACTIVAS (Free tours anchor) -->
     <section class="section" id="free-tours">
       <div class="container">
+
         <div class="section-head">
           <h2 class="section-title">Rutas activas</h2>
-          <!-- Eliminado section-lead aquí, como pediste -->
         </div>
 
+        <!-- (NEW) Panel desplegable del tour (aparece al pinchar una card) -->
+        <section class="tour-panel" id="tour-austrias" aria-label="Detalle del tour: Madrid de los Austrias" hidden>
+          <div class="tour-panel-grid">
+
+            <!-- LEFT (40%) -->
+            <div class="tour-panel-left">
+
+              <header class="tour-panel-head">
+                <p class="tour-panel-kicker">Paseando Madrid</p>
+                <h3 class="tour-panel-title">Madrid de los Austrias</h3>
+              </header>
+
+              <div class="tour-panel-block">
+                <h4 class="tour-panel-label">Descripción</h4>
+                <p class="tour-panel-text">
+                  Este recorrido atraviesa el corazón histórico de la ciudad desde su fundación en el siglo IX hasta el siglo XVIII.
+                  Un paseo que explica cómo una villa de origen medieval se convirtió en capital del reino bajo la dinastía de los Austrias.
+                  Historia urbana, poder y vida cotidiana se entrelazan en el trazado del Madrid más antiguo.
+                </p>
+              </div>
+
+              <div class="tour-panel-block">
+                <h4 class="tour-panel-label">Recorrido</h4>
+
+                <!-- Horizontal Segmented Route Timeline -->
+                <ol class="route-timeline" aria-label="Puntos principales del recorrido">
+                  <li class="route-point route-point--top">
+                    <span class="route-dot" aria-hidden="true"></span>
+                    <span class="route-name">Plaza de Santa Cruz</span>
+                  </li>
+
+                  <li class="route-point route-point--bottom">
+                    <span class="route-dot" aria-hidden="true"></span>
+                    <span class="route-name">Plaza de la Villa</span>
+                  </li>
+
+                  <li class="route-point route-point--top">
+                    <span class="route-dot" aria-hidden="true"></span>
+                    <span class="route-name">Antiguas puertas de la muralla</span>
+                  </li>
+
+                  <li class="route-point route-point--bottom">
+                    <span class="route-dot" aria-hidden="true"></span>
+                    <span class="route-name">Madrid de los Austrias</span>
+                  </li>
+
+                  <li class="route-point route-point--top">
+                    <span class="route-dot" aria-hidden="true"></span>
+                    <span class="route-name">Inmediaciones del Palacio Real</span>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="tour-panel-block">
+                <h4 class="tour-panel-label">Duración</h4>
+                <p class="tour-panel-text">2 horas aproximadamente.</p>
+              </div>
+
+              <div class="tour-panel-block">
+                <h4 class="tour-panel-label">Modalidad</h4>
+                <p class="tour-panel-text">
+                  Este recorrido se realiza en formato de libre acceso con reserva previa.
+                  Al finalizar la experiencia, cada persona valora la experiencia económicamente según su criterio.
+                </p>
+                <p class="tour-panel-text">
+                  También puede realizarse en formato privado, manteniendo el mismo contenido y con posibilidad de ajustes.
+                  Para reservas de más de 6 personas, se solicitará el pago antes del inicio del recorrido.
+                </p>
+              </div>
+
+              <!-- Actions (left) -> triggers right panel state -->
+              <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
+                <button class="tour-action" type="button" data-tour-action="booking" aria-controls="tour-austrias-right">
+                  Reserva
+                </button>
+                <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting" aria-controls="tour-austrias-right">
+                  Punto de encuentro
+                </button>
+              </div>
+
+            </div>
+
+            <!-- RIGHT (60%) -->
+            <aside class="tour-panel-right" id="tour-austrias-right" aria-label="Panel visual del tour">
+
+              <!-- Default: image (tour photo) -->
+              <div class="tour-right-state tour-right-state--image" data-tour-state="image">
+                <div class="tour-right-brand">
+                  <span class="brand-mini" aria-hidden="true"></span>
+                  <span class="brand-name">Paseando Madrid</span>
+                </div>
+
+                <!-- Placeholder image (se sustituirá por la foto del tour) -->
+                <img class="tour-right-image"
+                     src="assets/images/tours/austrias.jpg"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'" />
+              </div>
+
+              <!-- Booking: inline form -->
+              <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
+                <div class="tour-right-brand">
+                  <span class="brand-mini" aria-hidden="true"></span>
+                  <span class="brand-name">Paseando Madrid</span>
+                </div>
+
+                <div class="tour-right-icon" aria-hidden="true"></div>
+
+                <h4 class="tour-right-title">Reserva</h4>
+
+                <form class="booking-form" action="#" method="post">
+                  <div class="form-grid">
+                    <label class="field">
+                      <span class="field-label">Fecha del recorrido</span>
+                      <input class="field-input" type="date" name="fecha" required />
+                    </label>
+
+                    <label class="field">
+                      <span class="field-label">Horario</span>
+                      <input class="field-input" type="time" name="hora" required />
+                    </label>
+
+                    <label class="field">
+                      <span class="field-label">Número de personas</span>
+                      <input class="field-input" type="number" name="pax" min="1" step="1" required />
+                    </label>
+
+                    <label class="field">
+                      <span class="field-label">Nombre</span>
+                      <input class="field-input" type="text" name="nombre" autocomplete="name" required />
+                    </label>
+
+                    <label class="field">
+                      <span class="field-label">Correo electrónico</span>
+                      <input class="field-input" type="email" name="email" autocomplete="email" required />
+                    </label>
+                  </div>
+
+                  <p class="form-note">
+                    Para garantizar la correcta organización del recorrido, es necesario <strong>confirmar la reserva</strong>
+                    desde el correo que recibirás tras completar este formulario. En ese mismo correo podrás <strong>anularla</strong>
+                    fácilmente si lo necesitas.
+                  </p>
+
+                  <label class="check">
+                    <input type="checkbox" name="privacidad" required />
+                    <span>He leído y acepto la política de privacidad para el tratamiento de mis datos con fines organizativos relacionados con este recorrido.</span>
+                  </label>
+
+                  <button class="form-submit" type="submit">Confirmar reserva</button>
+                </form>
+              </div>
+
+              <!-- Meeting point: map / info -->
+              <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
+                <div class="tour-right-brand">
+                  <span class="brand-mini" aria-hidden="true"></span>
+                  <span class="brand-name">Paseando Madrid</span>
+                </div>
+
+                <div class="tour-right-icon" aria-hidden="true"></div>
+
+                <h4 class="tour-right-title">Punto de encuentro</h4>
+
+                <p class="tour-right-text">
+                  Nos encontraremos en la Plaza de Santa Cruz. Podrás identificarnos por nuestro paraguas blanco y negro con la imagen de Paseando Madrid.
+                </p>
+                <p class="tour-right-text">
+                  Recomendamos llegar con al menos 15 minutos de antelación para presentarnos y organizar el inicio del recorrido.
+                </p>
+
+                <!-- Placeholder del mapa (más adelante lo conectamos) -->
+                <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
+                <p class="tour-map-link">
+                  <a href="#" rel="noopener" target="_blank">Abrir en Google Maps</a>
+                </p>
+              </div>
+
+            </aside>
+
+          </div>
+        </section>
+
+        <!-- Cards grid (ahora mismo 4, luego serán 6) -->
         <div class="cards-grid">
-          <article class="card">
+          <!-- Card 1 (Austrias) -->
+          <article class="card" data-tour="tour-austrias">
             <div class="card-body">
-              <h3 class="card-title">Centro histórico esencial</h3>
-              <p class="card-meta">Sol · Austrias · Plaza Mayor</p>
-              <p class="card-detail">Duración: 2 h · Ritmo medio</p>
+              <h3 class="card-title">Madrid de los Austrias</h3>
+              <p class="card-meta">Sol · Plaza de la Villa · Palacio Real</p>
+              <p class="card-detail">Duración: 2 h</p>
             </div>
           </article>
 
@@ -113,18 +291,17 @@
             </div>
           </article>
         </div>
+
       </div>
     </section>
 
-    <!-- 2.1) TOURS A MEDIDA (anchor) -->
+    <!-- 2.1) TOURS A MEDIDA -->
     <section class="section section-soft" id="tours-a-medida">
       <div class="container split">
         <div class="split-main">
           <h2 class="section-title">Tours a medida</h2>
 
-          <p class="prose">
-            Si prefieres una experiencia privada o necesitas adaptar el recorrido, puedes:
-          </p>
+          <p class="prose">Si prefieres una experiencia privada o necesitas adaptar el recorrido, puedes:</p>
 
           <ul class="factbox-list">
             <li>Elegir cualquiera de las rutas activas y hacerla en formato privado.</li>
@@ -132,9 +309,7 @@
             <li>Organizarlo para grupos, empresas, instituciones o familias.</li>
           </ul>
 
-          <p class="prose">
-            Escríbenos y lo preparamos contigo.
-          </p>
+          <p class="prose">Escríbenos y lo preparamos contigo.</p>
 
           <div class="cta-row">
             <a class="btn" href="mailto:contacto@paseandomadrid.com?subject=Tour%20a%20medida%20-%20Paseando%20Madrid">
@@ -172,8 +347,7 @@
             anécdotas verificables y ritmo de relato. Menos “checklist”, más comprensión del lugar.
           </p>
           <p class="prose">
-            Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo
-            vas a disfrutar.
+            Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo vas a disfrutar.
           </p>
         </div>
 
@@ -259,9 +433,7 @@
         <div class="banner">
           <div class="banner-copy">
             <h2 class="section-title">Madrid como territorio cultural</h2>
-            <p class="section-lead">
-              Barrios como capítulos. Calles como archivo. La ciudad se entiende andando.
-            </p>
+            <p class="section-lead">Barrios como capítulos. Calles como archivo. La ciudad se entiende andando.</p>
           </div>
           <div class="banner-media" aria-hidden="true">
             <img class="banner-image" src="assets/home/madrid-banner.jpg" alt="" loading="lazy" decoding="async" />
@@ -278,10 +450,13 @@
         <p class="footer-brand">Paseando Madrid</p>
         <p class="footer-note">Paseos culturales en Madrid.</p>
       </div>
+
       <div>
         <p class="footer-title">Contacto</p>
-        <p class="footer-note">Email: tuemail@dominio.com</p>
+        <p class="footer-note">+346xxxxxx</p>
+        <p class="footer-note">info@paseandomadrid.com</p>
       </div>
+
       <div>
         <p class="footer-title">Secciones</p>
         <p class="footer-note">Inicio · Tours · Sobre · Contacto</p>
