@@ -37,6 +37,7 @@ body{
 
 /* -----------------------------
    Base links (evitar azul)
+   (pero dejamos “subrayado editorial” en links específicos)
 ------------------------------ */
 a{ color: inherit; text-decoration: none; }
 a:hover{ color: inherit; }
@@ -138,6 +139,7 @@ a:visited{ color: inherit; }
   align-items: center;
   justify-content: center;
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero-tab:hover{
@@ -213,7 +215,14 @@ a:visited{ color: inherit; }
   border-radius: var(--radius);
   background: #fff;
   padding: var(--space-4);
+  transition: transform 160ms ease, border-color 160ms ease;
 }
+
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,.16);
+}
+.card:active{ transform: translateY(0); }
 
 .card-compact{
   padding: var(--space-3);
@@ -236,6 +245,354 @@ a:visited{ color: inherit; }
   color: var(--muted);
   font-size: 13px;
 }
+
+/* -----------------------------
+   Tour panel (desplegable premium)
+   - Se inserta encima de las cards
+   - 40/60: izquierda info, derecha visual/acciones
+------------------------------ */
+.tour-panel{
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: #fff;
+  overflow: hidden;
+  margin: 0 0 var(--space-4) 0;
+  box-shadow: 0 18px 46px rgba(0,0,0,.08);
+}
+
+.tour-panel-grid{
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* ~40/60 */
+  min-height: 520px;
+}
+
+/* LEFT */
+.tour-panel-left{
+  padding: var(--space-5);
+  border-right: 1px solid var(--line);
+}
+
+.tour-panel-head{ margin-bottom: var(--space-4); }
+
+.tour-panel-kicker{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 12px;
+}
+
+.tour-panel-title{
+  margin: 0;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.tour-panel-block{ margin-top: var(--space-4); }
+
+.tour-panel-label{
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  color: rgba(17,17,17,.72);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.tour-panel-text{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+/* Acciones izquierda -> abren panel derecho */
+.tour-panel-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+.tour-action{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, opacity 160ms ease, background 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.tour-action:hover{ transform: translateY(-1px); border-color: rgba(0,0,0,.18); }
+.tour-action:active{ transform: translateY(0); }
+
+.tour-action--ghost{
+  background: #fff;
+  color: #111;
+  border-color: rgba(0,0,0,.10);
+}
+.tour-action--ghost:hover{ border-color: rgba(0,0,0,.18); }
+
+/* Recorrido: timeline horizontal con alternancia arriba/abajo */
+.route-timeline{
+  --dot: 8px;
+  --lineh: 1px;
+
+  list-style: none;
+  padding: 20px 6px 10px 6px;
+  margin: 0;
+  position: relative;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(120px, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.route-timeline::before{
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 50%;
+  height: var(--lineh);
+  background: rgba(0,0,0,.10);
+}
+
+.route-point{
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 0 6px;
+}
+
+.route-dot{
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 999px;
+  background: rgba(17,17,17,.82);
+  box-shadow: 0 0 0 4px rgba(17,17,17,.07);
+  z-index: 1;
+}
+
+.route-name{
+  max-width: 18ch;
+  font-size: 12.5px;
+  color: rgba(17,17,17,.76);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.route-point--top .route-name{
+  margin-bottom: 12px;
+  transform: translateY(-22px);
+}
+
+.route-point--bottom .route-name{
+  margin-top: 12px;
+  transform: translateY(22px);
+}
+
+/* RIGHT */
+.tour-panel-right{
+  position: relative;
+  padding: var(--space-5);
+  background: #fff;
+}
+
+/* Brand mini (placeholder del logo pequeño) */
+.tour-right-brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px);
+}
+
+.brand-mini{
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,.18);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,0));
+}
+
+.brand-name{
+  font-size: 13px;
+  color: rgba(17,17,17,.82);
+  letter-spacing: -0.01em;
+}
+
+/* Right states */
+.tour-right-state{
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(0,0,0,.10);
+  overflow: hidden;
+  background: #f7f7f7;
+  position: relative;
+}
+
+/* Encabezado dentro del estado */
+.tour-right-state .tour-right-brand{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+}
+
+/* Default image */
+.tour-right-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Booking / Meeting layout */
+.tour-right-state--booking,
+.tour-right-state--meeting{
+  background: #fff;
+  padding: 68px 18px 18px 18px; /* deja aire para el brand pill */
+}
+
+.tour-right-title{
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.tour-right-text{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+
+/* Icon placeholder (tu “logo flotante” del boceto) */
+.tour-right-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.12);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,0,0,.08), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,0));
+  margin: 0 0 14px 0;
+}
+
+/* Booking form */
+.booking-form{
+  margin-top: 12px;
+}
+
+.form-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field{ display: grid; gap: 8px; }
+
+.field-label{
+  font-size: 12px;
+  color: rgba(17,17,17,.72);
+  text-transform: uppercase;
+  letter-spacing: .10em;
+}
+
+.field-input{
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.field-input:focus{
+  border-color: rgba(0,0,0,.22);
+  transform: translateY(-1px);
+}
+
+.form-note{
+  margin: 12px 0 0 0;
+  color: rgba(17,17,17,.70);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.check{
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-top: 12px;
+  color: rgba(17,17,17,.70);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.check input{ margin-top: 3px; }
+
+.form-submit{
+  margin-top: 14px;
+  height: 44px;
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #111;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.form-submit:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,0,0,.18);
+}
+.form-submit:active{ transform: translateY(0); }
+
+/* Map placeholder + link editorial */
+.tour-map{
+  height: 220px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.10);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0)),
+    repeating-linear-gradient(45deg, rgba(0,0,0,.04), rgba(0,0,0,.04) 10px, rgba(0,0,0,.02) 10px, rgba(0,0,0,.02) 20px);
+  margin-top: 12px;
+}
+
+.tour-map-link{
+  margin: 10px 0 0 0;
+  color: rgba(17,17,17,.80);
+  font-size: 13px;
+}
+.tour-map-link a{
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  opacity: .9;
+}
+.tour-map-link a:hover{ opacity: 1; }
 
 /* -----------------------------
    Split / prose / factbox
@@ -309,10 +666,7 @@ a:visited{ color: inherit; }
   color: #111;
   border-color: rgba(0,0,0,.10);
 }
-
-.btn-ghost:hover{
-  border-color: rgba(0,0,0,.18);
-}
+.btn-ghost:hover{ border-color: rgba(0,0,0,.18); }
 
 /* preparado pero inactivo */
 a[aria-disabled="true"]{
@@ -403,6 +757,15 @@ a[aria-disabled="true"]{
   color: var(--muted);
 }
 
+/* Si en algún momento conviertes email/teléfono en <a>, que no salga azul */
+.footer a{
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer a:hover{
+  color: rgba(17,17,17,.78);
+}
+
 /* -----------------------------
    Responsive (premium)
 ------------------------------ */
@@ -418,6 +781,48 @@ a[aria-disabled="true"]{
   .cards-grid{ grid-template-columns: repeat(2, 1fr); }
   .steps-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr; }
+
+  /* Tour panel stacks */
+  .tour-panel-grid{
+    grid-template-columns: 1fr;
+  }
+  .tour-panel-left{
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .tour-panel{
+    box-shadow: 0 14px 34px rgba(0,0,0,.08);
+  }
+}
+
+@media (max-width: 720px){
+  /* Timeline: en móvil pasa a vertical para evitar solapes */
+  .route-timeline{
+    grid-auto-flow: row;
+    grid-auto-columns: unset;
+    gap: 14px;
+    padding: 8px 0 0 0;
+  }
+  .route-timeline::before{ display: none; }
+
+  .route-point{
+    grid-template-columns: 12px 1fr;
+    justify-items: start;
+    text-align: left;
+    gap: 10px;
+  }
+  .route-name{
+    max-width: none;
+    transform: none !important;
+    margin: 0 !important;
+  }
+  .route-dot{
+    margin-top: 4px;
+  }
+
+  .form-grid{
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px){
@@ -438,4 +843,14 @@ a[aria-disabled="true"]{
 
   .cards-grid{ grid-template-columns: 1fr; }
   .steps-grid{ grid-template-columns: 1fr; }
+
+  /* Tour panel padding refinement on mobile */
+  .tour-panel-left,
+  .tour-panel-right{
+    padding: 18px;
+  }
+  .tour-right-state--booking,
+  .tour-right-state--meeting{
+    padding: 64px 14px 14px 14px;
+  }
 }
