@@ -28,34 +28,38 @@
         <div class="hero-media-col">
 
           <!-- Tabs (jump links) - FUERA del marco -->
-          <div class="hero-tabs" role="navigation" aria-label="Accesos rápidos">
+          <nav class="hero-tabs" aria-label="Accesos rápidos">
             <a class="hero-tab" href="#free-tours">Free tours</a>
             <a class="hero-tab" href="#tours-a-medida">Tours a medida</a>
             <a class="hero-tab" href="#contacto">Contacto</a>
-          </div>
+          </nav>
 
           <!-- Marco SOLO para la foto -->
           <div class="hero-media" aria-hidden="true">
             <div class="hero-photo-swap">
-              <img class="hero-photo hero-photo--base"
-                   src="assets/images/hero/hero-madrid-calle-1.png"
-                   alt=""
-                   loading="eager"
-                   decoding="async" />
-
-              <img class="hero-photo hero-photo--hover hero-photo--hover2"
-                   src="assets/images/hero/hero-madrid-calle-2.png"
-                   alt=""
-                   loading="lazy"
-                   decoding="async"
-                   onerror="this.style.display='none'" />
-
-              <img class="hero-photo hero-photo--hover hero-photo--hover3"
-                   src="assets/images/hero/hero-madrid-calle-3.png"
-                   alt=""
-                   loading="lazy"
-                   decoding="async"
-                   onerror="this.style.display='none'" />
+              <img
+                class="hero-photo hero-photo--base"
+                src="assets/images/hero/hero-madrid-calle-1.png"
+                alt=""
+                loading="eager"
+                decoding="async"
+              />
+              <img
+                class="hero-photo hero-photo--hover hero-photo--hover2"
+                src="assets/images/hero/hero-madrid-calle-2.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+              <img
+                class="hero-photo hero-photo--hover hero-photo--hover3"
+                src="assets/images/hero/hero-madrid-calle-3.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
             </div>
           </div>
 
@@ -69,9 +73,10 @@
 
         <div class="section-head">
           <h2 class="section-title">Rutas activas</h2>
+          <!-- (Sin section-lead aquí, como pediste) -->
         </div>
 
-        <!-- (NEW) Panel desplegable del tour (aparece al pinchar una card) -->
+        <!-- Panel desplegable del tour (aparece al pinchar una card) -->
         <section class="tour-panel" id="tour-austrias" aria-label="Detalle del tour: Madrid de los Austrias" hidden>
           <div class="tour-panel-grid">
 
@@ -84,7 +89,7 @@
               </header>
 
               <div class="tour-panel-block">
-                <h4 class="tour-panel-label">Descripción</h4>
+                <p class="tour-panel-label">Descripción</p>
                 <p class="tour-panel-text">
                   Este recorrido atraviesa el corazón histórico de la ciudad desde su fundación en el siglo IX hasta el siglo XVIII.
                   Un paseo que explica cómo una villa de origen medieval se convirtió en capital del reino bajo la dinastía de los Austrias.
@@ -93,30 +98,26 @@
               </div>
 
               <div class="tour-panel-block">
-                <h4 class="tour-panel-label">Recorrido</h4>
+                <p class="tour-panel-label">Recorrido</p>
 
-                <!-- Horizontal Segmented Route Timeline -->
+                <!-- Timeline horizontal alternando arriba/abajo -->
                 <ol class="route-timeline" aria-label="Puntos principales del recorrido">
                   <li class="route-point route-point--top">
                     <span class="route-dot" aria-hidden="true"></span>
                     <span class="route-name">Plaza de Santa Cruz</span>
                   </li>
-
                   <li class="route-point route-point--bottom">
                     <span class="route-dot" aria-hidden="true"></span>
                     <span class="route-name">Plaza de la Villa</span>
                   </li>
-
                   <li class="route-point route-point--top">
                     <span class="route-dot" aria-hidden="true"></span>
                     <span class="route-name">Antiguas puertas de la muralla</span>
                   </li>
-
                   <li class="route-point route-point--bottom">
                     <span class="route-dot" aria-hidden="true"></span>
                     <span class="route-name">Madrid de los Austrias</span>
                   </li>
-
                   <li class="route-point route-point--top">
                     <span class="route-dot" aria-hidden="true"></span>
                     <span class="route-name">Inmediaciones del Palacio Real</span>
@@ -125,12 +126,12 @@
               </div>
 
               <div class="tour-panel-block">
-                <h4 class="tour-panel-label">Duración</h4>
+                <p class="tour-panel-label">Duración</p>
                 <p class="tour-panel-text">2 horas aproximadamente.</p>
               </div>
 
               <div class="tour-panel-block">
-                <h4 class="tour-panel-label">Modalidad</h4>
+                <p class="tour-panel-label">Modalidad</p>
                 <p class="tour-panel-text">
                   Este recorrido se realiza en formato de libre acceso con reserva previa.
                   Al finalizar la experiencia, cada persona valora la experiencia económicamente según su criterio.
@@ -141,7 +142,7 @@
                 </p>
               </div>
 
-              <!-- Actions (left) -> triggers right panel state -->
+              <!-- Acciones (izquierda) -> cambian el panel derecho -->
               <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
                 <button class="tour-action" type="button" data-tour-action="booking" aria-controls="tour-austrias-right">
                   Reserva
@@ -156,23 +157,24 @@
             <!-- RIGHT (60%) -->
             <aside class="tour-panel-right" id="tour-austrias-right" aria-label="Panel visual del tour">
 
-              <!-- Default: image (tour photo) -->
+              <!-- Estado: imagen -->
               <div class="tour-right-state tour-right-state--image" data-tour-state="image">
                 <div class="tour-right-brand">
                   <span class="brand-mini" aria-hidden="true"></span>
                   <span class="brand-name">Paseando Madrid</span>
                 </div>
 
-                <!-- Placeholder image (se sustituirá por la foto del tour) -->
-                <img class="tour-right-image"
-                     src="assets/images/tours/austrias.jpg"
-                     alt=""
-                     loading="lazy"
-                     decoding="async"
-                     onerror="this.style.display='none'" />
+                <!-- Placeholder: usa una imagen que YA existe para que siempre se vea -->
+                <img
+                  class="tour-right-image"
+                  src="assets/images/hero/hero-madrid-calle-1.png"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
-              <!-- Booking: inline form -->
+              <!-- Estado: Reserva -->
               <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
                 <div class="tour-right-brand">
                   <span class="brand-mini" aria-hidden="true"></span>
@@ -180,13 +182,12 @@
                 </div>
 
                 <div class="tour-right-icon" aria-hidden="true"></div>
-
                 <h4 class="tour-right-title">Reserva</h4>
 
                 <form class="booking-form" action="#" method="post">
                   <div class="form-grid">
                     <label class="field">
-                      <span class="field-label">Fecha del recorrido</span>
+                      <span class="field-label">Fecha</span>
                       <input class="field-input" type="date" name="fecha" required />
                     </label>
 
@@ -205,7 +206,7 @@
                       <input class="field-input" type="text" name="nombre" autocomplete="name" required />
                     </label>
 
-                    <label class="field">
+                    <label class="field field-span-2">
                       <span class="field-label">Correo electrónico</span>
                       <input class="field-input" type="email" name="email" autocomplete="email" required />
                     </label>
@@ -226,7 +227,7 @@
                 </form>
               </div>
 
-              <!-- Meeting point: map / info -->
+              <!-- Estado: Punto de encuentro -->
               <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
                 <div class="tour-right-brand">
                   <span class="brand-mini" aria-hidden="true"></span>
@@ -234,18 +235,17 @@
                 </div>
 
                 <div class="tour-right-icon" aria-hidden="true"></div>
-
                 <h4 class="tour-right-title">Punto de encuentro</h4>
 
                 <p class="tour-right-text">
-                  Nos encontraremos en la Plaza de Santa Cruz. Podrás identificarnos por nuestro paraguas blanco y negro con la imagen de Paseando Madrid.
+                  Nos encontraremos en la <strong>Plaza de Santa Cruz</strong>. Podrás identificarnos por nuestro paraguas blanco y negro con la imagen de Paseando Madrid.
                 </p>
                 <p class="tour-right-text">
-                  Recomendamos llegar con al menos 15 minutos de antelación para presentarnos y organizar el inicio del recorrido.
+                  Recomendamos llegar con al menos <strong>15 minutos</strong> de antelación para presentarnos y organizar el inicio del recorrido.
                 </p>
 
-                <!-- Placeholder del mapa (más adelante lo conectamos) -->
                 <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
+
                 <p class="tour-map-link">
                   <a href="#" rel="noopener" target="_blank">Abrir en Google Maps</a>
                 </p>
@@ -256,10 +256,11 @@
           </div>
         </section>
 
-        <!-- Cards grid (ahora mismo 4, luego serán 6) -->
+        <!-- Cards grid (ahora 4, luego 6) -->
         <div class="cards-grid">
+
           <!-- Card 1 (Austrias) -->
-          <article class="card" data-tour="tour-austrias">
+          <article class="card" data-tour="tour-austrias" role="button" tabindex="0" aria-label="Abrir detalle: Madrid de los Austrias">
             <div class="card-body">
               <h3 class="card-title">Madrid de los Austrias</h3>
               <p class="card-meta">Sol · Plaza de la Villa · Palacio Real</p>
@@ -290,12 +291,13 @@
               <p class="card-detail">Duración: 2 h · Barrio y contexto</p>
             </div>
           </article>
+
         </div>
 
       </div>
     </section>
 
-    <!-- 2.1) TOURS A MEDIDA -->
+    <!-- TOURS A MEDIDA -->
     <section class="section section-soft" id="tours-a-medida">
       <div class="container split">
         <div class="split-main">
@@ -312,7 +314,7 @@
           <p class="prose">Escríbenos y lo preparamos contigo.</p>
 
           <div class="cta-row">
-            <a class="btn" href="mailto:contacto@paseandomadrid.com?subject=Tour%20a%20medida%20-%20Paseando%20Madrid">
+            <a class="btn" href="mailto:info@paseandomadrid.com?subject=Tour%20a%20medida%20-%20Paseando%20Madrid">
               Contactar por email
             </a>
 
@@ -329,7 +331,7 @@
             <ul class="factbox-list">
               <li>Fecha y hora aproximadas</li>
               <li>Número de personas</li>
-              <li>Idioma</li>
+              <li>Idioma (por ahora, español)</li>
               <li>Intereses (historia, leyendas, literatura…)</li>
             </ul>
           </div>
@@ -358,87 +360,10 @@
               <li>Historia + intrahistoria</li>
               <li>Narrativa y lugares</li>
               <li>Ritmo humano</li>
-              <li>Grupos medianos</li>
+              <li>Diseño editorial</li>
             </ul>
           </div>
         </aside>
-      </div>
-    </section>
-
-    <!-- 4) SERIES -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Series y recorridos</h2>
-          <p class="section-lead">Bloques temáticos que vuelven en calendario (sin sensación de “evento único”).</p>
-        </div>
-
-        <div class="cards-grid cards-grid-3">
-          <article class="card card-compact">
-            <div class="card-body">
-              <h3 class="card-title">Arte y ciudad</h3>
-              <p class="card-meta">Museos · Arquitectura · Espacio público</p>
-            </div>
-          </article>
-
-          <article class="card card-compact">
-            <div class="card-body">
-              <h3 class="card-title">Madrid de los Austrias</h3>
-              <p class="card-meta">Poder · Plazas · Escenarios históricos</p>
-            </div>
-          </article>
-
-          <article class="card card-compact">
-            <div class="card-body">
-              <h3 class="card-title">Nocturno (leyenda y memoria)</h3>
-              <p class="card-meta">Relato · Misterio · Contexto</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5) CÓMO FUNCIONA -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Cómo se desarrollan los paseos</h2>
-          <p class="section-lead">Estructura clara para que la experiencia sea cómoda y consistente.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step">
-            <p class="step-title">1. Punto de encuentro</p>
-            <p class="step-text">Localización simple y sin pérdidas. Llegada y contexto breve.</p>
-          </div>
-          <div class="step">
-            <p class="step-title">2. Recorrido narrado</p>
-            <p class="step-text">Historia, capas del barrio y escenas que conectan lugares.</p>
-          </div>
-          <div class="step">
-            <p class="step-title">3. Paradas clave</p>
-            <p class="step-text">Sitios seleccionados (no “relleno”), con explicación con sentido.</p>
-          </div>
-          <div class="step">
-            <p class="step-title">4. Cierre y recomendaciones</p>
-            <p class="step-text">Orientación local: qué ver después, cafés, calles, miradores.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6) MADRID TERRITORIO -->
-    <section class="section">
-      <div class="container">
-        <div class="banner">
-          <div class="banner-copy">
-            <h2 class="section-title">Madrid como territorio cultural</h2>
-            <p class="section-lead">Barrios como capítulos. Calles como archivo. La ciudad se entiende andando.</p>
-          </div>
-          <div class="banner-media" aria-hidden="true">
-            <img class="banner-image" src="assets/home/madrid-banner.jpg" alt="" loading="lazy" decoding="async" />
-          </div>
-        </div>
       </div>
     </section>
 
@@ -446,6 +371,7 @@
 
   <footer class="footer" id="contacto">
     <div class="container footer-grid">
+
       <div>
         <p class="footer-brand">Paseando Madrid</p>
         <p class="footer-note">Paseos culturales en Madrid.</p>
@@ -453,16 +379,69 @@
 
       <div>
         <p class="footer-title">Contacto</p>
-        <p class="footer-note">+346xxxxxx</p>
-        <p class="footer-note">info@paseandomadrid.com</p>
+        <p class="footer-note"><a href="tel:+346xxxxxx">+346xxxxxx</a></p>
+        <p class="footer-note"><a href="mailto:info@paseandomadrid.com">info@paseandomadrid.com</a></p>
       </div>
 
       <div>
         <p class="footer-title">Secciones</p>
-        <p class="footer-note">Inicio · Tours · Sobre · Contacto</p>
+        <p class="footer-note">Inicio · Free tours · Tours a medida · Contacto</p>
       </div>
+
     </div>
   </footer>
+
+  <!-- JS mínimo: abre panel al pinchar card + cambia estados (Reserva / Punto de encuentro) -->
+  <script>
+    // Abrir panel al pinchar una card (o con Enter)
+    document.querySelectorAll('.card[data-tour]').forEach(card => {
+      const open = () => {
+        const id = card.getAttribute('data-tour');
+        const panel = document.getElementById(id);
+        if (!panel) return;
+
+        // Oculta otros paneles
+        document.querySelectorAll('.tour-panel').forEach(p => p.hidden = true);
+
+        // Muestra este
+        panel.hidden = false;
+
+        // Estado por defecto
+        setTourState(panel, 'image');
+
+        // Scroll
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+
+    // Cambiar estados del panel derecho
+    document.querySelectorAll('[data-tour-action]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const action = btn.getAttribute('data-tour-action'); // booking | meeting
+        const panel = btn.closest('.tour-panel');
+        if (!panel) return;
+        setTourState(panel, action);
+      });
+    });
+
+    function setTourState(panel, state){
+      const right = panel.querySelector('.tour-panel-right');
+      if (!right) return;
+
+      right.querySelectorAll('.tour-right-state').forEach(s => {
+        s.hidden = (s.getAttribute('data-tour-state') !== state);
+      });
+    }
+  </script>
 
 </body>
 </html>
