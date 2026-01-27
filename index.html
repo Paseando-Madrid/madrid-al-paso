@@ -11,7 +11,7 @@
 
   <main id="inicio" class="home">
 
-    <!-- 1) HERO editorial -->
+    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="container">
 
@@ -31,39 +31,31 @@
             <!-- Columna derecha (tabs arriba + foto debajo) -->
             <div class="hero-media-col">
 
-              <!-- Tabs (jump links) - FUERA del marco -->
               <nav class="hero-tabs" aria-label="Accesos rápidos">
                 <a class="hero-tab" href="#free-tours">Free tours</a>
                 <a class="hero-tab" href="#tours-a-medida">Tours a medida</a>
                 <a class="hero-tab" href="#contacto">Contacto</a>
               </nav>
 
-              <!-- Marco SOLO para la foto -->
               <div class="hero-media" aria-hidden="true">
                 <div class="hero-photo-swap">
-                  <img
-                    class="hero-photo hero-photo--base"
-                    src="assets/images/hero/hero-madrid-calle-1.png"
-                    alt=""
-                    loading="eager"
-                    decoding="async"
-                  />
-                  <img
-                    class="hero-photo hero-photo--hover hero-photo--hover2"
-                    src="assets/images/hero/hero-madrid-calle-2.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    onerror="this.style.display='none'"
-                  />
-                  <img
-                    class="hero-photo hero-photo--hover hero-photo--hover3"
-                    src="assets/images/hero/hero-madrid-calle-3.png"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    onerror="this.style.display='none'"
-                  />
+                  <img class="hero-photo hero-photo--base"
+                       src="assets/images/hero/hero-madrid-calle-1.png"
+                       alt=""
+                       loading="eager"
+                       decoding="async" />
+                  <img class="hero-photo hero-photo--hover hero-photo--hover2"
+                       src="assets/images/hero/hero-madrid-calle-2.png"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"
+                       onerror="this.style.display='none'" />
+                  <img class="hero-photo hero-photo--hover hero-photo--hover3"
+                       src="assets/images/hero/hero-madrid-calle-3.png"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"
+                       onerror="this.style.display='none'" />
                 </div>
               </div>
 
@@ -71,16 +63,15 @@
           </div>
         </div>
 
-        <!-- HERO OVERLAY (aparece al clicar una card) -->
+        <!-- HERO OVERLAY (mismas dimensiones que el hero) -->
         <div class="hero-overlay" id="tour-overlay" hidden aria-hidden="true">
+
           <div class="hero-overlay-grid">
 
-            <!-- Cabecera overlay alineada con 40/60 -->
+            <!-- HEAD overlay alineado 40/60 -->
             <div class="hero-overlay-head">
-              <!-- SOLO esto encima del 40% -->
               <p class="kicker hero-overlay-kicker">Paseando Madrid</p>
 
-              <!-- Tabs SOLO encima del 60% (y cierran overlay) -->
               <nav class="hero-tabs hero-tabs--overlay" aria-label="Accesos rápidos (overlay)">
                 <a class="hero-tab" href="#free-tours" data-close-overlay>Free tours</a>
                 <a class="hero-tab" href="#tours-a-medida" data-close-overlay>Tours a medida</a>
@@ -88,13 +79,8 @@
               </nav>
             </div>
 
-            <!-- =========================
-                 TOUR PANELS (6)
-                 - Solo se muestra 1 a la vez
-                 ========================= -->
-
-            <!-- 1) Austrias (COMPLETO) -->
-            <section class="tour-panel tour-panel--overlay" id="tour-austrias" hidden aria-label="Detalle del tour: Madrid de los Austrias">
+            <!-- PANEL TOUR (40/60) -->
+            <section class="tour-panel tour-panel--overlay" id="tour-austrias" aria-label="Detalle del tour: Madrid de los Austrias">
               <div class="tour-panel-grid">
 
                 <!-- LEFT (40%) -->
@@ -108,7 +94,7 @@
                     <p class="tour-panel-text">
                       Este recorrido atraviesa el corazón histórico de la ciudad desde su fundación en el siglo IX hasta el siglo XVIII.
                       Un paseo que explica cómo una villa de origen medieval se convirtió en capital del reino bajo la dinastía de los Austrias.
-                      Historia urbana, poder y vida cotidiana se entrelazan en el trazado del Madrid más antiguo.
+                      Historia urbana y escenas de vida cotidiana se cruzan en el Madrid más antiguo.
                     </p>
                   </div>
 
@@ -120,21 +106,25 @@
                         <span class="route-dot" aria-hidden="true"></span>
                         <span class="route-name">Plaza de Santa Cruz</span>
                       </li>
+
                       <li class="route-point route-point--bottom">
                         <span class="route-dot" aria-hidden="true"></span>
-                        <span class="route-name">Plaza de la Villa</span>
+                        <span class="route-name">Plaza Mayor</span>
                       </li>
+
                       <li class="route-point route-point--top">
                         <span class="route-dot" aria-hidden="true"></span>
                         <span class="route-name">Antiguas puertas de la muralla</span>
                       </li>
+
                       <li class="route-point route-point--bottom">
                         <span class="route-dot" aria-hidden="true"></span>
-                        <span class="route-name">Madrid de los Austrias</span>
+                        <span class="route-name">Plaza de la Villa</span>
                       </li>
+
                       <li class="route-point route-point--top">
                         <span class="route-dot" aria-hidden="true"></span>
-                        <span class="route-name">Inmediaciones del Palacio Real</span>
+                        <span class="route-name">Catedral de la Almudena / Palacio Real</span>
                       </li>
                     </ol>
                   </div>
@@ -164,6 +154,8 @@
 
                 <!-- RIGHT (60%) -->
                 <aside class="tour-panel-right" aria-label="Panel visual del tour">
+
+                  <!-- Estado: imagen -->
                   <div class="tour-right-state tour-right-state--image" data-tour-state="image">
                     <img class="tour-right-image"
                          src="assets/images/hero/hero-madrid-calle-1.png"
@@ -172,8 +164,9 @@
                          decoding="async" />
                   </div>
 
+                  <!-- Estado: Reserva -->
                   <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
+                    <!-- (quitado el placeholder/símbolo de arriba) -->
                     <h4 class="tour-right-title">Reserva</h4>
 
                     <form class="booking-form" action="#" method="post">
@@ -215,17 +208,22 @@
                         <span>He leído y acepto la política de privacidad para el tratamiento de mis datos con fines organizativos relacionados con este recorrido.</span>
                       </label>
 
-                      <button class="form-submit" type="submit">Confirmar reserva</button>
+                      <button class="form-submit" type="submit">Reservar</button>
                     </form>
                   </div>
 
+                  <!-- Estado: Punto de encuentro -->
                   <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
                     <h4 class="tour-right-title">Punto de encuentro</h4>
 
                     <p class="tour-right-text">
-                      Nos encontraremos en la <strong>Plaza de Santa Cruz</strong>. Podrás identificarnos por nuestro paraguas blanco y negro con la imagen de Paseando Madrid.
+                      Nos encontraremos en la <strong>Plaza de Santa Cruz</strong>. Podrás identificarnos por nuestro paraguas blanco y negro con la imagen de
+                      <span class="brand-inline">
+                        <span class="brand-mini" aria-hidden="true"></span>
+                        <strong>Paseando Madrid</strong>
+                      </span>.
                     </p>
+
                     <p class="tour-right-text">
                       Recomendamos llegar con al menos <strong>15 minutos</strong> de antelación para presentarnos y organizar el inicio del recorrido.
                     </p>
@@ -236,209 +234,7 @@
                       <a href="#" rel="noopener" target="_blank">Abrir en Google Maps</a>
                     </p>
                   </div>
-                </aside>
-              </div>
-            </section>
 
-            <!-- 2) Oscuro (placeholder estructural, para que funcione el toggle) -->
-            <section class="tour-panel tour-panel--overlay" id="tour-oscuro" hidden aria-label="Detalle del tour: Madrid oscuro y leyendas">
-              <div class="tour-panel-grid">
-                <div class="tour-panel-left">
-                  <header class="tour-panel-head">
-                    <h3 class="tour-panel-title">Madrid oscuro y leyendas</h3>
-                  </header>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Descripción</p>
-                    <p class="tour-panel-text">Contenido en preparación (mantendremos el mismo estándar editorial).</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Recorrido</p>
-                    <p class="tour-panel-text">Se definirá en puntos (línea segmentada) como en Austrias.</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Duración</p>
-                    <p class="tour-panel-text">2 horas.</p>
-                  </div>
-
-                  <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
-                    <button class="tour-action" type="button" data-tour-action="booking">Reserva</button>
-                    <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting">Punto de encuentro</button>
-                  </div>
-                </div>
-
-                <aside class="tour-panel-right" aria-label="Panel visual del tour">
-                  <div class="tour-right-state tour-right-state--image" data-tour-state="image">
-                    <img class="tour-right-image" src="assets/images/hero/hero-madrid-calle-2.png" alt="" loading="lazy" decoding="async" onerror="this.src='assets/images/hero/hero-madrid-calle-1.png'" />
-                  </div>
-
-                  <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Reserva</h4>
-                    <p class="tour-right-text">Formulario (mismo diseño). Lo conectaremos cuando definamos automatización.</p>
-                  </div>
-
-                  <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Punto de encuentro</h4>
-                    <p class="tour-right-text">Se concretará para este tour.</p>
-                    <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
-                  </div>
-                </aside>
-              </div>
-            </section>
-
-            <!-- 3) Letras -->
-            <section class="tour-panel tour-panel--overlay" id="tour-letras" hidden aria-label="Detalle del tour: Literatura y cafés">
-              <div class="tour-panel-grid">
-                <div class="tour-panel-left">
-                  <header class="tour-panel-head">
-                    <h3 class="tour-panel-title">Literatura y cafés</h3>
-                  </header>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Descripción</p>
-                    <p class="tour-panel-text">Contenido en preparación (mismo estándar editorial).</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Duración</p>
-                    <p class="tour-panel-text">2 horas.</p>
-                  </div>
-                  <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
-                    <button class="tour-action" type="button" data-tour-action="booking">Reserva</button>
-                    <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting">Punto de encuentro</button>
-                  </div>
-                </div>
-                <aside class="tour-panel-right" aria-label="Panel visual del tour">
-                  <div class="tour-right-state tour-right-state--image" data-tour-state="image">
-                    <img class="tour-right-image" src="assets/images/hero/hero-madrid-calle-3.png" alt="" loading="lazy" decoding="async" onerror="this.src='assets/images/hero/hero-madrid-calle-1.png'" />
-                  </div>
-                  <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Reserva</h4>
-                    <p class="tour-right-text">Formulario (mismo diseño). Pendiente de conexión.</p>
-                  </div>
-                  <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Punto de encuentro</h4>
-                    <p class="tour-right-text">Se concretará para este tour.</p>
-                    <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
-                  </div>
-                </aside>
-              </div>
-            </section>
-
-            <!-- 4) Barrios -->
-            <section class="tour-panel tour-panel--overlay" id="tour-barrios" hidden aria-label="Detalle del tour: Barrios con carácter">
-              <div class="tour-panel-grid">
-                <div class="tour-panel-left">
-                  <header class="tour-panel-head">
-                    <h3 class="tour-panel-title">Barrios con carácter</h3>
-                  </header>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Descripción</p>
-                    <p class="tour-panel-text">Contenido en preparación (mismo estándar editorial).</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Duración</p>
-                    <p class="tour-panel-text">2 horas.</p>
-                  </div>
-                  <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
-                    <button class="tour-action" type="button" data-tour-action="booking">Reserva</button>
-                    <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting">Punto de encuentro</button>
-                  </div>
-                </div>
-                <aside class="tour-panel-right" aria-label="Panel visual del tour">
-                  <div class="tour-right-state tour-right-state--image" data-tour-state="image">
-                    <img class="tour-right-image" src="assets/images/hero/hero-madrid-calle-1.png" alt="" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Reserva</h4>
-                    <p class="tour-right-text">Formulario (mismo diseño). Pendiente de conexión.</p>
-                  </div>
-                  <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Punto de encuentro</h4>
-                    <p class="tour-right-text">Se concretará para este tour.</p>
-                    <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
-                  </div>
-                </aside>
-              </div>
-            </section>
-
-            <!-- 5) Arte -->
-            <section class="tour-panel tour-panel--overlay" id="tour-arte" hidden aria-label="Detalle del tour: Arte y ciudad">
-              <div class="tour-panel-grid">
-                <div class="tour-panel-left">
-                  <header class="tour-panel-head">
-                    <h3 class="tour-panel-title">Arte y ciudad</h3>
-                  </header>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Descripción</p>
-                    <p class="tour-panel-text">Contenido en preparación (mismo estándar editorial).</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Duración</p>
-                    <p class="tour-panel-text">2 horas.</p>
-                  </div>
-                  <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
-                    <button class="tour-action" type="button" data-tour-action="booking">Reserva</button>
-                    <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting">Punto de encuentro</button>
-                  </div>
-                </div>
-                <aside class="tour-panel-right" aria-label="Panel visual del tour">
-                  <div class="tour-right-state tour-right-state--image" data-tour-state="image">
-                    <img class="tour-right-image" src="assets/images/hero/hero-madrid-calle-2.png" alt="" loading="lazy" decoding="async" onerror="this.src='assets/images/hero/hero-madrid-calle-1.png'" />
-                  </div>
-                  <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Reserva</h4>
-                    <p class="tour-right-text">Formulario (mismo diseño). Pendiente de conexión.</p>
-                  </div>
-                  <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Punto de encuentro</h4>
-                    <p class="tour-right-text">Se concretará para este tour.</p>
-                    <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
-                  </div>
-                </aside>
-              </div>
-            </section>
-
-            <!-- 6) Nocturno -->
-            <section class="tour-panel tour-panel--overlay" id="tour-nocturno" hidden aria-label="Detalle del tour: Nocturno (memoria y relato)">
-              <div class="tour-panel-grid">
-                <div class="tour-panel-left">
-                  <header class="tour-panel-head">
-                    <h3 class="tour-panel-title">Nocturno (memoria y relato)</h3>
-                  </header>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Descripción</p>
-                    <p class="tour-panel-text">Contenido en preparación (mismo estándar editorial).</p>
-                  </div>
-                  <div class="tour-panel-block">
-                    <p class="tour-panel-label">Duración</p>
-                    <p class="tour-panel-text">2 horas.</p>
-                  </div>
-                  <div class="tour-panel-actions" role="navigation" aria-label="Acciones del tour">
-                    <button class="tour-action" type="button" data-tour-action="booking">Reserva</button>
-                    <button class="tour-action tour-action--ghost" type="button" data-tour-action="meeting">Punto de encuentro</button>
-                  </div>
-                </div>
-                <aside class="tour-panel-right" aria-label="Panel visual del tour">
-                  <div class="tour-right-state tour-right-state--image" data-tour-state="image">
-                    <img class="tour-right-image" src="assets/images/hero/hero-madrid-calle-3.png" alt="" loading="lazy" decoding="async" onerror="this.src='assets/images/hero/hero-madrid-calle-1.png'" />
-                  </div>
-                  <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Reserva</h4>
-                    <p class="tour-right-text">Formulario (mismo diseño). Pendiente de conexión.</p>
-                  </div>
-                  <div class="tour-right-state tour-right-state--meeting" data-tour-state="meeting" hidden>
-                    <div class="tour-right-icon" aria-hidden="true"></div>
-                    <h4 class="tour-right-title">Punto de encuentro</h4>
-                    <p class="tour-right-text">Se concretará para este tour.</p>
-                    <div class="tour-map" role="img" aria-label="Mapa del punto de encuentro"></div>
-                  </div>
                 </aside>
               </div>
             </section>
@@ -449,20 +245,19 @@
       </div>
     </section>
 
-    <!-- 2) RUTAS ACTIVAS -->
+    <!-- RUTAS ACTIVAS -->
     <section class="section" id="free-tours">
       <div class="container">
+
         <div class="section-head">
           <h2 class="section-title">Rutas activas</h2>
         </div>
 
-        <!-- Cards grid (6) -->
         <div class="cards-grid">
-
           <article class="card" data-open-tour="tour-austrias" role="button" tabindex="0" aria-label="Abrir detalle: Madrid de los Austrias">
             <div class="card-body">
               <h3 class="card-title">Madrid de los Austrias</h3>
-              <p class="card-meta">Sol · Plaza de la Villa · Palacio Real</p>
+              <p class="card-meta">Santa Cruz · Plaza Mayor · Palacio Real</p>
               <p class="card-detail">Duración: 2 h</p>
             </div>
           </article>
@@ -506,8 +301,8 @@
               <p class="card-detail">Duración: 2 h</p>
             </div>
           </article>
-
         </div>
+
       </div>
     </section>
 
@@ -516,7 +311,6 @@
       <div class="container split">
         <div class="split-main">
           <h2 class="section-title">Tours a medida</h2>
-
           <p class="prose">Si prefieres una experiencia privada o necesitas adaptar el recorrido, puedes:</p>
 
           <ul class="factbox-list">
@@ -528,13 +322,8 @@
           <p class="prose">Escríbenos y lo preparamos contigo.</p>
 
           <div class="cta-row">
-            <a class="btn" href="mailto:info@paseandomadrid.com?subject=Tour%20a%20medida%20-%20Paseando%20Madrid">
-              Contactar por email
-            </a>
-
-            <a class="btn btn-ghost" href="#" aria-disabled="true" title="WhatsApp estará disponible pronto">
-              WhatsApp
-            </a>
+            <a class="btn" href="mailto:info@paseandomadrid.com?subject=Tour%20a%20medida%20-%20Paseando%20Madrid">Contactar por email</a>
+            <a class="btn btn-ghost" href="#" aria-disabled="true" title="WhatsApp estará disponible pronto">WhatsApp</a>
           </div>
         </div>
 
@@ -561,9 +350,7 @@
             Paseando Madrid está diseñado como un formato editorial: contexto, capas históricas,
             anécdotas verificables y ritmo de relato. Menos “checklist”, más comprensión del lugar.
           </p>
-          <p class="prose">
-            Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo vas a disfrutar.
-          </p>
+          <p class="prose">Si te interesa Madrid de verdad —su trama social, sus símbolos, sus barrios— aquí lo vas a disfrutar.</p>
         </div>
 
         <aside class="split-aside">
@@ -584,7 +371,6 @@
 
   <footer class="footer" id="contacto">
     <div class="container footer-grid">
-
       <div>
         <p class="footer-brand">Paseando Madrid</p>
         <p class="footer-note">Paseos culturales en Madrid.</p>
@@ -600,48 +386,30 @@
         <p class="footer-title">Secciones</p>
         <p class="footer-note">Inicio · Free tours · Tours a medida · Contacto</p>
       </div>
-
     </div>
   </footer>
 
-  <!-- JS: toggle overlay + cambia panel activo + acciones derecha + cerrar con tabs -->
+  <!-- JS: toggle overlay + acciones derecha + cerrar con tabs -->
   <script>
     (() => {
       const hero = document.getElementById('hero');
       const overlay = document.getElementById('tour-overlay');
-
       let openTourId = null;
 
-      function getActivePanel(){
-        if (!openTourId) return null;
-        return overlay.querySelector('#' + CSS.escape(openTourId));
-      }
-
-      function hideAllPanels(){
-        overlay.querySelectorAll('.tour-panel').forEach(p => p.hidden = true);
-      }
-
       function setRightState(state){
-        const panel = getActivePanel();
-        if (!panel) return;
-        panel.querySelectorAll('[data-tour-state]').forEach(el => {
+        overlay.querySelectorAll('[data-tour-state]').forEach(el => {
           el.hidden = (el.getAttribute('data-tour-state') !== state);
         });
       }
 
       function openOverlay(tourId){
-        // muestra overlay
+        // scroll arriba del todo
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
         overlay.hidden = false;
         overlay.setAttribute('aria-hidden', 'false');
         hero.classList.add('is-tour-open');
-
-        // activa panel
         openTourId = tourId;
-        hideAllPanels();
-        const panel = getActivePanel();
-        if (panel) panel.hidden = false;
-
-        // estado por defecto
         setRightState('image');
       }
 
@@ -650,7 +418,7 @@
         overlay.setAttribute('aria-hidden', 'true');
         hero.classList.remove('is-tour-open');
         openTourId = null;
-        hideAllPanels();
+        setRightState('image');
       }
 
       function toggleTour(tourId){
@@ -673,13 +441,12 @@
         a.addEventListener('click', () => closeOverlay());
       });
 
-      // Delegación: Reserva / Punto de encuentro (solo en el panel activo)
-      overlay.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-tour-action]');
-        if (!btn) return;
-        e.preventDefault();
-        e.stopPropagation();
-        setRightState(btn.getAttribute('data-tour-action')); // booking | meeting
+      // Botones Reserva / Punto de encuentro
+      overlay.querySelectorAll('[data-tour-action]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setRightState(btn.getAttribute('data-tour-action'));
+        });
       });
 
       // ESC para cerrar
