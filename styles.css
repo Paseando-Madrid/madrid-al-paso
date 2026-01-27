@@ -35,17 +35,12 @@ body{
 .section{ padding: var(--space-6) 0; }
 .section-soft{ background: var(--soft); }
 
-/* -----------------------------
-   Base links (evitar azul)
-   (pero dejamos “subrayado editorial” en links específicos)
------------------------------- */
+/* Base links: sin azul */
 a{ color: inherit; text-decoration: none; }
 a:hover{ color: inherit; }
 a:visited{ color: inherit; }
 
-/* -----------------------------
-   Section head
------------------------------- */
+/* Section head */
 .section-head{ margin-bottom: var(--space-4); }
 
 .section-title{
@@ -106,9 +101,7 @@ a:visited{ color: inherit; }
   letter-spacing: -0.01em;
 }
 
-/* -----------------------------
-   Right column (tabs + photo)
------------------------------- */
+/* Right column: tabs + photo */
 .hero-media-col{
   display: flex;
   flex-direction: column;
@@ -116,7 +109,7 @@ a:visited{ color: inherit; }
   gap: 14px;
 }
 
-/* Tabs OUTSIDE frame */
+/* Tabs OUTSIDE frame, same width as frame */
 .hero-tabs{
   display: flex;
   justify-content: center;
@@ -159,7 +152,7 @@ a:visited{ color: inherit; }
   box-shadow: 0 18px 40px rgba(0,0,0,.08);
 }
 
-/* Photo swap (3:4) */
+/* Photo swap 3:4 */
 .hero-photo-swap{
   position: relative;
   width: 100%;
@@ -184,17 +177,9 @@ a:visited{ color: inherit; }
 }
 
 @media (hover:hover) and (pointer:fine){
-  .hero-photo-swap:hover .hero-photo--hover2{
-    opacity: 1;
-    filter: blur(0);
-  }
-  .hero-photo-swap:hover .hero-photo--base{
-    opacity: 0;
-  }
-  .hero-photo-swap:active .hero-photo--hover3{
-    opacity: 1;
-    filter: blur(0);
-  }
+  .hero-photo-swap:hover .hero-photo--hover2{ opacity: 1; filter: blur(0); }
+  .hero-photo-swap:hover .hero-photo--base{ opacity: 0; }
+  .hero-photo-swap:active .hero-photo--hover3{ opacity: 1; filter: blur(0); }
 }
 
 /* -----------------------------
@@ -216,6 +201,11 @@ a:visited{ color: inherit; }
   background: #fff;
   padding: var(--space-4);
   transition: transform 160ms ease, border-color 160ms ease;
+  cursor: default;
+}
+
+.card[data-tour]{
+  cursor: pointer;
 }
 
 .card:hover{
@@ -224,22 +214,16 @@ a:visited{ color: inherit; }
 }
 .card:active{ transform: translateY(0); }
 
-.card-compact{
-  padding: var(--space-3);
-}
-
 .card-title{
   margin: 0 0 var(--space-2) 0;
   font-size: 16px;
   letter-spacing: -0.01em;
 }
-
 .card-meta{
   margin: 0 0 var(--space-2) 0;
   color: var(--muted);
   font-size: 13px;
 }
-
 .card-detail{
   margin: 0;
   color: var(--muted);
@@ -248,8 +232,6 @@ a:visited{ color: inherit; }
 
 /* -----------------------------
    Tour panel (desplegable premium)
-   - Se inserta encima de las cards
-   - 40/60: izquierda info, derecha visual/acciones
 ------------------------------ */
 .tour-panel{
   border: 1px solid var(--line);
@@ -305,7 +287,7 @@ a:visited{ color: inherit; }
   max-width: 70ch;
 }
 
-/* Acciones izquierda -> abren panel derecho */
+/* Actions */
 .tour-panel-actions{
   display: flex;
   gap: 10px;
@@ -339,11 +321,8 @@ a:visited{ color: inherit; }
 }
 .tour-action--ghost:hover{ border-color: rgba(0,0,0,.18); }
 
-/* Recorrido: timeline horizontal con alternancia arriba/abajo */
+/* Recorrido: timeline horizontal alternando arriba/abajo */
 .route-timeline{
-  --dot: 8px;
-  --lineh: 1px;
-
   list-style: none;
   padding: 20px 6px 10px 6px;
   margin: 0;
@@ -362,7 +341,7 @@ a:visited{ color: inherit; }
   left: 6px;
   right: 6px;
   top: 50%;
-  height: var(--lineh);
+  height: 1px;
   background: rgba(0,0,0,.10);
 }
 
@@ -375,8 +354,8 @@ a:visited{ color: inherit; }
 }
 
 .route-dot{
-  width: var(--dot);
-  height: var(--dot);
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: rgba(17,17,17,.82);
   box-shadow: 0 0 0 4px rgba(17,17,17,.07);
@@ -395,7 +374,6 @@ a:visited{ color: inherit; }
   margin-bottom: 12px;
   transform: translateY(-22px);
 }
-
 .route-point--bottom .route-name{
   margin-top: 12px;
   transform: translateY(22px);
@@ -408,8 +386,22 @@ a:visited{ color: inherit; }
   background: #fff;
 }
 
-/* Brand mini (placeholder del logo pequeño) */
+.tour-right-state{
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid rgba(0,0,0,.10);
+  overflow: hidden;
+  background: #f7f7f7;
+  position: relative;
+}
+
 .tour-right-brand{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -425,8 +417,7 @@ a:visited{ color: inherit; }
   height: 18px;
   border-radius: 6px;
   border: 1px solid rgba(0,0,0,.18);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,0));
+  background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,0));
 }
 
 .brand-name{
@@ -435,27 +426,6 @@ a:visited{ color: inherit; }
   letter-spacing: -0.01em;
 }
 
-/* Right states */
-.tour-right-state{
-  width: 100%;
-  height: 100%;
-  min-height: 420px;
-  border-radius: calc(var(--radius) + 2px);
-  border: 1px solid rgba(0,0,0,.10);
-  overflow: hidden;
-  background: #f7f7f7;
-  position: relative;
-}
-
-/* Encabezado dentro del estado */
-.tour-right-state .tour-right-brand{
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 2;
-}
-
-/* Default image */
 .tour-right-image{
   width: 100%;
   height: 100%;
@@ -463,25 +433,13 @@ a:visited{ color: inherit; }
   display: block;
 }
 
-/* Booking / Meeting layout */
+/* Booking / Meeting */
 .tour-right-state--booking,
 .tour-right-state--meeting{
   background: #fff;
-  padding: 68px 18px 18px 18px; /* deja aire para el brand pill */
+  padding: 68px 18px 18px 18px;
 }
 
-.tour-right-title{
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-}
-
-.tour-right-text{
-  margin: 0 0 10px 0;
-  color: var(--muted);
-}
-
-/* Icon placeholder (tu “logo flotante” del boceto) */
 .tour-right-icon{
   width: 44px;
   height: 44px;
@@ -493,18 +451,26 @@ a:visited{ color: inherit; }
   margin: 0 0 14px 0;
 }
 
-/* Booking form */
-.booking-form{
-  margin-top: 12px;
+.tour-right-title{
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
 }
+.tour-right-text{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+
+/* Form */
+.booking-form{ margin-top: 12px; }
 
 .form-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
 .field{ display: grid; gap: 8px; }
+.field-span-2{ grid-column: span 2; }
 
 .field-label{
   font-size: 12px;
@@ -524,7 +490,6 @@ a:visited{ color: inherit; }
   outline: none;
   transition: border-color 160ms ease, transform 160ms ease;
 }
-
 .field-input:focus{
   border-color: rgba(0,0,0,.22);
   transform: translateY(-1px);
@@ -547,7 +512,6 @@ a:visited{ color: inherit; }
   font-size: 13px;
   line-height: 1.45;
 }
-
 .check input{ margin-top: 3px; }
 
 .form-submit{
@@ -570,7 +534,7 @@ a:visited{ color: inherit; }
 }
 .form-submit:active{ transform: translateY(0); }
 
-/* Map placeholder + link editorial */
+/* Map */
 .tour-map{
   height: 220px;
   border-radius: 16px;
@@ -626,12 +590,9 @@ a:visited{ color: inherit; }
   padding-left: 18px;
   color: var(--muted);
 }
-
 .factbox-list li{ margin: 8px 0; }
 
-/* -----------------------------
-   CTA Buttons (Tours a medida)
------------------------------- */
+/* CTA buttons */
 .cta-row{
   display: flex;
   gap: 12px;
@@ -668,64 +629,10 @@ a:visited{ color: inherit; }
 }
 .btn-ghost:hover{ border-color: rgba(0,0,0,.18); }
 
-/* preparado pero inactivo */
 a[aria-disabled="true"]{
   pointer-events: none;
   opacity: .55;
   cursor: not-allowed;
-}
-
-/* -----------------------------
-   Steps (Cómo funciona)
------------------------------- */
-.steps-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-3);
-}
-
-.step{
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
-  padding: var(--space-4);
-}
-
-.step-title{
-  margin: 0 0 var(--space-2) 0;
-  font-weight: 600;
-}
-
-.step-text{
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* -----------------------------
-   Banner (Madrid territorio)
------------------------------- */
-.banner{
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #fff;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: stretch;
-}
-
-.banner-copy{ padding: var(--space-5); }
-
-.banner-media{
-  border-left: 1px solid var(--line);
-}
-
-.banner-image{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 /* -----------------------------
@@ -757,7 +664,7 @@ a[aria-disabled="true"]{
   color: var(--muted);
 }
 
-/* Si en algún momento conviertes email/teléfono en <a>, que no salga azul */
+/* Si email/teléfono son <a>, que no salga azul */
 .footer a{
   color: var(--muted);
   text-decoration: none;
@@ -770,33 +677,23 @@ a[aria-disabled="true"]{
    Responsive (premium)
 ------------------------------ */
 @media (max-width: 980px){
-  .hero-grid, .split, .banner{ grid-template-columns: 1fr; }
+  .hero-grid, .split{ grid-template-columns: 1fr; }
   .hero-copy{ padding-top: 0; }
 
-  .banner-media{
-    border-left: none;
-    border-top: 1px solid var(--line);
-  }
-
   .cards-grid{ grid-template-columns: repeat(2, 1fr); }
-  .steps-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr; }
 
   /* Tour panel stacks */
-  .tour-panel-grid{
-    grid-template-columns: 1fr;
-  }
+  .tour-panel-grid{ grid-template-columns: 1fr; }
   .tour-panel-left{
     border-right: none;
     border-bottom: 1px solid var(--line);
   }
-  .tour-panel{
-    box-shadow: 0 14px 34px rgba(0,0,0,.08);
-  }
+  .tour-panel{ box-shadow: 0 14px 34px rgba(0,0,0,.08); }
 }
 
 @media (max-width: 720px){
-  /* Timeline: en móvil pasa a vertical para evitar solapes */
+  /* Timeline pasa a vertical para evitar solapes */
   .route-timeline{
     grid-auto-flow: row;
     grid-auto-columns: unset;
@@ -816,13 +713,10 @@ a[aria-disabled="true"]{
     transform: none !important;
     margin: 0 !important;
   }
-  .route-dot{
-    margin-top: 4px;
-  }
+  .route-dot{ margin-top: 4px; }
 
-  .form-grid{
-    grid-template-columns: 1fr;
-  }
+  .form-grid{ grid-template-columns: 1fr; }
+  .field-span-2{ grid-column: auto; }
 }
 
 @media (max-width: 520px){
@@ -842,9 +736,7 @@ a[aria-disabled="true"]{
   }
 
   .cards-grid{ grid-template-columns: 1fr; }
-  .steps-grid{ grid-template-columns: 1fr; }
 
-  /* Tour panel padding refinement on mobile */
   .tour-panel-left,
   .tour-panel-right{
     padding: 18px;
