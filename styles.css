@@ -868,3 +868,19 @@ a[aria-disabled="true"]{
     padding: 18px;
   }
 }
+/* FIX: el overlay NO debe tener 2 columnas.
+   El 40/60 lo hace .tour-panel-grid, no el grid del overlay */
+.hero-overlay-grid{
+  grid-template-columns: 1fr !important;
+  grid-template-rows: auto 1fr !important;
+}
+
+/* La cabecera sí mantiene 40/60 (kicker izq, tabs der) */
+.hero-overlay-head{
+  grid-template-columns: 2fr 3fr !important;
+}
+
+/* Asegura que el panel ocupa toda la fila del overlay */
+.tour-panel--overlay{
+  width: 100%;
+}
