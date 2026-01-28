@@ -1,10 +1,23 @@
 :root{
-  --bg: #ffffff;
+  /* Base */
+  --bg: #ffffff;            /* HERO: blanco puro */
+  --ivory: #f7f4ef;         /* OVERLAY: marfil */
   --text: #111111;
   --muted: #5a5a5a;
   --line: rgba(0,0,0,.10);
-  --soft: rgba(0,0,0,.04);
 
+  /* Sage palette (Rutas activas + acentos) */
+  --sage-bg: #d8e1d7;       /* fondo sección Rutas activas (salvia) */
+  --sage-ink: #2f3b34;      /* texto acento salvia (oscuro) */
+  --sage-ui: rgba(47,59,52,.55); /* UI: labels/bordes suaves */
+  --sage-thumb: rgba(47,59,52,.32); /* scrollbar thumb */
+  --sage-thumb-hover: rgba(47,59,52,.45);
+
+  /* Surfaces */
+  --card: #f7f4ef;          /* cards: marfil / blanco roto */
+  --soft: rgba(0,0,0,.04);  /* secciones suaves (Tours a medida, Experiencia) */
+
+  /* Layout */
   --radius: 18px;
   --max: 1100px;
 
@@ -27,11 +40,13 @@ body{
   line-height: 1.55;
 }
 
+/* Container */
 .container{
   width: min(100% - 48px, var(--max));
   margin: 0 auto;
 }
 
+/* Sections */
 .section{ padding: var(--space-6) 0; }
 .section-soft{ background: var(--soft); }
 
@@ -56,14 +71,35 @@ a:visited{ color: inherit; }
 }
 
 /* -----------------------------
+   BRAND LOCKUP (slot logo + wordmark)
+------------------------------ */
+.brand-lockup{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-slot{
+  width: 18px;
+  height: 18px;
+  /* IMPORTANTE: sin marco ni fondo ni círculo */
+  flex: 0 0 18px;
+}
+
+.brand-wordmark{
+  font-weight: 700;
+}
+
+/* -----------------------------
    HERO
 ------------------------------ */
 .hero{
   padding: clamp(42px, 6vw, 78px) 0;
   position: relative; /* overlay se ancla aquí */
+  background: var(--bg);
 }
 
-/* Mantiene el “rectángulo” del hero: overlay y hero-default viven dentro */
+/* Mantiene el rectángulo del hero: overlay y hero-default viven dentro */
 .hero > .container{
   position: relative;
 }
@@ -125,14 +161,15 @@ a:visited{ color: inherit; }
   max-width: 520px;
 }
 
+/* Tabs con “más volumen” (sin perder editorial) */
 .hero-tab{
-  height: 34px;
-  padding: 0 14px;
+  height: 38px;
+  padding: 0 16px;
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,.10);
   background: #fff;
-  color: rgba(17,17,17,.86);
-  font-size: 13px;
+  color: rgba(17,17,17,.88);
+  font-size: 13.2px;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
@@ -190,7 +227,8 @@ a:visited{ color: inherit; }
 
 /* -----------------------------
    HERO OVERLAY (tour encima del hero)
-   - Overlay = MISMA caja que el hero-default (NO crece, NO empuja)
+   - MISMA caja que el hero-default
+   - Fondo marfil
 ------------------------------ */
 .hero-default{
   transition: opacity 220ms ease, visibility 0ms linear 220ms;
@@ -207,7 +245,7 @@ a:visited{ color: inherit; }
   position: absolute;
   inset: 0;
   z-index: 60;
-  background: var(--bg);
+  background: var(--ivory);
   pointer-events: auto;
 }
 
@@ -221,7 +259,7 @@ a:visited{ color: inherit; }
   align-items: stretch;
 }
 
-/* Cabecera overlay: 60/40 (kicker en 60, tabs en 40) */
+/* Cabecera overlay: 60/40 (kicker 60, tabs 40) */
 .hero-overlay-head{
   display: grid;
   grid-template-columns: 3fr 2fr; /* 60/40 */
@@ -229,7 +267,7 @@ a:visited{ color: inherit; }
   align-items: start;
 }
 
-/* Tabs overlay: arriba del 40%, alineadas a la derecha */
+/* Tabs overlay: alineadas a la derecha */
 .hero-tabs--overlay{
   max-width: none;
   width: 100%;
@@ -237,22 +275,30 @@ a:visited{ color: inherit; }
 }
 
 /* -----------------------------
+   RUTAS ACTIVAS (salvia)
+------------------------------ */
+#free-tours.section{
+  background: var(--sage-bg);
+}
+
+/* El título dentro del fondo salvia gana contraste */
+#free-tours .section-title{
+  color: var(--sage-ink);
+}
+
+/* -----------------------------
    Cards / grids
 ------------------------------ */
 .cards-grid{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 + 3 */
   gap: var(--space-3);
 }
 
-.cards-grid-3{
-  grid-template-columns: repeat(3, 1fr);
-}
-
 .card{
-  border: 1px solid var(--line);
+  border: 1px solid rgba(0,0,0,.10);
   border-radius: var(--radius);
-  background: #fff;
+  background: var(--card);
   padding: var(--space-4);
   transition: transform 160ms ease, border-color 160ms ease;
   cursor: default;
@@ -274,19 +320,17 @@ a:visited{ color: inherit; }
   font-size: 16px;
   letter-spacing: -0.01em;
 }
-.card-meta{
-  margin: 0 0 var(--space-2) 0;
-  color: var(--muted);
-  font-size: 13px;
-}
+
+.card-meta,
 .card-detail{
-  margin: 0;
-  color: var(--muted);
+  margin: 0 0 var(--space-2) 0;
+  color: rgba(17,17,17,.72);
   font-size: 13px;
 }
+.card-detail{ margin: 0; }
 
 /* -----------------------------
-   Tour panel (dentro del overlay)
+   TOUR PANEL (dentro del overlay)
 ------------------------------ */
 .tour-panel{
   border: 1px solid var(--line);
@@ -304,7 +348,7 @@ a:visited{ color: inherit; }
   width: 100%;
 }
 
-/* Panel grid: 60/40 DEFINITIVO */
+/* Panel grid: 60/40 definitivo */
 .tour-panel-grid{
   display: grid;
   grid-template-columns: 3fr 2fr; /* 60/40 */
@@ -321,12 +365,16 @@ a:visited{ color: inherit; }
   -webkit-overflow-scrolling: touch;
 }
 
+/* Scrollbar en salvia (consistente con Rutas activas) */
 .tour-panel-left::-webkit-scrollbar{ width: 10px; }
 .tour-panel-left::-webkit-scrollbar-thumb{
-  background: rgba(0,0,0,.10);
+  background: var(--sage-thumb);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
+}
+.tour-panel-left::-webkit-scrollbar-thumb:hover{
+  background: var(--sage-thumb-hover);
 }
 
 .tour-panel-head{ margin-bottom: var(--space-4); }
@@ -338,15 +386,16 @@ a:visited{ color: inherit; }
   line-height: 1.15;
 }
 
-.tour-panel-block{ margin-top: var(--space-4); }
-
+/* Labels con color salvia */
 .tour-panel-label{
   margin: 0 0 10px 0;
   font-size: 12px;
-  color: rgba(17,17,17,.72);
+  color: var(--sage-ink);
   text-transform: uppercase;
   letter-spacing: .12em;
 }
+
+.tour-panel-block{ margin-top: var(--space-4); }
 
 .tour-panel-text{
   margin: 0 0 10px 0;
@@ -390,7 +439,8 @@ a:visited{ color: inherit; }
 
 /* -----------------------------
    Recorrido (timeline)
-   - Puntos clavados SOBRE la línea
+   - Evitar scroll horizontal
+   - Se adapta a ancho disponible
 ------------------------------ */
 .route-timeline{
   list-style: none;
@@ -399,9 +449,8 @@ a:visited{ color: inherit; }
   position: relative;
 
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(120px, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
   align-items: center;
 }
 
@@ -418,7 +467,7 @@ a:visited{ color: inherit; }
 .route-point{
   position: relative;
   padding: 0 6px;
-  min-height: 72px;
+  min-height: 78px;
 }
 
 .route-dot{
@@ -438,18 +487,20 @@ a:visited{ color: inherit; }
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: min(18ch, 100%);
+  width: 100%;
+  max-width: 16ch;
   text-align: center;
-  font-size: 12.5px;
-  color: rgba(17,17,17,.76);
+  font-size: 12.3px;
+  color: rgba(17,17,17,.74);
   letter-spacing: -0.01em;
-  line-height: 1.2;
+  line-height: 1.18;
 }
+
 .route-point--top .route-name{ top: 0; }
 .route-point--bottom .route-name{ bottom: 0; }
 
 /* -----------------------------
-   RIGHT
+   RIGHT (panel visual)
 ------------------------------ */
 .tour-panel-right{
   position: relative;
@@ -481,7 +532,7 @@ a:visited{ color: inherit; }
 .tour-right-state--meeting{
   background: #fff;
   padding: 18px;
-  overflow: auto; /* por si el formulario crece */
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -496,7 +547,7 @@ a:visited{ color: inherit; }
   color: var(--muted);
 }
 
-/* Inline brand for meeting point sentence (por si lo metes en HTML) */
+/* Inline brand */
 .brand-inline{
   display: inline-flex;
   align-items: center;
@@ -601,6 +652,91 @@ a:visited{ color: inherit; }
   opacity: .9;
 }
 .tour-map-link a:hover{ opacity: 1; }
+
+/* -----------------------------
+   RESEÑAS (bloque centrado horizontal)
+------------------------------ */
+.reviews-block{
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--card);
+  box-shadow: 0 18px 46px rgba(0,0,0,.06);
+  padding: var(--space-5);
+  width: min(100%, 940px);
+  margin: 0 auto;
+}
+
+.reviews-head{
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.reviews-kicker{
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: 12px;
+  color: var(--sage-ink);
+}
+
+.reviews-meta{
+  margin: 0;
+  color: rgba(17,17,17,.72);
+  font-size: 13px;
+}
+
+.reviews-slider{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 18px;
+}
+
+.review-card{ margin: 0; }
+.review-text{
+  margin: 0 0 10px 0;
+  color: rgba(17,17,17,.82);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.review-author{
+  margin: 0;
+  color: rgba(17,17,17,.64);
+  font-size: 13px;
+}
+
+.reviews-controls{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.review-nav{
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+.review-nav:hover{ transform: translateY(-1px); border-color: rgba(0,0,0,.18); }
+.review-nav:active{ transform: translateY(0); }
+
+.review-link{
+  margin-left: auto;
+  font-size: 13px;
+  color: rgba(17,17,17,.82);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  opacity: .9;
+}
+.review-link:hover{ opacity: 1; }
 
 /* -----------------------------
    Split / prose / factbox
@@ -745,9 +881,9 @@ a[aria-disabled="true"]{
 }
 
 @media (max-width: 720px){
+  /* Timeline a vertical */
   .route-timeline{
-    grid-auto-flow: row;
-    grid-auto-columns: unset;
+    grid-template-columns: 1fr;
     gap: 14px;
     padding: 8px 0 0 0;
   }
@@ -771,12 +907,15 @@ a[aria-disabled="true"]{
   .route-name{
     position: static;
     transform: none;
+    max-width: none;
     width: auto;
     text-align: left;
   }
 
   .form-grid{ grid-template-columns: 1fr; }
   .field-span-2{ grid-column: auto; }
+
+  .review-link{ margin-left: 0; }
 }
 
 @media (max-width: 520px){
@@ -784,9 +923,9 @@ a[aria-disabled="true"]{
 
   .hero-tabs{ gap: 8px; }
   .hero-tab{
-    height: 32px;
-    padding: 0 12px;
-    font-size: 12.5px;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 12.8px;
   }
 
   .btn{
@@ -799,6 +938,10 @@ a[aria-disabled="true"]{
 
   .tour-panel-left,
   .tour-panel-right{
+    padding: 18px;
+  }
+
+  .reviews-block{
     padding: 18px;
   }
 }
