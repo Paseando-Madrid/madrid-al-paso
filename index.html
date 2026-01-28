@@ -33,6 +33,16 @@
                 Tours con narrativa e historia.
                 <span class="hero-subclaim">La ciudad como camino.</span>
               </p>
+
+              <!-- NUEVO: línea funcional -->
+              <p class="hero-functional">
+                Free tours culturales y recorridos guiados por Madrid.
+              </p>
+
+              <!-- NUEVO: CTA editorial sin caja -->
+              <a class="hero-cta" href="#free-tours">
+                Ver próximos free tours
+              </a>
             </div>
 
             <!-- Columna derecha (tabs arriba + foto debajo) -->
@@ -260,7 +270,7 @@
     </section>
 
     <!-- RUTAS ACTIVAS -->
-    <section class="section" id="free-tours">
+    <section class="section section-tours" id="free-tours">
       <div class="container">
 
         <div class="section-head">
@@ -320,7 +330,7 @@
       </div>
     </section>
 
-    <!-- RESEÑAS (bloque centrado, horizontal) -->
+    <!-- RESEÑAS -->
     <section class="section" id="resenas">
       <div class="container">
         <div class="section-head">
@@ -336,7 +346,6 @@
           </div>
 
           <div class="reviews-slider" role="region" aria-label="Carrusel de reseñas">
-            <!-- Item -->
             <article class="review-card is-active" data-review="0" aria-label="Reseña 1">
               <p class="review-text">“Texto de reseña aquí (placeholder).”</p>
               <p class="review-author">— Nombre, ciudad</p>
@@ -449,7 +458,6 @@
     </div>
   </footer>
 
-  <!-- JS: toggle overlay + acciones derecha + cerrar con tabs + reseñas -->
   <script>
     (() => {
       const hero = document.getElementById('hero');
@@ -509,7 +517,6 @@
         if (e.key === 'Escape' && !overlay.hidden) closeOverlay();
       });
 
-      // Reseñas: mini slider (sin librerías)
       const reviews = Array.from(document.querySelectorAll('.review-card'));
       const prev = document.querySelector('[data-review-nav="prev"]');
       const next = document.querySelector('[data-review-nav="next"]');
