@@ -20,7 +20,14 @@
           <div class="hero-grid">
 
             <div class="hero-copy">
-              <p class="kicker">Paseando Madrid</p>
+              <!-- Kicker con espacio para logo (sin marco) -->
+              <p class="kicker">
+                <span class="brand-lockup">
+                  <span class="brand-slot" aria-hidden="true"></span>
+                  <strong class="brand-wordmark">Paseando Madrid</strong>
+                </span>
+              </p>
+
               <h1 class="hero-title">Madrid, contado a pie.</h1>
               <p class="hero-subtitle">
                 Tours con narrativa e historia.
@@ -33,6 +40,7 @@
 
               <nav class="hero-tabs" aria-label="Accesos rápidos">
                 <a class="hero-tab" href="#free-tours">Free tours</a>
+                <a class="hero-tab" href="#resenas">Reseñas</a>
                 <a class="hero-tab" href="#tours-a-medida">Tours a medida</a>
                 <a class="hero-tab" href="#contacto">Contacto</a>
               </nav>
@@ -68,22 +76,29 @@
 
           <div class="hero-overlay-grid">
 
-            <!-- HEAD overlay alineado 40/60 -->
+            <!-- HEAD overlay -->
             <div class="hero-overlay-head">
-              <p class="kicker hero-overlay-kicker">Paseando Madrid</p>
+              <!-- Kicker con espacio para logo (sin marco) -->
+              <p class="kicker hero-overlay-kicker">
+                <span class="brand-lockup">
+                  <span class="brand-slot" aria-hidden="true"></span>
+                  <strong class="brand-wordmark">Paseando Madrid</strong>
+                </span>
+              </p>
 
               <nav class="hero-tabs hero-tabs--overlay" aria-label="Accesos rápidos (overlay)">
                 <a class="hero-tab" href="#free-tours" data-close-overlay>Free tours</a>
+                <a class="hero-tab" href="#resenas" data-close-overlay>Reseñas</a>
                 <a class="hero-tab" href="#tours-a-medida" data-close-overlay>Tours a medida</a>
                 <a class="hero-tab" href="#contacto" data-close-overlay>Contacto</a>
               </nav>
             </div>
 
-            <!-- PANEL TOUR (40/60) -->
+            <!-- PANEL TOUR -->
             <section class="tour-panel tour-panel--overlay" id="tour-austrias" aria-label="Detalle del tour: Madrid de los Austrias">
               <div class="tour-panel-grid">
 
-                <!-- LEFT (40%) -->
+                <!-- LEFT -->
                 <div class="tour-panel-left">
                   <header class="tour-panel-head">
                     <h3 class="tour-panel-title">Madrid de los Austrias</h3>
@@ -141,8 +156,8 @@
                       Al finalizar la experiencia, cada persona valora la experiencia económicamente según su criterio.
                     </p>
                     <p class="tour-panel-text">
-                      También puede realizarse en formato privado, manteniendo el mismo contenido y con posibilidad de ajustes.
-                      Para reservas de más de 6 personas, se solicitará el pago antes del inicio del recorrido.
+                      Para reservas de más de 6 personas, se solicitará el pago antes del inicio del tour.
+                      Si se supera este número, tendrán la opción de solicitar un tour privado.
                     </p>
                   </div>
 
@@ -152,7 +167,7 @@
                   </div>
                 </div>
 
-                <!-- RIGHT (60%) -->
+                <!-- RIGHT -->
                 <aside class="tour-panel-right" aria-label="Panel visual del tour">
 
                   <!-- Estado: imagen -->
@@ -166,7 +181,6 @@
 
                   <!-- Estado: Reserva -->
                   <div class="tour-right-state tour-right-state--booking" data-tour-state="booking" hidden>
-                    <!-- (quitado el placeholder/símbolo de arriba) -->
                     <h4 class="tour-right-title">Reserva</h4>
 
                     <form class="booking-form" action="#" method="post">
@@ -306,6 +320,52 @@
       </div>
     </section>
 
+    <!-- RESEÑAS (bloque centrado, horizontal) -->
+    <section class="section" id="resenas">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Reseñas</h2>
+        </div>
+
+        <div class="reviews-block" aria-label="Reseñas de clientes">
+          <div class="reviews-head">
+            <p class="reviews-kicker">Opiniones</p>
+            <p class="reviews-meta">
+              Próximamente: enlace a Google (cantidad y puntuación).
+            </p>
+          </div>
+
+          <div class="reviews-slider" role="region" aria-label="Carrusel de reseñas">
+            <!-- Item -->
+            <article class="review-card is-active" data-review="0" aria-label="Reseña 1">
+              <p class="review-text">“Texto de reseña aquí (placeholder).”</p>
+              <p class="review-author">— Nombre, ciudad</p>
+            </article>
+
+            <article class="review-card" data-review="1" aria-label="Reseña 2" hidden>
+              <p class="review-text">“Texto de reseña aquí (placeholder).”</p>
+              <p class="review-author">— Nombre, ciudad</p>
+            </article>
+
+            <article class="review-card" data-review="2" aria-label="Reseña 3" hidden>
+              <p class="review-text">“Texto de reseña aquí (placeholder).”</p>
+              <p class="review-author">— Nombre, ciudad</p>
+            </article>
+          </div>
+
+          <div class="reviews-controls" aria-label="Controles de reseñas">
+            <button class="review-nav" type="button" data-review-nav="prev" aria-label="Anterior">←</button>
+            <button class="review-nav" type="button" data-review-nav="next" aria-label="Siguiente">→</button>
+
+            <a class="review-link" href="#" rel="noopener" target="_blank" aria-label="Ver reseñas en Google">
+              Ver en Google
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- TOURS A MEDIDA -->
     <section class="section section-soft" id="tours-a-medida">
       <div class="container split">
@@ -384,12 +444,12 @@
 
       <div>
         <p class="footer-title">Secciones</p>
-        <p class="footer-note">Inicio · Free tours · Tours a medida · Contacto</p>
+        <p class="footer-note">Inicio · Free tours · Reseñas · Tours a medida · Contacto</p>
       </div>
     </div>
   </footer>
 
-  <!-- JS: toggle overlay + acciones derecha + cerrar con tabs -->
+  <!-- JS: toggle overlay + acciones derecha + cerrar con tabs + reseñas -->
   <script>
     (() => {
       const hero = document.getElementById('hero');
@@ -403,7 +463,6 @@
       }
 
       function openOverlay(tourId){
-        // scroll arriba del todo
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         overlay.hidden = false;
@@ -427,7 +486,6 @@
         return openOverlay(tourId);
       }
 
-      // Click en cards (y Enter/Espacio)
       document.querySelectorAll('[data-open-tour]').forEach(card => {
         const go = () => toggleTour(card.getAttribute('data-open-tour'));
         card.addEventListener('click', (e) => { e.preventDefault(); go(); });
@@ -436,12 +494,10 @@
         });
       });
 
-      // Tabs dentro del overlay: cierran y navegan
       document.querySelectorAll('[data-close-overlay]').forEach(a => {
         a.addEventListener('click', () => closeOverlay());
       });
 
-      // Botones Reserva / Punto de encuentro
       overlay.querySelectorAll('[data-tour-action]').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -449,10 +505,35 @@
         });
       });
 
-      // ESC para cerrar
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !overlay.hidden) closeOverlay();
       });
+
+      // Reseñas: mini slider (sin librerías)
+      const reviews = Array.from(document.querySelectorAll('.review-card'));
+      const prev = document.querySelector('[data-review-nav="prev"]');
+      const next = document.querySelector('[data-review-nav="next"]');
+      let idx = 0;
+
+      function showReview(i){
+        reviews.forEach((card, n) => {
+          const active = n === i;
+          card.hidden = !active;
+          card.classList.toggle('is-active', active);
+        });
+      }
+
+      if (reviews.length && prev && next){
+        showReview(idx);
+        prev.addEventListener('click', () => {
+          idx = (idx - 1 + reviews.length) % reviews.length;
+          showReview(idx);
+        });
+        next.addEventListener('click', () => {
+          idx = (idx + 1) % reviews.length;
+          showReview(idx);
+        });
+      }
     })();
   </script>
 
