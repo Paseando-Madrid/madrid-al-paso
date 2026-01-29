@@ -1,48 +1,28 @@
-<!-- HERO VIDEO -->
-<section class="home-hero">
+.site-header{
+  background:#fff;
+  padding:22px 0;
+}
 
-  <div class="container">
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:40px; /* espacio entre logo y tabs */
+}
 
-    <div class="hero-shell">
+/* Logo */
+.brand{
+  font-weight:700;
+  font-size:18px;
+}
 
-      <div class="hero-media-frame">
+/* Tabs */
+.site-nav{
+  display:flex;
+  gap:26px;
+}
 
-        <!-- VIDEO -->
-        <video class="hero-video"
-               autoplay
-               muted
-               loop
-               playsinline
-               poster="assets/images/hero-fallback.jpg">
-          <source src="assets/video/hero.mp4" type="video/mp4">
-        </video>
-
-        <!-- CAPA OSCURA -->
-        <div class="hero-media-overlay"></div>
-
-        <!-- TEXTO ENCIMA -->
-        <div class="hero-copy-overlay">
-
-          <p class="hero-kicker">Paseando Madrid</p>
-
-          <h1 class="hero-title">
-            Madrid, contado a pie.
-          </h1>
-
-          <p class="hero-subtitle">
-            Free tours culturales y recorridos guiados con narrativa e historia.
-          </p>
-
-          <a href="#familias" class="hero-cta">
-            Explorar free tours →
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+.site-nav a{
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+}
