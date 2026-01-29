@@ -15,13 +15,11 @@
   <header class="site-header" id="inicio">
     <div class="container header-inner">
 
-      <!-- Hueco para logo + wordmark (SOLO aquí, no dentro del vídeo) -->
       <a class="brand" href="#inicio" aria-label="Paseando Madrid, inicio">
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-word">Paseando Madrid</span>
       </a>
 
-      <!-- Tabs alineadas a la izquierda -->
       <nav class="site-nav" aria-label="Navegación principal">
         <a class="nav-link" href="#inicio">Inicio</a>
         <a class="nav-link" href="#free-tours">Free tours</a>
@@ -35,12 +33,13 @@
 
   <main>
 
-    <!-- HERO VIDEO (Context-like: frame panorámico + texto izquierda + overlay elegante) -->
+    <!-- HERO VIDEO (frame tipo Context + texto izquierda) -->
     <section class="home-hero" aria-label="Hero">
       <div class="container">
 
         <div class="hero-frame">
 
+          <!-- Capa vídeo (ABSOLUTA para que siempre rellene perfecto el frame) -->
           <video
             class="hero-video"
             autoplay
@@ -48,14 +47,15 @@
             loop
             playsinline
             preload="metadata"
+            aria-hidden="true"
           >
             <source src="assets/video/hero.mp4" type="video/mp4" />
           </video>
 
-          <!-- Overlay oscuro (pensado para texto fino a la izquierda) -->
+          <!-- Overlay -->
           <div class="hero-overlay" aria-hidden="true"></div>
 
-          <!-- Copy (SIN kicker dentro del vídeo) -->
+          <!-- Texto (SIN "Paseando Madrid" dentro del vídeo) -->
           <div class="hero-copy">
             <h1 class="hero-title">
               Free tours culturales guiados con pasión, narrativa e historia.
@@ -65,9 +65,7 @@
               La mejor experiencia para que la ciudad sea parte del camino.
             </p>
 
-            <a class="hero-cta" href="#free-tours">
-              Explorar free tours →
-            </a>
+            <a class="hero-cta" href="#free-tours">Explorar free tours →</a>
           </div>
 
         </div>
@@ -84,7 +82,7 @@
         </div>
 
         <div class="placeholder">
-          <p><strong>OK:</strong> si ves esta sección al bajar, el hero + header están bien.</p>
+          <p><strong>OK:</strong> si ves esto al bajar, el hero + header están bien.</p>
         </div>
       </div>
     </section>
@@ -94,7 +92,7 @@
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Tours a medida</h2>
-          <p class="section-lead">Bloque placeholder para mantener la arquitectura y el menú.</p>
+          <p class="section-lead">Placeholder para mantener estructura.</p>
         </div>
 
         <div class="placeholder">
@@ -108,7 +106,7 @@
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Quiénes somos</h2>
-          <p class="section-lead">Bloque placeholder para mantener la arquitectura y el menú.</p>
+          <p class="section-lead">Placeholder para mantener estructura.</p>
         </div>
 
         <div class="placeholder">
