@@ -1,28 +1,133 @@
-.site-header{
-  background:#fff;
-  padding:22px 0;
-}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Paseando Madrid</title>
+  <meta name="description" content="Free tours culturales guiados con pasión, narrativa e historia. La mejor experiencia para que la ciudad sea parte del camino." />
 
-.header-inner{
-  display:flex;
-  align-items:center;
-  gap:40px; /* espacio entre logo y tabs */
-}
+  <link rel="stylesheet" href="./styles.css" />
+</head>
 
-/* Logo */
-.brand{
-  font-weight:700;
-  font-size:18px;
-}
+<body>
 
-/* Tabs */
-.site-nav{
-  display:flex;
-  gap:26px;
-}
+  <!-- HEADER (margen blanco superior) -->
+  <header class="site-header" id="inicio">
+    <div class="container header-inner">
+      <!-- Hueco para logo + wordmark -->
+      <a class="brand" href="#inicio" aria-label="Paseando Madrid, inicio">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-word">Paseando Madrid</span>
+      </a>
 
-.site-nav a{
-  text-decoration:none;
-  color:#111;
-  font-size:14px;
-}
+      <!-- Tabs -->
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="#inicio">Inicio</a>
+        <a class="nav-link" href="#free-tours">Free tours</a>
+        <a class="nav-link" href="#tours-a-medida">Tours a medida</a>
+        <a class="nav-link" href="#quienes">Quiénes somos</a>
+        <a class="nav-link" href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO VIDEO (tipo Context: media protagonista + texto encima) -->
+    <section class="home-hero" aria-label="Hero">
+      <div class="container">
+        <div class="hero-frame">
+
+          <!-- Vídeo (ruta esperada: assets/video/hero.mp4) -->
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="assets/video/hero.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Overlay oscuro (degradado) -->
+          <div class="hero-overlay" aria-hidden="true"></div>
+
+          <!-- Copy encima -->
+          <div class="hero-copy">
+            <p class="hero-kicker">
+              <span class="kicker-mark" aria-hidden="true"></span>
+              Paseando Madrid
+            </p>
+
+            <h1 class="hero-title">
+              Free tours culturales guiados con pasión, narrativa e historia.
+            </h1>
+
+            <p class="hero-subtitle">
+              La mejor experiencia para que la ciudad sea parte del camino.
+            </p>
+
+            <a class="hero-cta" href="#free-tours">
+              Explorar free tours →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Free tours (placeholder para comprobar scroll) -->
+    <section class="section" id="free-tours" aria-label="Free tours">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Free tours</h2>
+          <p class="section-lead">Aquí irá la sección de familias (carruseles) en el siguiente paso.</p>
+        </div>
+
+        <div class="placeholder">
+          <p><strong>OK:</strong> si ves esta sección al bajar, el hero está correctamente montado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Tours a medida -->
+    <section class="section section-soft" id="tours-a-medida" aria-label="Tours a medida">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Tours a medida</h2>
+          <p class="section-lead">Bloque placeholder para mantener la arquitectura y el menú.</p>
+        </div>
+
+        <div class="placeholder">
+          <p>Contenido a medida aquí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: Quiénes somos -->
+    <section class="section" id="quienes" aria-label="Quiénes somos">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Quiénes somos</h2>
+          <p class="section-lead">Bloque placeholder para mantener la arquitectura y el menú.</p>
+        </div>
+
+        <div class="placeholder">
+          <p>Texto editorial + foto (opcional) aquí.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER / CONTACTO -->
+  <footer class="footer" id="contacto" aria-label="Contacto">
+    <div class="container footer-inner">
+      <p class="footer-brand">Paseando Madrid</p>
+      <p class="footer-note">Contacto: <a href="mailto:info@paseandomadrid.com">info@paseandomadrid.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
