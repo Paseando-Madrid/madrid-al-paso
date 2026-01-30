@@ -33,29 +33,28 @@
 
   <main>
 
-    <!-- HERO VIDEO (frame tipo Context + texto izquierda) -->
+    <!-- HERO VIDEO (Context: media full-width + texto con márgenes) -->
     <section class="home-hero" aria-label="Hero">
-      <div class="container">
 
-        <div class="hero-frame">
+      <!-- Frame FULL-WIDTH (sale del container) -->
+      <div class="hero-frame hero-frame--full">
 
-          <!-- Capa vídeo (ABSOLUTA para que siempre rellene perfecto el frame) -->
-          <video
-            class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-hidden="true"
-          >
-            <source src="assets/video/hero.mp4" type="video/mp4" />
-          </video>
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
 
-          <!-- Overlay -->
-          <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-          <!-- Texto (SIN "Paseando Madrid" dentro del vídeo) -->
+        <!-- Texto dentro de container (márgenes editoriales) -->
+        <div class="container">
           <div class="hero-copy">
             <h1 class="hero-title">
               Free tours culturales guiados con pasión, narrativa e historia.
@@ -67,7 +66,6 @@
 
             <a class="hero-cta" href="#free-tours">Explorar free tours →</a>
           </div>
-
         </div>
 
       </div>
