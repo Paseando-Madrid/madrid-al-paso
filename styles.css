@@ -81,28 +81,45 @@ a{ color: inherit; text-decoration: none; }
   text-decoration-thickness: 1px;
 }
 
-/* Hero section margins */
+/* -----------------------------
+   HERO (Context-like: full-bleed media + copy contained)
+------------------------------ */
+
+/* Subimos el hero: casi pegado al header, sin tocar header */
 .home-hero{
-  padding: 26px 0 70px;
+  padding: 4px 0 70px; /* antes 26px arriba: lo recortamos tipo Context */
   background: #fff;
 }
 
-/* HERO FRAME: Context-like (panorámico) + capas blindadas */
+/* Frame base (para compatibilidad) */
 .hero-frame{
   position: relative;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
   overflow: hidden;
   background: #0b0b0b;
 
-  aspect-ratio: 21 / 9;
+  /* Ratio Context más fiel */
+  aspect-ratio: 5 / 2;       /* ≈ 2.5:1 */
   min-height: 420px;
-  max-height: 560px;
+  max-height: 520px;
 
-  isolation: isolate; /* clave contra bugs de vídeo/overlays */
+  isolation: isolate;
 }
 
-/* Vídeo: capa base */
+/* Variante FULL WIDTH (lo que pide Context) */
+.hero-frame--full{
+  width: 100vw;
+  margin-left: calc(50% - 50vw); /* saca el frame fuera del flujo del container */
+  margin-right: calc(50% - 50vw);
+
+  /* Context: sin “tarjeta” */
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+/* Vídeo (capa base) */
 .hero-video{
   position: absolute;
   inset: 0;
@@ -114,11 +131,11 @@ a{ color: inherit; text-decoration: none; }
   z-index: 0;
   transform: scale(1.01);
 
-  /* look premium (sin oscurecerlo a negro) */
-  filter: brightness(.96) contrast(1.06) saturate(1.05);
+  /* look premium */
+  filter: brightness(.98) contrast(1.06) saturate(1.06);
 }
 
-/* Overlay: oscurece izquierda, NO apaga el vídeo */
+/* Overlay: legibilidad a la izquierda SIN “apagar” vídeo */
 .hero-overlay{
   position: absolute;
   inset: 0;
@@ -126,22 +143,21 @@ a{ color: inherit; text-decoration: none; }
   pointer-events: none;
 
   background:
-    /* velo vertical suave */
-    linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.05) 60%, rgba(0,0,0,0) 100%),
-    /* banda izquierda para texto (calibrada) */
+    /* velo vertical muy suave */
+    linear-gradient(180deg, rgba(0,0,0,.16) 0%, rgba(0,0,0,.05) 60%, rgba(0,0,0,0) 100%),
+    /* banda izquierda calibrada */
     linear-gradient(
       90deg,
-      rgba(0,0,0,.56) 0%,
-      rgba(0,0,0,.30) 40%,
-      rgba(0,0,0,.12) 70%,
+      rgba(0,0,0,.52) 0%,
+      rgba(0,0,0,.26) 44%,
+      rgba(0,0,0,.10) 74%,
       rgba(0,0,0,0) 100%
     );
 }
 
-/* Copy izquierda */
+/* Copy: ahora VA dentro de .container en tu HTML */
 .hero-copy{
-  position: absolute;
-  inset: 0;
+  position: relative; /* ya no absoluta: el padre full-bleed no “encaja” el texto */
   z-index: 2;
 
   display: flex;
@@ -150,23 +166,27 @@ a{ color: inherit; text-decoration: none; }
   align-items: flex-start;
   text-align: left;
 
-  gap: 12px;                 /* más compacto */
-  padding: 56px;             /* un pelín menos que antes */
+  /* Altura: igual a la del frame, para centrar verticalmente */
+  min-height: min(520px, max(420px, calc(100vw / 2.5))); /* acompaña aspect-ratio */
+  gap: 12px;
+
+  /* Context: padding vertical, márgenes laterales los da .container */
+  padding: 56px 0;
+
   max-width: 620px;
   color: #fff;
 }
 
-/* Texto del hero MÁS PEQUEÑO (lo que pediste) */
+/* Tipografía premium (fina y contenida) */
 .hero-title{
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(30px, 3.4vw, 52px); /* ↓ antes era 40–72 */
+  font-size: clamp(30px, 3.2vw, 52px);
   line-height: 1.03;
   letter-spacing: -0.02em;
   max-width: 18ch;
 
-  /* legibilidad premium sin meter más negro */
   text-shadow: 0 10px 28px rgba(0,0,0,.35);
 }
 
@@ -174,11 +194,12 @@ a{ color: inherit; text-decoration: none; }
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 16px;            /* ↓ antes 18 */
+  font-size: 16px;
   line-height: 1.45;
   letter-spacing: -0.01em;
   opacity: .92;
   max-width: 54ch;
+
   text-shadow: 0 10px 24px rgba(0,0,0,.28);
 }
 
@@ -190,7 +211,7 @@ a{ color: inherit; text-decoration: none; }
 
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 14px;            /* ↓ muy ligeramente */
+  font-size: 14px;
   letter-spacing: .02em;
 
   text-decoration: underline;
@@ -200,7 +221,9 @@ a{ color: inherit; text-decoration: none; }
 }
 .hero-cta:hover{ opacity: 1; }
 
-/* Sections */
+/* -----------------------------
+   Sections
+------------------------------ */
 .section{ padding: 64px 0; }
 .section-soft{ background: rgba(0,0,0,.04); }
 .section-head{ margin-bottom: 22px; }
@@ -238,7 +261,7 @@ a{ color: inherit; text-decoration: none; }
   text-underline-offset: 4px;
 }
 
-/* Motion accessibility (NO ocultamos el vídeo) */
+/* Motion accessibility (NO ocultamos vídeo) */
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
   .hero-video{ transform: none; }
@@ -247,29 +270,34 @@ a{ color: inherit; text-decoration: none; }
 /* Responsive */
 @media (max-width: 900px){
   .hero-copy{
-    padding: 42px;
+    padding: 44px 0;
     max-width: 680px;
   }
   .hero-title{ max-width: 20ch; }
 }
 
+/* Móvil */
 @media (max-width: 700px){
   .container{ width: min(100% - 28px, var(--max)); }
   .site-header{ padding: 18px 0; }
   .site-nav{ gap: 16px; }
-  .home-hero{ padding: 18px 0 52px; }
 
-  /* En móvil: un poco más alto */
+  .home-hero{ padding: 0 0 52px; }
+
   .hero-frame{
     aspect-ratio: 16 / 10;
     min-height: 420px;
     max-height: none;
   }
 
+  /* En móvil el texto necesita más padding vertical */
   .hero-copy{
-    padding: 26px;
+    padding: 28px 0;
     max-width: none;
     gap: 10px;
+
+    /* acompaña el frame móvil */
+    min-height: 420px;
   }
 
   .hero-title{
