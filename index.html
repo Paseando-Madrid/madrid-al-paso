@@ -26,6 +26,7 @@
         <a class="nav-link" href="#free-tours">Free tours</a>
         <a class="nav-link" href="#tours-a-medida">Tours a medida</a>
         <a class="nav-link" href="#quienes">Quiénes somos</a>
+        <a class="nav-link" href="#que-hacer">Qué hacer en Madrid</a>
         <a class="nav-link" href="#contacto">Contacto</a>
       </nav>
 
@@ -36,7 +37,6 @@
 
     <!-- HERO VIDEO -->
     <section class="home-hero" aria-label="Hero">
-
       <div class="hero-frame hero-frame--full">
 
         <video
@@ -65,9 +65,12 @@
               entre historia, arte y vida.
             </p>
 
-            <a class="hero-cta" href="#free-tours">Comenzar el paseo →</a>
+            <div class="hero-actions">
+              <a class="hero-cta" href="#free-tours">Comenzar el paseo →</a>
+              <a class="hero-cta hero-cta--ghost" href="#que-hacer">Qué hacer en Madrid →</a>
+            </div>
 
-            <!-- PRUEBA SOCIAL (Context-like, una línea) -->
+            <!-- PRUEBA SOCIAL -->
             <p class="hero-proof" aria-label="Valoración de opiniones">
               <em>Lo que dicen de nosotros</em>
               <span class="hero-proof-sep" aria-hidden="true">·</span>
@@ -126,7 +129,7 @@
       </div>
     </section>
 
-    <!-- (Opcional) Sección opiniones para que el link funcione -->
+    <!-- OPINIONES -->
     <section class="section" id="opiniones" aria-label="Opiniones">
       <div class="container">
         <div class="section-head">
@@ -136,6 +139,75 @@
 
         <div class="placeholder">
           <p>Bloque de reseñas aquí.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUÉ HACER EN MADRID (HERO EDITORIAL MARFIL) -->
+    <section class="section section-ivory section-quehacer" id="que-hacer" aria-label="Qué hacer en Madrid">
+      <div class="container quehacer-inner">
+
+        <!-- Tipografía fondo (arriba derecha) -->
+        <div class="cooltura" aria-hidden="true">
+          <span class="cooltura-cool">Cool</span><span class="cooltura-tura">tura</span>
+        </div>
+
+        <div class="section-head section-head--tight">
+          <h2 class="section-title">Qué hacer en Madrid</h2>
+          <p class="section-lead">Seis puertas, una selección cultural. Abre una y descubre.</p>
+        </div>
+
+        <!-- Mosaic flotante -->
+        <div class="k-mosaic" id="kMosaic" aria-label="Selección de tarjetas">
+
+          <!-- Cartelera (GRANDE) -->
+          <button class="k-card k-card--cartelera" type="button" data-open="cartelera" aria-label="Cartelera">
+            <div class="k-media k-media--tall" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>Cartelera</strong></span>
+          </button>
+
+          <!-- En directo (GRANDE DOMINANTE) -->
+          <button class="k-card k-card--directo" type="button" data-open="directo" aria-label="En directo">
+            <div class="k-media k-media--tall" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>En directo</strong></span>
+          </button>
+
+          <!-- Con niños (MEDIA) -->
+          <button class="k-card k-card--ninos" type="button" data-open="ninos" aria-label="Con niños">
+            <div class="k-media k-media--wide" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>Con niños</strong></span>
+          </button>
+
+          <!-- Museo (PEQUEÑA) -->
+          <button class="k-card k-card--museo" type="button" data-open="museo" aria-label="Museo">
+            <div class="k-media k-media--square" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>Museo</strong></span>
+          </button>
+
+          <!-- Expos (MINI pegada a vértice) -->
+          <button class="k-card k-card--expos" type="button" data-open="expos" aria-label="Expos">
+            <div class="k-media k-media--mini" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>Expos</strong></span>
+          </button>
+
+          <!-- Alarga el paseo (PEQUEÑA) -->
+          <button class="k-card k-card--alarga" type="button" data-open="alarga" aria-label="Alarga el paseo">
+            <div class="k-media k-media--square" aria-hidden="true">
+              <span class="k-ph">Foto</span>
+            </div>
+            <span class="k-name"><strong>Alarga el paseo</strong></span>
+          </button>
+
         </div>
       </div>
     </section>
@@ -151,6 +223,166 @@
       </p>
     </div>
   </footer>
+
+  <!-- OVERLAY / MODAL (editorial) -->
+  <div class="k-modal" id="kModal" aria-hidden="true">
+    <div class="k-backdrop" data-close></div>
+
+    <article class="k-sheet" role="dialog" aria-modal="true" aria-label="Información">
+      <button class="k-close" type="button" data-close aria-label="Cerrar">×</button>
+
+      <header class="k-head">
+        <p class="k-kicker">Qué hacer en Madrid</p>
+        <h3 class="k-title" id="kTitle">—</h3>
+        <p class="k-deck" id="kDeck">—</p>
+        <p class="k-meta" id="kMeta">—</p>
+      </header>
+
+      <div class="k-body">
+        <div class="k-list" id="kList"></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- JS: overlay + carga JSON -->
+  <script>
+    const modal = document.getElementById('kModal');
+    const kTitle = document.getElementById('kTitle');
+    const kDeck  = document.getElementById('kDeck');
+    const kMeta  = document.getElementById('kMeta');
+    const kList  = document.getElementById('kList');
+
+    const CFG = {
+      directo: {
+        title: "Conciertos esta semana",
+        deck: "Una selección breve para escuchar Madrid en directo.",
+        json: "data/agenda-weekly.json",
+        mode: "items"
+      },
+      ninos: {
+        title: "Disfrutar Madrid con niños",
+        deck: "Planes culturales y fáciles para hacerlo con ellos esta semana.",
+        json: "data/kids-weekly.json",
+        mode: "items"
+      },
+      expos: {
+        title: "Exposiciones de este mes",
+        deck: "Salas, museos y montajes que merecen la visita.",
+        json: "data/agenda-monthly.json",
+        mode: "group",
+        group: "exhibitions"
+      },
+      cartelera: {
+        title: "Obras destacadas",
+        deck: "Teatro en cartel: propuestas con criterio para este mes.",
+        json: "data/agenda-monthly.json",
+        mode: "group",
+        group: "theatre"
+      },
+      museo: {
+        title: "Horarios de museos",
+        deck: "Horarios, días clave y notas útiles para planificar.",
+        json: "data/museums.json",
+        mode: "items"
+      },
+      alarga: {
+        title: "Para alargar el paseo",
+        deck: "Mercados, mesas y barras para seguir con Madrid a otro ritmo.",
+        json: "data/leisure.json",
+        mode: "items"
+      }
+    };
+
+    function openModal(){
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      kList.innerHTML = '';
+    }
+
+    document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    function fmtDate(d){
+      try {
+        return new Date(d).toLocaleDateString('es-ES', { year:'numeric', month:'short', day:'2-digit' });
+      } catch { return "—"; }
+    }
+    function fmtWhen(start){
+      if(!start) return "";
+      try {
+        return new Date(start).toLocaleString('es-ES', { weekday:'short', day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+      } catch { return ""; }
+    }
+
+    function renderItems(items){
+      const max = Math.min(items.length, 8);
+      if(!max){
+        kList.innerHTML = '<p class="k-empty">Ahora mismo no hay recomendaciones publicadas. Vuelve pronto.</p>';
+        return;
+      }
+      kList.innerHTML = items.slice(0, max).map(it => {
+        const place = [it.venue, it.area].filter(Boolean).join(' · ');
+        const when  = fmtWhen(it.start);
+        const meta  = [place, when].filter(Boolean).join(' · ');
+        const desc  = it.excerpt ? it.excerpt : meta;
+        return `
+          <div class="k-item">
+            <h4>${it.title || "—"}</h4>
+            <p>${desc || ""}</p>
+            ${it.url ? `<a href="${it.url}" target="_blank" rel="noopener">Ver detalles →</a>` : ``}
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function loadAndRender(key){
+      const cfg = CFG[key];
+      kTitle.textContent = cfg.title;
+      kDeck.textContent  = cfg.deck;
+      kMeta.textContent  = 'Cargando…';
+      kList.innerHTML = '';
+      openModal();
+
+      try{
+        const res = await fetch(cfg.json, { cache: 'no-store' });
+        if(!res.ok) throw new Error("fetch failed");
+        const data = await res.json();
+
+        const updated = data.updatedAt ? fmtDate(data.updatedAt) : "—";
+        kMeta.textContent = `Actualizado: ${updated}`;
+
+        if(cfg.mode === "items"){
+          renderItems(Array.isArray(data.items) ? data.items : []);
+          return;
+        }
+
+        if(cfg.mode === "group"){
+          const groups = Array.isArray(data.groups) ? data.groups : [];
+          const g = groups.find(x => x.category === cfg.group);
+          if(g?.deck) kDeck.textContent = g.deck;
+          renderItems(Array.isArray(g?.items) ? g.items : []);
+          return;
+        }
+
+        kList.innerHTML = '<p class="k-empty">No hay datos disponibles.</p>';
+      }catch(err){
+        kMeta.textContent = 'No se pudo cargar la información.';
+        kList.innerHTML = '<p class="k-empty">Cuando subas los JSON en /data, este overlay se llenará automáticamente.</p>';
+      }
+    }
+
+    document.querySelectorAll('.k-card').forEach(btn => {
+      btn.addEventListener('click', () => loadAndRender(btn.dataset.open));
+    });
+  </script>
 
 </body>
 </html>
