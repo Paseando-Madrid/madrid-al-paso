@@ -83,11 +83,11 @@ a{ color: inherit; text-decoration: none; }
 
 /* -----------------------------
    HERO (full-bleed media + copy contained)
-   Mejoras: jerarquía, offset editorial, overlay más cinematográfico
+   Ajustes: pegado al header + sin línea + video un poco más arriba + prueba social
 ------------------------------ */
 
 .home-hero{
-  padding: 4px 0 70px;
+  padding: 0 0 70px; /* ✅ pegado al header (antes 4px arriba) */
   background: #fff;
 }
 
@@ -110,7 +110,7 @@ a{ color: inherit; text-decoration: none; }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 
-  border-top: 1px solid var(--line);
+  border-top: none;                 /* ✅ elimina la “línea” entre header y video */
   border-bottom: 1px solid var(--line);
   border-left: none;
   border-right: none;
@@ -126,12 +126,15 @@ a{ color: inherit; text-decoration: none; }
   object-fit: cover;
   display: block;
 
+  /* ✅ sube el encuadre del vídeo (ajusta 25–40% según tu plano) */
+  object-position: center 30%;
+
   z-index: 0;
   transform: scale(1.01);
   filter: brightness(.98) contrast(1.06) saturate(1.06);
 }
 
-/* Overlay: más cinematográfico (degradado suave + banda izquierda menos “corte”) */
+/* Overlay: cinematográfico */
 .hero-overlay{
   position: absolute;
   inset: 0;
@@ -139,9 +142,7 @@ a{ color: inherit; text-decoration: none; }
   pointer-events: none;
 
   background:
-    /* velo vertical (muy suave) */
     linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.06) 62%, rgba(0,0,0,0) 100%),
-    /* banda izquierda con caída más larga */
     radial-gradient(1200px 700px at 0% 40%,
       rgba(0,0,0,.58) 0%,
       rgba(0,0,0,.34) 40%,
@@ -161,7 +162,6 @@ a{ color: inherit; text-decoration: none; }
   align-items: flex-start;
   text-align: left;
 
-  /* Altura: igual al frame para centrar */
   min-height: min(520px, max(420px, calc(100vw / 2.5)));
   gap: 14px;
 
@@ -169,24 +169,18 @@ a{ color: inherit; text-decoration: none; }
   max-width: 680px;
   color: #fff;
 
-  /* ✅ Offset editorial SOLO en el hero: lo lleva más a la izquierda sin tocar .container global */
   transform: translateX(-28px);
 }
 
-/* Tipografía premium: más impacto en H1, sin perder delicadeza */
+/* Tipografía premium */
 .hero-title{
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 300;
-
-  /* ⬆️ más grande, más premium */
   font-size: clamp(44px, 4.6vw, 72px);
   line-height: 1.04;
   letter-spacing: -0.02em;
-
-  /* controla línea: editorial */
   max-width: 16ch;
-
   text-shadow: 0 12px 34px rgba(0,0,0,.38);
 }
 
@@ -194,15 +188,11 @@ a{ color: inherit; text-decoration: none; }
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 300;
-
-  /* ⬆️ un punto más grande para legibilidad sobre vídeo */
   font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.45;
   letter-spacing: -0.01em;
-
   opacity: .93;
   max-width: 52ch;
-
   text-shadow: 0 10px 26px rgba(0,0,0,.30);
 }
 
@@ -229,6 +219,37 @@ a{ color: inherit; text-decoration: none; }
   opacity: 1;
   transform: translateX(2px);
 }
+
+/* ✅ Prueba social (Context-like, una línea) */
+.hero-proof{
+  margin: 14px 0 0 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  opacity: .88;
+  color: #fff;
+
+  text-shadow: 0 10px 22px rgba(0,0,0,.26);
+}
+.hero-proof em{ font-style: italic; opacity: .92; }
+.hero-proof-sep{ opacity: .65; }
+.hero-proof-star{ opacity: .95; }
+.hero-proof-score{ font-weight: 500; letter-spacing: 0.01em; }
+
+.hero-proof-link{
+  margin-left: 6px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  opacity: .92;
+}
+.hero-proof-link:hover{ opacity: 1; }
 
 /* -----------------------------
    Sections
@@ -281,8 +302,6 @@ a{ color: inherit; text-decoration: none; }
   .hero-copy{
     padding: 44px 0;
     max-width: 720px;
-
-    /* reduce el offset para no “cortar” en tablet */
     transform: translateX(-14px);
   }
   .hero-title{ max-width: 18ch; }
@@ -307,8 +326,6 @@ a{ color: inherit; text-decoration: none; }
     max-width: none;
     gap: 12px;
     min-height: 420px;
-
-    /* en móvil NO desplazamos a la izquierda */
     transform: none;
   }
 
@@ -326,5 +343,10 @@ a{ color: inherit; text-decoration: none; }
   .hero-cta{
     font-size: 14.5px;
     text-underline-offset: 5px;
+  }
+
+  .hero-proof{
+    font-size: 12.75px;
+    margin-top: 12px;
   }
 }
