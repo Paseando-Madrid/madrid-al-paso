@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,500&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,500&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root{
   --bg: #ffffff;
@@ -12,12 +12,38 @@
   --font-serif: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-  /* Cooltura (hero editorial marfil) */
-  --ivory: #F7F4EF;
-  --cooltura-blue: #CFE8F3;
+  /* Cooltura canvas (Kultiveret-like) */
+  --ivory: #F3F1EA;
+  --cooltura-blue: rgba(110,145,170,.95); /* azul grisáceo desaturado */
 
-  /* Social proof star (mostaza) */
+  /* Social proof star */
   --mustard: #C9A24A;
+
+  /* ============
+     PROPORCIONES (Kultiveret, blueprint)
+  ============ */
+  /* Hero Cooltura: rectángulo bajo */
+  --cool-hero-h: clamp(420px, 42vh, 560px);
+
+  /* Unidad base U (tamaño de card grande) */
+  --u: clamp(180px, 18vw, 240px);
+
+  /* Cards: 4:5 vertical (h = w * 1.25) */
+  --card-lg-w: var(--u);
+  --card-lg-h: calc(var(--u) * 1.25);
+
+  --card-md-w: calc(var(--u) * 0.65);
+  --card-md-h: calc(var(--card-md-w) * 1.25);
+
+  --card-sm:   calc(var(--u) * 0.35); /* casi cuadrada */
+
+  /* Aire */
+  --gap-lg: calc(var(--u) * 0.15);
+  --gap-md: calc(var(--u) * 0.12);
+  --gap-sm: calc(var(--u) * 0.05);
+
+  /* COOLTURA: altura ≈ 1.25 × card grande */
+  --cooltura-h: calc(var(--card-lg-h) * 1.25);
 }
 
 /* Base */
@@ -32,6 +58,7 @@ body{
 }
 a{ color: inherit; text-decoration: none; }
 button{ font-family: inherit; }
+img, video{ max-width: 100%; display: block; }
 
 /* Container */
 .container{
@@ -90,65 +117,48 @@ button{ font-family: inherit; }
 }
 
 /* -----------------------------
-   HERO (full-bleed media + copy contained)
-   Ajustes: pegado al header + sin línea + video un poco más arriba + prueba social
+   HERO VIDEO (full-bleed + copy)
 ------------------------------ */
-
 .home-hero{
-  padding: 0 0 70px; /* pegado al header */
+  padding: 0 0 70px;
   background: #fff;
 }
-
-/* Frame base */
 .hero-frame{
   position: relative;
   overflow: hidden;
   background: #0b0b0b;
 
-  aspect-ratio: 5 / 2; /* ≈ 2.5:1 */
+  aspect-ratio: 5 / 2;
   min-height: 420px;
   max-height: 520px;
 
   isolation: isolate;
 }
-
-/* Variante FULL WIDTH */
 .hero-frame--full{
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 
-  border-top: none;                 /* elimina “línea” entre header y video */
+  border-top: none;
   border-bottom: 1px solid var(--line);
-  border-left: none;
-  border-right: none;
   border-radius: 0;
 }
-
-/* Vídeo */
 .hero-video{
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-
-  /* sube el encuadre del vídeo */
   object-position: center 30%;
-
   z-index: 0;
   transform: scale(1.01);
   filter: brightness(.98) contrast(1.06) saturate(1.06);
 }
-
-/* Overlay: cinematográfico */
 .hero-overlay{
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-
   background:
     linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.06) 62%, rgba(0,0,0,0) 100%),
     radial-gradient(1200px 700px at 0% 40%,
@@ -158,8 +168,6 @@ button{ font-family: inherit; }
       rgba(0,0,0,0) 78%
     );
 }
-
-/* Copy */
 .hero-copy{
   position: relative;
   z-index: 2;
@@ -168,7 +176,6 @@ button{ font-family: inherit; }
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  text-align: left;
 
   min-height: min(520px, max(420px, calc(100vw / 2.5)));
   gap: 14px;
@@ -177,11 +184,9 @@ button{ font-family: inherit; }
   max-width: 680px;
   color: #fff;
 
-  /* Offset editorial SOLO hero */
   transform: translateX(-28px);
 }
 
-/* Tipografía premium */
 .hero-title{
   margin: 0;
   font-family: var(--font-serif);
@@ -192,10 +197,8 @@ button{ font-family: inherit; }
   max-width: 16ch;
   text-shadow: 0 12px 34px rgba(0,0,0,.38);
 }
-
 .hero-subtitle{
   margin: 0;
-  font-family: var(--font-sans);
   font-weight: 300;
   font-size: clamp(18px, 1.35vw, 22px);
   line-height: 1.45;
@@ -205,7 +208,6 @@ button{ font-family: inherit; }
   text-shadow: 0 10px 26px rgba(0,0,0,.30);
 }
 
-/* Acciones (CTA principal + CTA “Qué hacer”) */
 .hero-actions{
   display: flex;
   gap: 18px;
@@ -213,13 +215,11 @@ button{ font-family: inherit; }
   align-items: baseline;
 }
 
-/* CTA editorial premium */
 .hero-cta{
   margin-top: 10px;
   display: inline-block;
   width: fit-content;
 
-  font-family: var(--font-sans);
   font-weight: 500;
   font-size: 15px;
   line-height: 1;
@@ -232,47 +232,27 @@ button{ font-family: inherit; }
   opacity: .95;
   transition: opacity .18s ease, transform .18s ease;
 }
-.hero-cta:hover{
-  opacity: 1;
-  transform: translateX(2px);
-}
+.hero-cta:hover{ opacity: 1; transform: translateX(2px); }
+.hero-cta--ghost{ opacity: .82; }
+.hero-cta--ghost:hover{ opacity: 1; }
 
-/* CTA secundario (ghost) */
-.hero-cta--ghost{
-  opacity: .82;
-}
-.hero-cta--ghost:hover{
-  opacity: 1;
-}
-
-/* Prueba social (Context-like, una línea) */
 .hero-proof{
   margin: 14px 0 0 0;
   display: inline-flex;
   align-items: baseline;
   gap: 8px;
   flex-wrap: wrap;
-
-  font-family: var(--font-sans);
   font-size: 13.5px;
   line-height: 1.2;
   letter-spacing: 0.01em;
   opacity: .90;
   color: #fff;
-
   text-shadow: 0 10px 22px rgba(0,0,0,.26);
 }
 .hero-proof em{ font-style: italic; opacity: .92; }
 .hero-proof-sep{ opacity: .65; }
-
-/* ⭐ mostaza */
-.hero-proof-star{
-  color: var(--mustard);
-  opacity: 1;
-}
-
+.hero-proof-star{ color: var(--mustard); opacity: 1; }
 .hero-proof-score{ font-weight: 500; letter-spacing: 0.01em; }
-
 .hero-proof-link{
   margin-left: 6px;
   text-decoration: underline;
@@ -283,13 +263,11 @@ button{ font-family: inherit; }
 .hero-proof-link:hover{ opacity: 1; }
 
 /* -----------------------------
-   Sections
+   Sections base
 ------------------------------ */
 .section{ padding: 64px 0; }
 .section-soft{ background: rgba(0,0,0,.04); }
 .section-head{ margin-bottom: 22px; }
-.section-head--tight{ margin-bottom: 18px; }
-
 .section-title{
   margin: 0 0 10px 0;
   font-size: clamp(22px, 2.4vw, 32px);
@@ -300,8 +278,6 @@ button{ font-family: inherit; }
   color: var(--muted);
   max-width: 70ch;
 }
-
-/* Placeholder */
 .placeholder{
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -319,10 +295,7 @@ button{ font-family: inherit; }
 .footer-inner{ display: grid; gap: 8px; }
 .footer-brand{ margin: 0; font-weight: 600; }
 .footer-note{ margin: 0; color: var(--muted); }
-.footer-note a{
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+.footer-note a{ text-decoration: underline; text-underline-offset: 4px; }
 
 /* Motion accessibility */
 @media (prefers-reduced-motion: reduce){
@@ -330,297 +303,215 @@ button{ font-family: inherit; }
   .hero-video{ transform: none; }
 }
 
-/* Responsive */
-@media (max-width: 900px){
-  .hero-copy{
-    padding: 44px 0;
-    max-width: 720px;
-    transform: translateX(-14px);
-  }
-  .hero-title{ max-width: 18ch; }
-}
-
-/* Móvil */
-@media (max-width: 700px){
-  .container{ width: min(100% - 28px, var(--max)); }
-  .site-header{ padding: 18px 0; }
-  .site-nav{ gap: 16px; }
-
-  .home-hero{ padding: 0 0 52px; }
-
-  .hero-frame{
-    aspect-ratio: 16 / 10;
-    min-height: 420px;
-    max-height: none;
-  }
-
-  .hero-copy{
-    padding: 30px 0;
-    max-width: none;
-    gap: 12px;
-    min-height: 420px;
-    transform: none;
-  }
-
-  .hero-title{
-    font-size: clamp(34px, 7.2vw, 48px);
-    line-height: 1.06;
-    max-width: 20ch;
-  }
-
-  .hero-subtitle{
-    font-size: 16px;
-    max-width: 44ch;
-  }
-
-  .hero-cta{
-    font-size: 14.5px;
-    text-underline-offset: 5px;
-  }
-
-  .hero-proof{
-    font-size: 12.75px;
-    margin-top: 12px;
-  }
-}
-
 /* ==========================================================
-   QUÉ HACER EN MADRID (HERO EDITORIAL MARFIL + COOLTURA)
-   Estilo: fotos flotantes con aire (Kultiveret-like)
+   COOLTURA CANVAS (Kultiveret-like)
+   - rectángulo bajo
+   - marfil
+   - collage flotante (posiciones por %)
 ========================================================== */
-
-.section-ivory{
+.section-quehacer{
+  padding: clamp(56px, 7vh, 90px) 0;
   background: var(--ivory);
 }
 
-.section-quehacer{
-  /* sensación de “hero editorial” */
-  padding: clamp(64px, 8vh, 96px) 0;
-}
-
-.quehacer-inner{
+.cooltura-canvas{
   position: relative;
-  min-height: min(86vh, 920px);
+  height: var(--cool-hero-h);
+  width: min(1200px, 100% - 48px);
+  margin: 0 auto;
+  padding: clamp(18px, 2.2vw, 28px);
+  overflow: hidden;
 }
 
-/* “Cooltura” gigante arriba derecha */
-.cooltura{
-  position: absolute;
-  top: -18px;
-  right: -14px;
-  z-index: 0;
-
+/* Cabecera mínima (no compite) */
+.cooltura-head{
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+.cooltura-title{
+  margin: 0;
   font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: .90;
-
-  font-size: clamp(140px, 24vw, 420px);
-
-  /* textura sutil */
-  opacity: .10;
-
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-
-  /* empuja un poco fuera para recorte editorial */
-  transform: translateX(8%);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-size: clamp(18px, 1.4vw, 22px);
 }
-.cooltura-cool{ color: #111; }
-.cooltura-tura{ color: var(--cooltura-blue); }
+.cooltura-lead{
+  margin: 10px 0 0;
+  color: rgba(17,17,17,.70);
+  max-width: 54ch;
+  font-size: 14.5px;
+}
 
-/* Mosaic flotante con aire */
-.k-mosaic{
-  position: relative;
+/* COOLTURA palabra única, derecha, corte editorial */
+.cooltura-word{
+  position: absolute;
+  right: 0;
+  top: clamp(6px, 1.1vw, 14px);
   z-index: 1;
 
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 26px;
-  align-items: start;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.90;
 
-  padding-top: 18px;
+  font-size: var(--cooltura-h);
+  white-space: nowrap;
+
+  transform: translateX(10%); /* corte intencional */
+  opacity: .18;              /* como fondo conceptual */
+  pointer-events: none;
+  user-select: none;
+}
+.cooltura-word .cool{ color: #111; }
+.cooltura-word .tura{ color: var(--cooltura-blue); }
+
+/* Mosaic / cards */
+.cooltura-mosaic{
+  position: absolute;
+  inset: 0;
+  z-index: 3;
 }
 
-/* Card: sin caja */
+/* Card base: sin marco, foto flotante + título debajo */
 .k-card{
+  position: absolute;
   appearance: none;
   border: 0;
   padding: 0;
   background: transparent;
-  text-align: left;
   cursor: pointer;
+  text-align: left;
   outline: none;
+
+  display: grid;
+  gap: 10px;
 }
 
-/* Placeholder “foto” (luego se sustituye por imagen real) */
-.k-media{
+/* Escalas */
+.k-lg{ width: var(--card-lg-w); height: auto; }
+.k-md{ width: var(--card-md-w); height: auto; }
+.k-sm{ width: var(--card-sm);   height: auto; }
+
+/* “Foto” con ratio controlado por pseudo-element (para mantener 4:5 sin imágenes) */
+.k-photo{
   width: 100%;
   border-radius: 16px;
   overflow: hidden;
-
-  /* look editorial: sombra suave */
-  box-shadow: 0 18px 46px rgba(0,0,0,.10);
 
   background:
     linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.02)),
     repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 12px, rgba(0,0,0,.03) 12px 24px);
 
-  display: grid;
-  place-items: center;
+  box-shadow: 0 18px 46px rgba(0,0,0,.10);
 
   transition: transform .22s ease, filter .22s ease, opacity .22s ease, box-shadow .22s ease;
 }
 
-.k-ph{
-  font-size: 12px;
-  letter-spacing: .10em;
-  text-transform: uppercase;
-  color: rgba(17,17,17,.55);
-  border: 1px solid rgba(0,0,0,.10);
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.70);
-}
+/* Ratio helpers by size */
+.k-lg .k-photo{ aspect-ratio: 4 / 5; } /* vertical editorial */
+.k-md .k-photo{ aspect-ratio: 4 / 5; }
+.k-sm .k-photo{ aspect-ratio: 1 / 1; } /* acento */
 
-/* Ratios por tipo (editables cuando haya fotos) */
-.k-media--tall{ aspect-ratio: 3 / 4; }
-.k-media--wide{ aspect-ratio: 16 / 10; }
-.k-media--square{ aspect-ratio: 1 / 1; }
-.k-media--mini{
-  aspect-ratio: 1 / 1;
-  width: 72%;
-  justify-self: start;
-}
-
-/* Nombre debajo (negrita, estilo editorial) */
-.k-name{
-  display: block;
-  margin-top: 10px;
+/* Títulos debajo */
+.k-title{
   font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: rgba(17,17,17,.92);
 }
-.k-name strong{ font-weight: 700; }
 
-/* ----------------------------------------------------------
-   Posiciones flotantes (equivalentes a tu referencia)
-   Jerarquía: Directo + Cartelera grandes,
-   Niños media, Museo/Expos/Alarga pequeñas
----------------------------------------------------------- */
-
-/* Cartelera: grande arriba izquierda */
-.k-card--cartelera{
-  grid-column: 1 / span 5;
-  transform: translateY(-10px);
+/* Alargar split tipográfico (ALARGAR vertical + el paseo abajo) */
+.k-title--split{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.k-title--split .k-v{
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+  opacity: .88;
+}
+.k-title--split .k-h{
+  font-weight: 800;
 }
 
-/* En directo: grande dominante centro-derecha */
-.k-card--directo{
-  grid-column: 7 / span 6;
-  transform: translateY(10px);
+/* =========================
+   POSICIONES (mapa cerrado)
+   Ajustables solo aquí
+========================= */
+
+/* Cartelera: izquierda, medio (su top a mitad visual de Directo) */
+.card-cartelera{
+  left: 6%;
+  top: 34%;
 }
 
-/* Con niños: media puente centro-izquierda */
-.k-card--ninos{
-  grid-column: 4 / span 3;
-  transform: translateY(22px);
+/* En Directo: arriba derecha, cerca de Cooltura */
+.card-directo{
+  left: 58%;
+  top: 10%;
 }
 
-/* Museo: pequeña izquierda baja */
-.k-card--museo{
-  grid-column: 2 / span 2;
-  transform: translateY(38px);
+/* Expo: debajo de Directo, más a la derecha casi borde */
+.card-expo{
+  left: 71%;
+  top: 48%;
 }
 
-/* Alarga el paseo: pequeña abajo derecha (más aislada) */
-.k-card--alarga{
-  grid-column: 10 / span 3;
-  transform: translateY(34px);
+/* Alargar: centrado, base coincide visualmente con base de Directo */
+.card-alargar{
+  left: 44%;
+  top: 46%;
 }
 
-/* Expos: mini tipo “cuisine” pegada a vértice de En directo */
-.k-card--expos{
-  grid-column: 6 / span 2;
-  align-self: end;
-  transform: translate(26px, 54px); /* ajuste fino cuando haya fotos */
-  z-index: 2;
+/* Museos: pegada al vértice inferior derecho de Alargar */
+.card-museos{
+  left: calc(44% + var(--card-md-w) - var(--gap-sm));
+  top:  calc(46% + (var(--card-md-w) * 1.25) - var(--gap-sm));
 }
-.k-card--expos .k-media{
-  box-shadow: 0 16px 40px rgba(0,0,0,.10);
+
+/* Niños: pequeña, casi base, entre Cartelera y Alargar */
+.card-ninos{
+  left: 26%;
+  top: 76%;
 }
 
 /* Hover premium:
-   - base: todas enfocadas
+   - por defecto: todo nítido
    - al hover del mosaico: resto blur
-   - la activa: nítida + zoom sutil
+   - activa: nítida + zoom
 */
-#kMosaic:hover .k-media{
+#kMosaic:hover .k-photo{
   filter: blur(3px) saturate(.92);
   opacity: .58;
 }
-#kMosaic:hover .k-card:hover .k-media{
+#kMosaic:hover .k-card:hover .k-photo{
   filter: none;
   opacity: 1;
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 26px 70px rgba(0,0,0,.14);
 }
 
-/* Accesibilidad motion */
+/* Focus visible */
+.k-card:focus-visible .k-photo{
+  outline: 2px solid rgba(17,17,17,.22);
+  outline-offset: 4px;
+}
+
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
-  #kMosaic:hover .k-media{ filter: none; opacity: 1; }
-  .k-media{ transition: none; }
-}
-
-/* Responsive del mosaico */
-@media (max-width: 900px){
-  .quehacer-inner{
-    min-height: auto;
-  }
-
-  .cooltura{
-    top: -12px;
-    right: -10px;
-    font-size: clamp(120px, 26vw, 300px);
-    opacity: .10;
-    transform: translateX(12%);
-  }
-
-  /* Reflujo: grandes a una columna, pequeñas en 2 */
-  .k-card--cartelera{ grid-column: 1 / span 12; transform: translateY(0); }
-  .k-card--directo{ grid-column: 1 / span 12; transform: translateY(0); }
-  .k-card--ninos{ grid-column: 1 / span 12; transform: translateY(0); }
-
-  .k-card--museo{ grid-column: 1 / span 6; transform: translateY(0); }
-  .k-card--expos{ grid-column: 7 / span 6; transform: translate(0,0); }
-  .k-card--alarga{ grid-column: 1 / span 12; transform: translateY(0); }
-
-  .k-media--mini{ width: 100%; }
-
-  /* En touch no aplicamos blur de hover */
-  #kMosaic:hover .k-media{ filter: none; opacity: 1; }
-}
-
-@media (max-width: 700px){
-  .k-mosaic{ gap: 18px; }
-  .cooltura{
-    font-size: clamp(110px, 30vw, 240px);
-    opacity: .10;
-    transform: translateX(14%);
-  }
-
-  .k-card--museo,
-  .k-card--expos{
-    grid-column: 1 / span 12;
-  }
-
-  .k-media--mini{ width: 100%; }
+  #kMosaic:hover .k-photo{ filter: none; opacity: 1; }
+  .k-photo{ transition: none; }
 }
 
 /* ==========================================================
    MODAL / OVERLAY (editorial, blur → foco)
 ========================================================== */
-
 .k-modal{
   position: fixed;
   inset: 0;
@@ -635,7 +526,6 @@ button{ font-family: inherit; }
   background: rgba(10,10,10,.42);
 }
 
-/* “Hoja” editorial */
 .k-sheet{
   position: relative;
   width: min(92vw, 960px);
@@ -648,7 +538,6 @@ button{ font-family: inherit; }
   box-shadow: 0 28px 90px rgba(0,0,0,.22);
   overflow: hidden;
 
-  /* entra desenfocado */
   opacity: 0;
   transform: translateY(10px);
   filter: blur(10px);
@@ -688,13 +577,14 @@ button{ font-family: inherit; }
   color: rgba(17,17,17,.60);
 }
 
-.k-title{
+.k-head .k-title{
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 300;
   font-size: 34px;
   letter-spacing: -0.02em;
   line-height: 1.06;
+  color: #111;
 }
 
 .k-deck{
@@ -746,9 +636,78 @@ button{ font-family: inherit; }
   font-size: 14px;
 }
 
-.k-empty{
-  margin: 0;
-  color: rgba(17,17,17,.70);
+.k-empty{ margin: 0; color: rgba(17,17,17,.70); }
+
+/* =========================
+   Responsive (hero + cooltura)
+========================= */
+@media (max-width: 900px){
+  .container{ width: min(100% - 32px, var(--max)); }
+
+  .hero-copy{
+    padding: 44px 0;
+    transform: translateX(-14px);
+  }
+
+  .cooltura-canvas{
+    width: min(100% - 32px, 1200px);
+    height: clamp(420px, 52vh, 640px);
+  }
+
+  /* Reflow en una columna: mantenemos el look editorial sin caos */
+  .cooltura-mosaic{
+    position: relative;
+    inset: auto;
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding-right: 4px;
+  }
+
+  .k-card{ position: static; }
+  .k-lg, .k-md, .k-sm{ width: 100%; }
+
+  /* Ratios se mantienen */
+  .k-lg .k-photo, .k-md .k-photo{ aspect-ratio: 4 / 5; }
+  .k-sm .k-photo{ aspect-ratio: 1 / 1; }
+
+  /* En touch/tablet: sin blur por hover */
+  #kMosaic:hover .k-photo{ filter: none; opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px){
+  .container{ width: min(100% - 28px, var(--max)); }
+  .site-header{ padding: 18px 0; }
+  .site-nav{ gap: 16px; }
+
+  .home-hero{ padding: 0 0 52px; }
+  .hero-frame{
+    aspect-ratio: 16 / 10;
+    min-height: 420px;
+    max-height: none;
+  }
+  .hero-copy{
+    padding: 30px 0;
+    gap: 12px;
+    min-height: 420px;
+    transform: none;
+  }
+  .hero-title{
+    font-size: clamp(34px, 7.2vw, 48px);
+    line-height: 1.06;
+    max-width: 20ch;
+  }
+  .hero-subtitle{ font-size: 16px; max-width: 44ch; }
+  .hero-cta{ font-size: 14.5px; text-underline-offset: 5px; }
+  .hero-proof{ font-size: 12.75px; margin-top: 12px; }
+
+  .cooltura-lead{ font-size: 14px; }
+
+  /* 1 columna para cards */
+  .cooltura-mosaic{
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Modal móvil */
