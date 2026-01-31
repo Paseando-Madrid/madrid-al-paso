@@ -325,7 +325,7 @@ img, video{ max-width: 100%; display: block; }
   font-size: 14.5px;
 }
 
-/* ✅ COOLTURA: esquina derecha, SIN CORTE, 180px */
+/* ✅ COOLTURA: MÁS ARRIBA + MÁS A LA DERECHA (sin padding) */
 .cooltura-word{
   position: absolute;
   right: 0;
@@ -340,16 +340,17 @@ img, video{ max-width: 100%; display: block; }
   font-size: var(--cooltura-h);
   white-space: nowrap;
 
-  transform: none;
+  /* antes: padding metía la palabra hacia dentro.
+     ahora: pegada al margen + subida sutil */
+  padding: 0;
+  transform: translateY(-10px);
+
   opacity: .32;
 
   pointer-events: none;
   user-select: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
-
-  /* aire editorial mínimo sin mover de la esquina */
-  padding: clamp(8px, 1.2vw, 16px) clamp(10px, 1.4vw, 18px) 0 0;
 }
 .cooltura-word .cool{ color: #111111; }
 .cooltura-word .tura{ color: var(--cooltura-blue); }
