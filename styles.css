@@ -37,8 +37,8 @@
 
   --gap-sm: calc(var(--u) * 0.06);
 
-  /* cooltura tamaño (aprox como referencia) */
-  --cooltura-h: clamp(220px, 20vw, 360px);
+  /* ✅ COOLTURA tamaño FIJO */
+  --cooltura-h: 180px;
 }
 
 /* Base */
@@ -292,10 +292,6 @@ img, video{ max-width: 100%; display: block; }
 
 /* ==========================================================
    COOLTURA CANVAS
-   - marfil
-   - rectángulo bajo
-   - cooltura a la derecha, grande, visible y cortada
-   - collage por posiciones (tu mapa)
 ========================================================== */
 .section-quehacer{
   padding: clamp(56px, 7vh, 90px) 0;
@@ -329,35 +325,31 @@ img, video{ max-width: 100%; display: block; }
   font-size: 14.5px;
 }
 
-/* ============================
-   ✅ COOLTURA: margen derecho, UNA palabra, SIN CORTE
-   (cool negro + tura azul grisáceo)
-============================ */
+/* ✅ COOLTURA: esquina derecha, SIN CORTE, 180px */
 .cooltura-word{
   position: absolute;
-  right: clamp(10px, 1.4vw, 18px);
-  top: clamp(8px, 1.2vw, 16px);
+  right: 0;
+  top: 0;
   z-index: 2;
 
   font-family: var(--font-sans);
   font-weight: 800;
-
   letter-spacing: -0.055em;
   line-height: 0.90;
 
   font-size: var(--cooltura-h);
   white-space: nowrap;
 
-  /* ✅ sin recorte */
   transform: none;
-
-  /* visible, editorial */
   opacity: .32;
 
   pointer-events: none;
   user-select: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
+
+  /* aire editorial mínimo sin mover de la esquina */
+  padding: clamp(8px, 1.2vw, 16px) clamp(10px, 1.4vw, 18px) 0 0;
 }
 .cooltura-word .cool{ color: #111111; }
 .cooltura-word .tura{ color: var(--cooltura-blue); }
@@ -406,7 +398,7 @@ img, video{ max-width: 100%; display: block; }
 .k-md .k-photo{ aspect-ratio: 4 / 5; }
 .k-sm .k-photo{ aspect-ratio: 1 / 1; }
 
-/* título debajo (NO pisa el modal) */
+/* título debajo */
 .k-card-title{
   font-size: 15px;
   font-weight: 700;
@@ -414,7 +406,7 @@ img, video{ max-width: 100%; display: block; }
   color: rgba(17,17,17,.92);
 }
 
-/* split tipográfico “Alargar / el paseo” */
+/* split tipográfico */
 .k-card-title--split{
   display: inline-flex;
   align-items: baseline;
@@ -433,53 +425,18 @@ img, video{ max-width: 100%; display: block; }
   font-weight: 800;
 }
 
-/* =========================
-   POSICIONES (tu mapa)
-   - directo arriba derecha cerca de cooltura
-   - expo debajo de directo y casi margen derecho
-   - cartelera margen izquierdo, su top a mitad visual de directo
-   - alargar centrado, base aprox con base de directo
-   - niños abajo entre cartelera y alargar
-   - museos pegado al vértice inferior derecho de alargar
-========================= */
-
-/* Directo (grande) */
-.card-directo{
-  left: 58%;
-  top: 10%;
-}
-
-/* Expo (mediana) */
-.card-expo{
-  left: 74%;
-  top: 48%;
-}
-
-/* Cartelera (grande) */
-.card-cartelera{
-  left: 6%;
-  top: 34%;
-}
-
-/* Alargar (mediana centrada) */
-.card-alargar{
-  left: 44%;
-  top: 46%;
-}
-
-/* Museos pegada al vértice de Alargar */
+/* POSICIONES */
+.card-directo{ left: 58%; top: 10%; }
+.card-expo{ left: 74%; top: 48%; }
+.card-cartelera{ left: 6%; top: 34%; }
+.card-alargar{ left: 44%; top: 46%; }
 .card-museos{
   left: calc(44% + var(--card-md-w) - var(--gap-sm));
   top:  calc(46% + (var(--card-md-w) * 1.25) - var(--gap-sm));
 }
+.card-ninos{ left: 26%; top: 76%; }
 
-/* Niños (pequeña abajo) */
-.card-ninos{
-  left: 26%;
-  top: 76%;
-}
-
-/* Hover: blur resto, foco + zoom */
+/* Hover */
 #kMosaic:hover .k-photo{
   filter: blur(3px) saturate(.92);
   opacity: .58;
@@ -504,7 +461,7 @@ img, video{ max-width: 100%; display: block; }
 }
 
 /* ==========================================================
-   MODAL / OVERLAY (editorial, blur → foco)
+   MODAL / OVERLAY
 ========================================================== */
 .k-modal{
   position: fixed;
@@ -571,7 +528,6 @@ img, video{ max-width: 100%; display: block; }
   color: rgba(17,17,17,.60);
 }
 
-/* título del modal (separado del título de card) */
 .k-modal-title{
   margin: 0;
   font-family: var(--font-serif);
@@ -639,7 +595,6 @@ img, video{ max-width: 100%; display: block; }
     height: clamp(440px, 56vh, 720px);
   }
 
-  /* Reflow a grid para tablet */
   .cooltura-mosaic{
     position: relative;
     inset: auto;
