@@ -329,26 +329,37 @@ img, video{ max-width: 100%; display: block; }
   font-size: 14.5px;
 }
 
-/* cooltura: margen derecho, UNA palabra, corte editorial */
+/* ============================
+   ✅ COOLTURA: margen derecho, UNA palabra, SIN CORTE
+   (cool negro + tura azul grisáceo)
+============================ */
 .cooltura-word{
   position: absolute;
-  right: 0;
-  top: clamp(4px, 1.0vw, 12px);
+  right: clamp(10px, 1.4vw, 18px);
+  top: clamp(8px, 1.2vw, 16px);
   z-index: 2;
 
+  font-family: var(--font-sans);
   font-weight: 800;
-  letter-spacing: -0.05em;
+
+  letter-spacing: -0.055em;
   line-height: 0.90;
 
   font-size: var(--cooltura-h);
   white-space: nowrap;
 
-  transform: translateX(12%); /* recorte como referencia */
-  opacity: .22;              /* visible, pero fondo */
+  /* ✅ sin recorte */
+  transform: none;
+
+  /* visible, editorial */
+  opacity: .32;
+
   pointer-events: none;
   user-select: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
-.cooltura-word .cool{ color: #111; }
+.cooltura-word .cool{ color: #111111; }
 .cooltura-word .tura{ color: var(--cooltura-blue); }
 
 /* Collage flotante */
