@@ -145,38 +145,38 @@
     <section class="section-quehacer" id="que-hacer" aria-label="Cooltura">
       <div class="cooltura-canvas">
 
-        <!-- “COOLTURA” fondo editorial (derecha, cortado) -->
+        <!-- cooltura: UNA palabra, cool negro + tura azul grisáceo, al margen derecho -->
         <div class="cooltura-word" aria-hidden="true">
           <span class="cool">cool</span><span class="tura">tura</span>
         </div>
 
-        <!-- Cabecera editorial (mínima) -->
+        <!-- Cabecera editorial mínima -->
         <header class="cooltura-head">
           <h2 class="cooltura-title">Qué hacer en Madrid</h2>
           <p class="cooltura-lead">Seis puertas, una selección cultural. Abre una y descubre.</p>
         </header>
 
-        <!-- Mosaic flotante -->
+        <!-- Collage flotante -->
         <div class="cooltura-mosaic" id="kMosaic" aria-label="Selección Cooltura">
 
           <button class="k-card k-lg card-directo" type="button" data-open="directo" aria-label="En directo">
             <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title">En directo</span>
-          </button>
-
-          <button class="k-card k-md card-expo" type="button" data-open="expos" aria-label="Expo">
-            <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title">Expo</span>
+            <span class="k-card-title">En directo</span>
           </button>
 
           <button class="k-card k-lg card-cartelera" type="button" data-open="cartelera" aria-label="Cartelera">
             <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title">Cartelera</span>
+            <span class="k-card-title">Cartelera</span>
+          </button>
+
+          <button class="k-card k-md card-expo" type="button" data-open="expos" aria-label="Expo">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-card-title">Expo</span>
           </button>
 
           <button class="k-card k-md card-alargar" type="button" data-open="alarga" aria-label="Alargar el paseo">
             <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title k-title--split">
+            <span class="k-card-title k-card-title--split">
               <span class="k-v">Alargar</span>
               <span class="k-h">el paseo</span>
             </span>
@@ -184,12 +184,12 @@
 
           <button class="k-card k-md card-museos" type="button" data-open="museo" aria-label="Museos">
             <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title">Museos</span>
+            <span class="k-card-title">Museos</span>
           </button>
 
           <button class="k-card k-sm card-ninos" type="button" data-open="ninos" aria-label="Con niños">
             <div class="k-photo" aria-hidden="true"></div>
-            <span class="k-title">Con niños</span>
+            <span class="k-card-title">Con niños</span>
           </button>
 
         </div>
@@ -209,17 +209,16 @@
     </div>
   </footer>
 
-  <!-- OVERLAY / MODAL (editorial) -->
+  <!-- OVERLAY / MODAL -->
   <div class="k-modal" id="kModal" aria-hidden="true">
     <div class="k-backdrop" data-close></div>
 
-    <article class="k-sheet" role="dialog" aria-modal="true" aria-labelledby="kTitle" aria-describedby="kDeck">
+    <article class="k-sheet" role="dialog" aria-modal="true" aria-label="Información">
       <button class="k-close" type="button" data-close aria-label="Cerrar">×</button>
 
       <header class="k-head">
-        <!-- ✅ menos repetición -->
-        <p class="k-kicker">Selección cultural</p>
-        <h3 class="k-title" id="kTitle">—</h3>
+        <p class="k-kicker">Qué hacer en Madrid</p>
+        <h3 class="k-modal-title" id="kTitle">—</h3>
         <p class="k-deck" id="kDeck">—</p>
         <p class="k-meta" id="kMeta">—</p>
       </header>
@@ -230,7 +229,7 @@
     </article>
   </div>
 
-  <!-- JS: overlay + carga JSON (SIN CAMBIOS) -->
+  <!-- JS: overlay + carga JSON -->
   <script>
     const modal = document.getElementById('kModal');
     const kTitle = document.getElementById('kTitle');
