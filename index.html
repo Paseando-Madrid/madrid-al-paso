@@ -56,18 +56,16 @@
         <div class="container">
           <div class="hero-copy">
 
-            <h1 class="hero-title">
-              Madrid, contada paso a paso.
-            </h1>
+            <h1 class="hero-title">Madrid, contada paso a paso.</h1>
 
             <p class="hero-subtitle">
               Free tours culturales para hacer de la ciudad parte del camino,
               entre historia, arte y vida.
             </p>
 
-            <div class="hero-actions">
+            <div class="hero-actions" aria-label="Acciones principales">
               <a class="hero-cta" href="#free-tours">Comenzar el paseo →</a>
-              <a class="hero-cta hero-cta--ghost" href="#que-hacer">Qué hacer en Madrid →</a>
+              <a class="hero-cta hero-cta--ghost" href="#que-hacer">Cooltura →</a>
             </div>
 
             <!-- PRUEBA SOCIAL -->
@@ -143,72 +141,65 @@
       </div>
     </section>
 
-    <!-- QUÉ HACER EN MADRID (HERO EDITORIAL MARFIL) -->
-    <section class="section section-ivory section-quehacer" id="que-hacer" aria-label="Qué hacer en Madrid">
-      <div class="container quehacer-inner">
+    <!-- COOLTURA (HERO EDITORIAL MARFIL) -->
+    <section class="section-quehacer" id="que-hacer" aria-label="Cooltura">
+      <div class="cooltura-canvas">
 
-        <!-- Tipografía fondo (arriba derecha) -->
-        <div class="cooltura" aria-hidden="true">
-          <span class="cooltura-cool">Cool</span><span class="cooltura-tura">tura</span>
+        <!-- “COOLTURA” fondo editorial (derecha, cortado) -->
+        <div class="cooltura-word" aria-hidden="true">
+          <span class="cool">cool</span><span class="tura">tura</span>
         </div>
 
-        <div class="section-head section-head--tight">
-          <h2 class="section-title">Qué hacer en Madrid</h2>
-          <p class="section-lead">Seis puertas, una selección cultural. Abre una y descubre.</p>
-        </div>
+        <!-- Cabecera editorial (mínima, sin repetir) -->
+        <header class="cooltura-head">
+          <h2 class="cooltura-title">Qué hacer en Madrid</h2>
+          <p class="cooltura-lead">Seis puertas, una selección cultural. Abre una y descubre.</p>
+        </header>
 
-        <!-- Mosaic flotante -->
-        <div class="k-mosaic" id="kMosaic" aria-label="Selección de tarjetas">
+        <!-- Mosaic flotante: posiciones/tamaños se resuelven en CSS por clases -->
+        <div class="cooltura-mosaic" id="kMosaic" aria-label="Selección Cooltura">
 
-          <!-- Cartelera (GRANDE) -->
-          <button class="k-card k-card--cartelera" type="button" data-open="cartelera" aria-label="Cartelera">
-            <div class="k-media k-media--tall" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>Cartelera</strong></span>
+          <!-- CARTELERA (GRANDE 4:5) -->
+          <button class="k-card k-lg card-cartelera" type="button" data-open="cartelera" aria-label="Cartelera">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title">Cartelera</span>
           </button>
 
-          <!-- En directo (GRANDE DOMINANTE) -->
-          <button class="k-card k-card--directo" type="button" data-open="directo" aria-label="En directo">
-            <div class="k-media k-media--tall" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>En directo</strong></span>
+          <!-- EN DIRECTO (GRANDE 4:5) -->
+          <button class="k-card k-lg card-directo" type="button" data-open="directo" aria-label="En directo">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title">En directo</span>
           </button>
 
-          <!-- Con niños (MEDIA) -->
-          <button class="k-card k-card--ninos" type="button" data-open="ninos" aria-label="Con niños">
-            <div class="k-media k-media--wide" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>Con niños</strong></span>
+          <!-- EXPO (MEDIANA 4:5) -->
+          <button class="k-card k-md card-expo" type="button" data-open="expos" aria-label="Expo">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title">Expo</span>
           </button>
 
-          <!-- Museo (PEQUEÑA) -->
-          <button class="k-card k-card--museo" type="button" data-open="museo" aria-label="Museo">
-            <div class="k-media k-media--square" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>Museo</strong></span>
+          <!-- ALARGAR EL PASEO (MEDIANA 4:5 + split tipográfico) -->
+          <button class="k-card k-md card-alargar" type="button" data-open="alarga" aria-label="Alargar el paseo">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title k-title--split">
+              <span class="k-v">Alargar</span>
+              <span class="k-h">el paseo</span>
+            </span>
           </button>
 
-          <!-- Expos (MINI pegada a vértice) -->
-          <button class="k-card k-card--expos" type="button" data-open="expos" aria-label="Expos">
-            <div class="k-media k-media--mini" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>Expos</strong></span>
+          <!-- MUSEOS (MEDIANA 4:5, pegada al vértice de alargar por CSS) -->
+          <button class="k-card k-md card-museos" type="button" data-open="museo" aria-label="Museos">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title">Museos</span>
           </button>
 
-          <!-- Alarga el paseo (PEQUEÑA) -->
-          <button class="k-card k-card--alarga" type="button" data-open="alarga" aria-label="Alarga el paseo">
-            <div class="k-media k-media--square" aria-hidden="true">
-              <span class="k-ph">Foto</span>
-            </div>
-            <span class="k-name"><strong>Alarga el paseo</strong></span>
+          <!-- NIÑOS (PEQUEÑA casi cuadrada) -->
+          <button class="k-card k-sm card-ninos" type="button" data-open="ninos" aria-label="Con niños">
+            <div class="k-photo" aria-hidden="true"></div>
+            <span class="k-title">Con niños</span>
           </button>
 
         </div>
+
       </div>
     </section>
 
@@ -244,7 +235,7 @@
     </article>
   </div>
 
-  <!-- JS: overlay + carga JSON -->
+  <!-- JS: overlay + carga JSON (SIN CAMBIOS) -->
   <script>
     const modal = document.getElementById('kModal');
     const kTitle = document.getElementById('kTitle');
@@ -368,7 +359,7 @@
           const groups = Array.isArray(data.groups) ? data.groups : [];
           const g = groups.find(x => x.category === cfg.group);
           if(g?.deck) kDeck.textContent = g.deck;
-          renderItems(Array.isArray(g?.items) ? g.items : []);
+          renderItems(Array.isArray(g?.items) ? g?.items : []);
           return;
         }
 
