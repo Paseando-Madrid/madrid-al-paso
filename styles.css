@@ -328,7 +328,7 @@ img, video{ max-width: 100%; display: block; }
 /* ✅ COOLTURA: MÁS ARRIBA + MÁS A LA DERECHA (sin padding) */
 .cooltura-word{
   position: absolute;
-  right: -10px;
+  right: 0;
   top: 0;
   z-index: 2;
 
