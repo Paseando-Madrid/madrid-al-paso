@@ -1,319 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,500&family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* ==========================================================
+   COOLTURA CANVAS (Kultiveret-like) — FIX PROPORCIONES
+========================================================== */
 
+/* Ajuste de blueprint (menos “vasto”, más aire) */
 :root{
-  --bg: #ffffff;
-  --text: #111111;
-  --muted: rgba(17,17,17,.70);
-  --line: rgba(0,0,0,.10);
+  /* Canvas más grande (como Kultiveret: rectángulo, pero con presencia) */
+  --cool-hero-h: clamp(520px, 54vh, 720px);
 
-  --radius: 22px;
-  --max: 1100px;
+  /* Unidad base más pequeña: baja el “gigantismo” */
+  --u: clamp(150px, 14.5vw, 205px);
 
-  --font-serif: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-  /* Cooltura canvas (Kultiveret-like) */
-  --ivory: #F3F1EA;
-  --cooltura-blue: rgba(110,145,170,.95); /* azul grisáceo desaturado */
-
-  /* Social proof star */
-  --mustard: #C9A24A;
-
-  /* ============
-     PROPORCIONES (Kultiveret, blueprint)
-  ============ */
-  /* Hero Cooltura: rectángulo bajo */
-  --cool-hero-h: clamp(420px, 42vh, 560px);
-
-  /* Unidad base U (tamaño de card grande) */
-  --u: clamp(180px, 18vw, 240px);
-
-  /* Cards: 4:5 vertical (h = w * 1.25) */
+  /* Derivadas */
   --card-lg-w: var(--u);
   --card-lg-h: calc(var(--u) * 1.25);
 
-  --card-md-w: calc(var(--u) * 0.65);
+  --card-md-w: calc(var(--u) * 0.66);
   --card-md-h: calc(var(--card-md-w) * 1.25);
 
-  --card-sm:   calc(var(--u) * 0.35); /* casi cuadrada */
+  --card-sm:   calc(var(--u) * 0.38);
 
-  /* Aire */
-  --gap-lg: calc(var(--u) * 0.15);
-  --gap-md: calc(var(--u) * 0.12);
-  --gap-sm: calc(var(--u) * 0.05);
+  /* aire */
+  --gap-sm: calc(var(--u) * 0.07);
 
-  /* COOLTURA: altura ≈ 1.25 × card grande */
-  --cooltura-h: calc(var(--card-lg-h) * 1.25);
-}
+  /* Cooltura word: alto similar a Kultiveret */
+  --cooltura-h: calc(var(--card-lg-h) * 1.18);
 
-/* Base */
-*{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; }
-body{
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  line-height: 1.55;
-}
-a{ color: inherit; text-decoration: none; }
-button{ font-family: inherit; }
-img, video{ max-width: 100%; display: block; }
-
-/* Container */
-.container{
-  width: min(100% - 48px, var(--max));
-  margin: 0 auto;
+  /* Si tu azul no se ve, este es gris-azul visible sin chillón */
+  --cooltura-blue: #8FB3C8;
 }
 
-/* Header */
-.site-header{
-  background: #fff;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
-}
-.header-inner{
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-/* Brand */
-.brand{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.brand-mark{
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: rgba(0,0,0,.12);
-  flex: 0 0 18px;
-}
-.brand-word{
-  white-space: nowrap;
-  font-size: 16px;
-}
-
-/* Nav */
-.site-nav{
-  display: flex;
-  gap: 26px;
-  flex-wrap: wrap;
-}
-.nav-link{
-  font-size: 14px;
-  color: rgba(17,17,17,.92);
-}
-.nav-link:hover{
-  color: rgba(17,17,17,1);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
-}
-
-/* -----------------------------
-   HERO VIDEO (full-bleed + copy)
------------------------------- */
-.home-hero{
-  padding: 0 0 70px;
-  background: #fff;
-}
-.hero-frame{
-  position: relative;
-  overflow: hidden;
-  background: #0b0b0b;
-
-  aspect-ratio: 5 / 2;
-  min-height: 420px;
-  max-height: 520px;
-
-  isolation: isolate;
-}
-.hero-frame--full{
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-
-  border-top: none;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-}
-.hero-video{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  z-index: 0;
-  transform: scale(1.01);
-  filter: brightness(.98) contrast(1.06) saturate(1.06);
-}
-.hero-overlay{
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.06) 62%, rgba(0,0,0,0) 100%),
-    radial-gradient(1200px 700px at 0% 40%,
-      rgba(0,0,0,.58) 0%,
-      rgba(0,0,0,.34) 40%,
-      rgba(0,0,0,.16) 64%,
-      rgba(0,0,0,0) 78%
-    );
-}
-.hero-copy{
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  min-height: min(520px, max(420px, calc(100vw / 2.5)));
-  gap: 14px;
-
-  padding: 56px 0;
-  max-width: 680px;
-  color: #fff;
-
-  transform: translateX(-28px);
-}
-
-.hero-title{
-  margin: 0;
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: clamp(44px, 4.6vw, 72px);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  max-width: 16ch;
-  text-shadow: 0 12px 34px rgba(0,0,0,.38);
-}
-.hero-subtitle{
-  margin: 0;
-  font-weight: 300;
-  font-size: clamp(18px, 1.35vw, 22px);
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  opacity: .93;
-  max-width: 52ch;
-  text-shadow: 0 10px 26px rgba(0,0,0,.30);
-}
-
-.hero-actions{
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  align-items: baseline;
-}
-
-.hero-cta{
-  margin-top: 10px;
-  display: inline-block;
-  width: fit-content;
-
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-
-  opacity: .95;
-  transition: opacity .18s ease, transform .18s ease;
-}
-.hero-cta:hover{ opacity: 1; transform: translateX(2px); }
-.hero-cta--ghost{ opacity: .82; }
-.hero-cta--ghost:hover{ opacity: 1; }
-
-.hero-proof{
-  margin: 14px 0 0 0;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-size: 13.5px;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
-  opacity: .90;
-  color: #fff;
-  text-shadow: 0 10px 22px rgba(0,0,0,.26);
-}
-.hero-proof em{ font-style: italic; opacity: .92; }
-.hero-proof-sep{ opacity: .65; }
-.hero-proof-star{ color: var(--mustard); opacity: 1; }
-.hero-proof-score{ font-weight: 500; letter-spacing: 0.01em; }
-.hero-proof-link{
-  margin-left: 6px;
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
-  opacity: .92;
-}
-.hero-proof-link:hover{ opacity: 1; }
-
-/* -----------------------------
-   Sections base
------------------------------- */
-.section{ padding: 64px 0; }
-.section-soft{ background: rgba(0,0,0,.04); }
-.section-head{ margin-bottom: 22px; }
-.section-title{
-  margin: 0 0 10px 0;
-  font-size: clamp(22px, 2.4vw, 32px);
-  letter-spacing: -0.02em;
-}
-.section-lead{
-  margin: 0;
-  color: var(--muted);
-  max-width: 70ch;
-}
-.placeholder{
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: #fff;
-  padding: 18px;
-  color: rgba(17,17,17,.86);
-}
-
-/* Footer */
-.footer{
-  border-top: 1px solid var(--line);
-  padding: 32px 0;
-  background: #fff;
-}
-.footer-inner{ display: grid; gap: 8px; }
-.footer-brand{ margin: 0; font-weight: 600; }
-.footer-note{ margin: 0; color: var(--muted); }
-.footer-note a{ text-decoration: underline; text-underline-offset: 4px; }
-
-/* Motion accessibility */
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  .hero-video{ transform: none; }
-}
-
-/* ==========================================================
-   COOLTURA CANVAS (Kultiveret-like)
-   - rectángulo bajo
-   - marfil
-   - collage flotante (posiciones por %)
-========================================================== */
+/* Sección */
 .section-quehacer{
   padding: clamp(56px, 7vh, 90px) 0;
   background: var(--ivory);
 }
 
+/* Canvas */
 .cooltura-canvas{
   position: relative;
   height: var(--cool-hero-h);
@@ -323,10 +45,10 @@ img, video{ max-width: 100%; display: block; }
   overflow: hidden;
 }
 
-/* Cabecera mínima (no compite) */
+/* Cabecera mínima */
 .cooltura-head{
   position: relative;
-  z-index: 2;
+  z-index: 4;
   max-width: 520px;
 }
 .cooltura-title{
@@ -343,37 +65,40 @@ img, video{ max-width: 100%; display: block; }
   font-size: 14.5px;
 }
 
-/* COOLTURA palabra única, derecha, corte editorial */
+/* COOLTURA: derecha, visible, recorte editorial */
 .cooltura-word{
   position: absolute;
   right: 0;
-  top: clamp(6px, 1.1vw, 14px);
+  top: clamp(4px, 0.8vw, 12px);
   z-index: 1;
 
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.05em;
-  line-height: 0.90;
+  line-height: .90;
 
   font-size: var(--cooltura-h);
   white-space: nowrap;
 
-  transform: translateX(10%); /* corte intencional */
-  opacity: .18;              /* como fondo conceptual */
+  /* recorte como Kultiveret */
+  transform: translateX(12%);
   pointer-events: none;
   user-select: none;
+
+  /* ✅ MÁS VISIBLE */
+  opacity: .34;
 }
 .cooltura-word .cool{ color: #111; }
 .cooltura-word .tura{ color: var(--cooltura-blue); }
 
-/* Mosaic / cards */
+/* Mosaic */
 .cooltura-mosaic{
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 5;
 }
 
-/* Card base: sin marco, foto flotante + título debajo */
+/* Card base (sin caja) */
 .k-card{
   position: absolute;
   appearance: none;
@@ -383,17 +108,16 @@ img, video{ max-width: 100%; display: block; }
   cursor: pointer;
   text-align: left;
   outline: none;
-
   display: grid;
   gap: 10px;
 }
 
 /* Escalas */
-.k-lg{ width: var(--card-lg-w); height: auto; }
-.k-md{ width: var(--card-md-w); height: auto; }
-.k-sm{ width: var(--card-sm);   height: auto; }
+.k-lg{ width: var(--card-lg-w); }
+.k-md{ width: var(--card-md-w); }
+.k-sm{ width: var(--card-sm); }
 
-/* “Foto” con ratio controlado por pseudo-element (para mantener 4:5 sin imágenes) */
+/* Foto placeholder con ratio (4:5 y cuadrado) */
 .k-photo{
   width: 100%;
   border-radius: 16px;
@@ -404,16 +128,13 @@ img, video{ max-width: 100%; display: block; }
     repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 12px, rgba(0,0,0,.03) 12px 24px);
 
   box-shadow: 0 18px 46px rgba(0,0,0,.10);
-
   transition: transform .22s ease, filter .22s ease, opacity .22s ease, box-shadow .22s ease;
 }
-
-/* Ratio helpers by size */
-.k-lg .k-photo{ aspect-ratio: 4 / 5; } /* vertical editorial */
+.k-lg .k-photo,
 .k-md .k-photo{ aspect-ratio: 4 / 5; }
-.k-sm .k-photo{ aspect-ratio: 1 / 1; } /* acento */
+.k-sm .k-photo{ aspect-ratio: 1 / 1; }
 
-/* Títulos debajo */
+/* Título debajo como Kultiveret */
 .k-title{
   font-size: 15px;
   font-weight: 700;
@@ -421,7 +142,7 @@ img, video{ max-width: 100%; display: block; }
   color: rgba(17,17,17,.92);
 }
 
-/* Alargar split tipográfico (ALARGAR vertical + el paseo abajo) */
+/* Split “Alargar / el paseo” */
 .k-title--split{
   display: inline-flex;
   align-items: baseline;
@@ -430,62 +151,56 @@ img, video{ max-width: 100%; display: block; }
 .k-title--split .k-v{
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   font-size: 11px;
-  opacity: .88;
+  opacity: .86;
 }
-.k-title--split .k-h{
-  font-weight: 800;
+.k-title--split .k-h{ font-weight: 800; }
+
+/* ==========================================================
+   POSICIONES (TU MAPA, cerrado)
+   NOTA: evitamos % “sueltos” y usamos anclas coherentes.
+========================================================== */
+
+/* 1) DIRECTO: arriba-derecha, casi pegado a “cooltura” */
+.card-directo{
+  left: calc(100% - var(--card-lg-w) - 6%);
+  top:  10%;
 }
 
-/* =========================
-   POSICIONES (mapa cerrado)
-   Ajustables solo aquí
-========================= */
+/* 2) EXPO: debajo de Directo, más a la derecha (casi margen) */
+.card-expo{
+  left: calc(100% - var(--card-md-w) - 3%);
+  top:  48%;
+}
 
-/* Cartelera: izquierda, medio (su top a mitad visual de Directo) */
+/* 3) CARTELERA: margen izquierdo, su “top” ≈ mitad de Directo */
 .card-cartelera{
   left: 6%;
-  top: 34%;
+  top:  34%;
 }
 
-/* En Directo: arriba derecha, cerca de Cooltura */
-.card-directo{
-  left: 58%;
-  top: 10%;
-}
-
-/* Expo: debajo de Directo, más a la derecha casi borde */
-.card-expo{
-  left: 71%;
-  top: 48%;
-}
-
-/* Alargar: centrado, base coincide visualmente con base de Directo */
+/* 4) ALARGAR: centrado; base visual alineada con base de Directo */
 .card-alargar{
-  left: 44%;
-  top: 46%;
+  left: 42%;
+  top:  46%;
 }
 
-/* Museos: pegada al vértice inferior derecho de Alargar */
+/* 5) MUSEOS: pegada al VÉRTICE inferior-derecho de ALARGAR */
 .card-museos{
-  left: calc(44% + var(--card-md-w) - var(--gap-sm));
-  top:  calc(46% + (var(--card-md-w) * 1.25) - var(--gap-sm));
+  left: calc(42% + var(--card-md-w) - var(--gap-sm));
+  top:  calc(46% + var(--card-md-h) - var(--gap-sm));
 }
 
-/* Niños: pequeña, casi base, entre Cartelera y Alargar */
+/* 6) NIÑOS: casi base, entre Cartelera y Alargar */
 .card-ninos{
-  left: 26%;
-  top: 76%;
+  left: 25%;
+  top:  78%;
 }
 
-/* Hover premium:
-   - por defecto: todo nítido
-   - al hover del mosaico: resto blur
-   - activa: nítida + zoom
-*/
+/* Hover premium: todo nítido -> al hover blur resto -> activa zoom */
 #kMosaic:hover .k-photo{
   filter: blur(3px) saturate(.92);
   opacity: .58;
@@ -510,151 +225,14 @@ img, video{ max-width: 100%; display: block; }
 }
 
 /* ==========================================================
-   MODAL / OVERLAY (editorial, blur → foco)
+   Responsive: reflow editorial (tablet/móvil)
 ========================================================== */
-.k-modal{
-  position: fixed;
-  inset: 0;
-  display: none;
-  z-index: 999;
-}
-.k-modal.is-open{ display: block; }
-
-.k-backdrop{
-  position: absolute;
-  inset: 0;
-  background: rgba(10,10,10,.42);
-}
-
-.k-sheet{
-  position: relative;
-  width: min(92vw, 960px);
-  max-height: min(82vh, 760px);
-  margin: min(8vh, 64px) auto;
-
-  background: #fff;
-  border-radius: 18px;
-  border: 1px solid rgba(0,0,0,.10);
-  box-shadow: 0 28px 90px rgba(0,0,0,.22);
-  overflow: hidden;
-
-  opacity: 0;
-  transform: translateY(10px);
-  filter: blur(10px);
-  transition: opacity .22s ease, transform .22s ease, filter .30s ease;
-}
-.k-modal.is-open .k-sheet{
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-.k-close{
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.10);
-  background: rgba(255,255,255,.88);
-  cursor: pointer;
-  font-size: 20px;
-  line-height: 34px;
-}
-
-.k-head{
-  padding: 30px 34px 18px;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-  background: #fff;
-}
-
-.k-kicker{
-  margin: 0 0 10px 0;
-  font-size: 12px;
-  letter-spacing: .10em;
-  text-transform: uppercase;
-  color: rgba(17,17,17,.60);
-}
-
-.k-head .k-title{
-  margin: 0;
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-size: 34px;
-  letter-spacing: -0.02em;
-  line-height: 1.06;
-  color: #111;
-}
-
-.k-deck{
-  margin: 10px 0 0;
-  color: rgba(17,17,17,.78);
-  max-width: 70ch;
-}
-
-.k-meta{
-  margin: 14px 0 0;
-  font-size: 13px;
-  color: rgba(17,17,17,.58);
-}
-
-.k-body{
-  padding: 18px 34px 30px;
-  overflow: auto;
-  max-height: calc(min(82vh, 760px) - 150px);
-}
-
-.k-list{
-  display: grid;
-  gap: 14px;
-}
-
-.k-item{
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
-}
-.k-item:last-child{ border-bottom: none; }
-
-.k-item h4{
-  margin: 0;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-}
-.k-item p{
-  margin: 6px 0 0;
-  color: rgba(17,17,17,.70);
-  font-size: 14px;
-}
-.k-item a{
-  display: inline-block;
-  margin-top: 8px;
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
-  font-size: 14px;
-}
-
-.k-empty{ margin: 0; color: rgba(17,17,17,.70); }
-
-/* =========================
-   Responsive (hero + cooltura)
-========================= */
 @media (max-width: 900px){
-  .container{ width: min(100% - 32px, var(--max)); }
-
-  .hero-copy{
-    padding: 44px 0;
-    transform: translateX(-14px);
-  }
-
   .cooltura-canvas{
     width: min(100% - 32px, 1200px);
-    height: clamp(420px, 52vh, 640px);
+    height: clamp(520px, 58vh, 760px);
   }
 
-  /* Reflow en una columna: mantenemos el look editorial sin caos */
   .cooltura-mosaic{
     position: relative;
     inset: auto;
@@ -668,59 +246,11 @@ img, video{ max-width: 100%; display: block; }
   .k-card{ position: static; }
   .k-lg, .k-md, .k-sm{ width: 100%; }
 
-  /* Ratios se mantienen */
-  .k-lg .k-photo, .k-md .k-photo{ aspect-ratio: 4 / 5; }
-  .k-sm .k-photo{ aspect-ratio: 1 / 1; }
-
-  /* En touch/tablet: sin blur por hover */
+  /* En touch/tablet sin blur */
   #kMosaic:hover .k-photo{ filter: none; opacity: 1; transform: none; }
 }
 
 @media (max-width: 700px){
-  .container{ width: min(100% - 28px, var(--max)); }
-  .site-header{ padding: 18px 0; }
-  .site-nav{ gap: 16px; }
-
-  .home-hero{ padding: 0 0 52px; }
-  .hero-frame{
-    aspect-ratio: 16 / 10;
-    min-height: 420px;
-    max-height: none;
-  }
-  .hero-copy{
-    padding: 30px 0;
-    gap: 12px;
-    min-height: 420px;
-    transform: none;
-  }
-  .hero-title{
-    font-size: clamp(34px, 7.2vw, 48px);
-    line-height: 1.06;
-    max-width: 20ch;
-  }
-  .hero-subtitle{ font-size: 16px; max-width: 44ch; }
-  .hero-cta{ font-size: 14.5px; text-underline-offset: 5px; }
-  .hero-proof{ font-size: 12.75px; margin-top: 12px; }
-
+  .cooltura-mosaic{ grid-template-columns: 1fr; }
   .cooltura-lead{ font-size: 14px; }
-
-  /* 1 columna para cards */
-  .cooltura-mosaic{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Modal móvil */
-@media (max-width: 900px){
-  .k-sheet{
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    margin: 0;
-    border-radius: 0;
-  }
-  .k-body{ max-height: none; }
-}
-@media (prefers-reduced-motion: reduce){
-  .k-sheet{ transition: none; filter: none; }
 }
