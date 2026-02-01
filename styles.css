@@ -570,56 +570,56 @@ img, video{ max-width: 100%; display: block; }
    JS añade: .is-dim al mosaic y .is-active a la card activa
 ========================================================== */
 .cooltura-mosaic.is-dim .k-card{
-  opacity: .55;
-  filter: blur(1.25px) saturate(.92);
-  transform: scale(.985);
+  opacity: .32; /* más perceptible */
+  filter: blur(2.8px) saturate(.90);
+  transform: scale(.97);
 }
 
 .cooltura-mosaic.is-dim .k-card.is-active{
   opacity: 1;
   filter: none;
-  transform: translateY(-6px) scale(1.05);
+  transform: translateY(-8px) scale(1.065);
   z-index: 10;
 }
 
 .cooltura-mosaic.is-dim .k-card.is-active .k-photo{
-  box-shadow: 0 26px 70px rgba(0,0,0,.14);
+  box-shadow: 0 30px 82px rgba(0,0,0,.16);
 }
 
 /* Hover “sombra” auxiliar (no pisa el efecto principal) */
 #kMosaic:hover .k-card:hover .k-photo{
-  box-shadow: 0 26px 70px rgba(0,0,0,.14);
-}
-
-/* Reduce motion */
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  .hero-video{ transform: none; }
-  .k-card{ transition: none; }
-  .k-photo{ transition: none; }
-  .cooltura-mosaic.is-dim .k-card{
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
+  box-shadow: 0 30px 82px rgba(0,0,0,.16);
 }
 
 /* ==========================================================
-   MODAL / OVERLAY (focus-in lento premium)
+   MODAL / OVERLAY (focus-in lento premium) — FIX REAL
+   - NO usamos display:none (no anima)
 ========================================================== */
 .k-modal{
   position: fixed;
   inset: 0;
-  display: none;
   z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 420ms var(--ease-premium);
 }
-.k-modal.is-open{ display: block; }
+.k-modal.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
 .k-backdrop{
   position: absolute;
   inset: 0;
   background: rgba(10,10,10,.42);
+  opacity: 0;
+  transition: opacity 520ms var(--ease-premium);
 }
+.k-modal.is-open .k-backdrop{ opacity: 1; }
 
 .k-sheet{
   position: relative;
@@ -795,4 +795,16 @@ img, video{ max-width: 100%; display: block; }
     border-radius: 0;
   }
   .k-body{ max-height: none; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  .hero-video{ transform: none; }
+  .k-card, .k-photo, .k-backdrop, .k-modal, .k-sheet{ transition: none !important; }
+  .cooltura-mosaic.is-dim .k-card{
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
