@@ -12,9 +12,9 @@
   <!-- Preload del vídeo para que el hero arranque más rápido -->
   <link rel="preload" as="video" href="assets/video/hero.mp4" type="video/mp4" />
 
-  <!-- (Opcional pero recomendable) si añades un poster:
-       crea assets/video/hero-poster.jpg y descomenta el preload de imagen -->
-  <!-- <link rel="preload" as="image" href="assets/video/hero-poster.jpg" /> -->
+  <!-- Poster (RECOMENDADO): evita “fondo negro” mientras el vídeo carga.
+       Asegúrate de que existe: assets/video/hero-poster.jpg -->
+  <link rel="preload" as="image" href="assets/video/hero-poster.jpg" />
 </head>
 
 <body>
@@ -52,7 +52,7 @@
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
           poster="assets/video/hero-poster.jpg"
         >
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <!-- Fallback editorial si el vídeo no carga o tarda (solo visible sin soporte de video) -->
+        <!-- Fallback editorial si no hay JS o si el navegador no reproduce video -->
         <noscript>
           <style>
             .hero-video{ display:none !important; }
@@ -170,17 +170,18 @@
           <span class="tura">Tura</span>
         </div>
 
-        <!-- Kool: extremo DERECHO + arriba
-             K ocupa 2 líneas | arriba "ool" | abajo "rt" (r bajo 1ª o, t bajo 2ª o) -->
+        <!-- KooL + RT: extremo DERECHO + arriba -->
         <div class="cooltura-kool" aria-hidden="true">
           <span class="kool-k">K</span>
 
+          <!-- ooL (dos o minúsculas + L MAYÚSCULA) -->
           <span class="kool-ool">
-            <span class="kool-o">o</span><span class="kool-o">o</span><span class="kool-l">l</span>
+            <span class="kool-o">o</span><span class="kool-o">o</span><span class="kool-l">L</span>
           </span>
 
+          <!-- RT (MAYÚSCULAS) alineado bajo las dos o -->
           <span class="kool-rt">
-            <span class="kool-r">r</span><span class="kool-t">t</span><span class="kool-spacer" aria-hidden="true"></span>
+            <span class="kool-r">R</span><span class="kool-t">T</span><span class="kool-spacer" aria-hidden="true"></span>
           </span>
         </div>
 
