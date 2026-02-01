@@ -8,6 +8,13 @@
   <meta name="description" content="Free tours culturales en Madrid para descubrir la historia, el arte y la vida de la ciudad paso a paso. Paseos guiados donde la ciudad forma parte del camino." />
 
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Preload del vídeo para que el hero arranque más rápido -->
+  <link rel="preload" as="video" href="assets/video/hero.mp4" type="video/mp4" />
+
+  <!-- (Opcional pero recomendable) si añades un poster:
+       crea assets/video/hero-poster.jpg y descomenta el preload de imagen -->
+  <!-- <link rel="preload" as="image" href="assets/video/hero-poster.jpg" /> -->
 </head>
 
 <body>
@@ -47,6 +54,7 @@
           playsinline
           preload="metadata"
           aria-hidden="true"
+          poster="assets/video/hero-poster.jpg"
         >
           <source src="assets/video/hero.mp4" type="video/mp4" />
         </video>
@@ -79,6 +87,18 @@
 
           </div>
         </div>
+
+        <!-- Fallback editorial si el vídeo no carga o tarda (solo visible sin soporte de video) -->
+        <noscript>
+          <style>
+            .hero-video{ display:none !important; }
+            .hero-frame{
+              background-image: url("assets/video/hero-poster.jpg");
+              background-size: cover;
+              background-position: center;
+            }
+          </style>
+        </noscript>
 
       </div>
     </section>
@@ -163,8 +183,6 @@
             <span class="kool-r">r</span><span class="kool-t">t</span><span class="kool-spacer" aria-hidden="true"></span>
           </span>
         </div>
-
-        <!-- (QUITADO) Cabecera editorial: "Qué hacer en Madrid" + lead -->
 
         <!-- Collage flotante -->
         <div class="cooltura-mosaic" id="kMosaic" aria-label="Selección Cooltura">
