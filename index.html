@@ -258,13 +258,46 @@
     </article>
   </div>
 
-  <!-- JS: overlay + carga JSON -->
+  <!-- JS: overlay + carga JSON + foco/desenfoque premium -->
   <script>
     const modal = document.getElementById('kModal');
     const kTitle = document.getElementById('kTitle');
     const kDeck  = document.getElementById('kDeck');
     const kMeta  = document.getElementById('kMeta');
     const kList  = document.getElementById('kList');
+
+    const mosaic = document.getElementById('kMosaic');
+    const cards  = Array.from(document.querySelectorAll('.k-card'));
+
+    // Estado de foco: hover (preview) + click (pinned)
+    let pinned = false;
+
+    function setActive(el){
+      if(!mosaic) return;
+      mosaic.classList.add('is-dim');
+      cards.forEach(c => c.classList.toggle('is-active', c === el));
+    }
+
+    function clearActive(){
+      if(!mosaic) return;
+      mosaic.classList.remove('is-dim');
+      cards.forEach(c => c.classList.remove('is-active'));
+    }
+
+    // Preview con hover (solo si no está pinned)
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        if(pinned) return;
+        setActive(card);
+      });
+    });
+
+    if(mosaic){
+      mosaic.addEventListener('mouseleave', () => {
+        if(pinned) return;
+        clearActive();
+      });
+    }
 
     const CFG = {
       directo: {
@@ -312,11 +345,16 @@
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
     }
+
     function closeModal(){
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow = '';
       kList.innerHTML = '';
+
+      // Al cerrar: soltamos foco premium
+      pinned = false;
+      clearActive();
     }
 
     document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
@@ -329,6 +367,7 @@
         return new Date(d).toLocaleDateString('es-ES', { year:'numeric', month:'short', day:'2-digit' });
       } catch { return "—"; }
     }
+
     function fmtWhen(start){
       if(!start) return "";
       try {
@@ -359,6 +398,12 @@
 
     async function loadAndRender(key){
       const cfg = CFG[key];
+
+      // Click: fijamos foco antes de abrir
+      const activeBtn = cards.find(c => c.dataset.open === key);
+      pinned = true;
+      if(activeBtn) setActive(activeBtn);
+
       kTitle.textContent = cfg.title;
       kDeck.textContent  = cfg.deck;
       kMeta.textContent  = 'Cargando…';
@@ -393,7 +438,8 @@
       }
     }
 
-    document.querySelectorAll('.k-card').forEach(btn => {
+    // ÚNICO listener de click (evita duplicar): aquí fijamos foco + abrimos modal
+    cards.forEach(btn => {
       btn.addEventListener('click', () => loadAndRender(btn.dataset.open));
     });
   </script>
