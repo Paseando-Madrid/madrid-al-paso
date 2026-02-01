@@ -16,7 +16,7 @@
      COOLTURA — fondo tipo Kultiveret (base + luz + esmalte + papel)
   ========================================================== */
 
-  /* Base marfil cálido */
+  /* Base marfil cálido (más “Kultiveret” que blanco roto frío) */
   --ivory: #EFECDD;
 
   /* Tura */
@@ -28,11 +28,9 @@
   /* Altura hero Cooltura (más grande) */
   --cool-hero-h: clamp(520px, 54vh, 760px);
 
-  /* Inset editorial: MISMO arriba y laterales (tu regla) */
-  --cooltura-edge: 14px;
-
   /* ==========================================================
      CARDS — 4 tamaños cuadrados
+     (tu HTML usa k-lg/k-md/k-sm; dejo 4º listo con k-xs)
   ========================================================== */
   --u: clamp(180px, 18vw, 240px);
 
@@ -43,7 +41,7 @@
 
   --gap-sm: calc(var(--u) * 0.06);
 
-  /* Tipos KOOL/TURA */
+  /* Tipos KOOL/TURA (base; afinaremos luego si quieres) */
   --cooltura-h: 130px;
 }
 
@@ -298,37 +296,54 @@ img, video{ max-width: 100%; display: block; }
 
 /* ==========================================================
    COOLTURA CANVAS — Kultiveret-like background treatment
+   - sin márgenes/padding
+   - papel + luz cenital + micro-esmalte
 ========================================================== */
 .section-quehacer{
   padding: 0;
   margin: 0;
   position: relative;
 
+  /* Base */
   background-color: var(--ivory);
 
-  /* Capas:
-     1) papel (tu jpg)
-     2) luz cenital suave
-     3) micro-esmalte (sheen) muy sutil
+  /* CAPAS:
+     1) textura papel (tu archivo en repo)
+     2) luz cenital (top light)
+     3) micro-esmalte (sheen)
   */
   background-image:
     url("assets/backgrounds/cooltura-bg-paper.jpg"),
-    radial-gradient(1100px 560px at 50% 0%,
-      rgba(255,255,255,.58) 0%,
-      rgba(255,255,255,.20) 40%,
-      rgba(255,255,255,0) 74%
+    radial-gradient(1100px 520px at 50% 0%,
+      rgba(255,255,255,.62) 0%,
+      rgba(255,255,255,.22) 38%,
+      rgba(255,255,255,0) 72%
     ),
     linear-gradient(180deg,
-      rgba(255,255,255,.14) 0%,
-      rgba(255,255,255,0) 52%
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,0) 46%
     );
 
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-size: 920px auto, 100% 100%, 100% 100%;
-  background-position: top left, top center, top center;
+  background-repeat:
+    repeat,
+    no-repeat,
+    no-repeat;
 
-  /* Menos “oscurecer”: textura en soft-light (más premium) */
-  background-blend-mode: soft-light, screen, normal;
+  background-size:
+    920px auto,
+    100% 100%,
+    100% 100%;
+
+  background-position:
+    top left,
+    top center,
+    top center;
+
+  /* Mezcla fina (sin “quemar”) */
+  background-blend-mode:
+    multiply,
+    screen,
+    normal;
 }
 
 /* Canvas full-bleed real (sin padding) */
@@ -345,59 +360,20 @@ img, video{ max-width: 100%; display: block; }
 }
 
 /* ==========================================================
-   TIPOGRAFÍA EXTREMOS (Tura / KooL + RT)
-   - MISMO inset arriba y laterales
-   - satinado
+   TIPOGRAFÍA EXTREMOS (KOOL / TURA)
+   Nota: requiere 2 divs en HTML (snippet al final).
 ========================================================== */
-
-/* Satín negro: brillo editorial mínimo (sin glow) */
-.satin-black{
-  color: #050505; /* fallback */
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.22) 0%,
-    rgba(255,255,255,0) 26%,
-    rgba(0,0,0,0) 60%,
-    rgba(255,255,255,.08) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.08),
-    0 10px 26px rgba(0,0,0,.06);
-}
-
-/* Satín azul: un toque de esmalte + profundidad */
-.satin-blue{
-  color: var(--cooltura-blue); /* fallback */
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.26) 0%,
-    rgba(255,255,255,0) 32%,
-    rgba(0,0,0,0) 64%,
-    rgba(255,255,255,.10) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.10),
-    0 10px 24px rgba(0,0,0,.05);
-}
-
-/* TURA: arriba-izquierda con inset fijo */
 .cooltura-tura{
   position: absolute;
-  top: var(--cooltura-edge);
-  left: var(--cooltura-edge);
+  top: 0;
+  left: 0;
   z-index: 6;
 
   margin: 0;
   padding: 0;
 
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 300;              /* más fino */
   letter-spacing: -0.03em;
   line-height: 0.92;
 
@@ -409,39 +385,12 @@ img, video{ max-width: 100%; display: block; }
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
-.cooltura-tura .tura{
-  /* satinado azul */
-  color: var(--cooltura-blue);
-}
-@supports (-webkit-text-fill-color: transparent){
-  .cooltura-tura .tura{ 
-    /* aplica satín */
-    color: transparent;
-  }
-  .cooltura-tura .tura.satin-blue{ }
-}
-/* sin tocar tu HTML, le aplico la clase por selector */
-.cooltura-tura .tura{
-  /* satinado (sin necesidad de añadir clase en HTML) */
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.26) 0%,
-    rgba(255,255,255,0) 32%,
-    rgba(0,0,0,0) 64%,
-    rgba(255,255,255,.10) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.10),
-    0 10px 24px rgba(0,0,0,.05);
-}
+.cooltura-tura .tura{ color: var(--cooltura-blue); }
 
-/* KOOL: arriba-derecha con inset fijo */
 .cooltura-kool{
   position: absolute;
-  top: var(--cooltura-edge);
-  right: var(--cooltura-edge);
+  top: 0;
+  right: 0;
   z-index: 7;
 
   margin: 0;
@@ -457,6 +406,7 @@ img, video{ max-width: 100%; display: block; }
   justify-items: start;
 
   font-family: var(--font-sans);
+  color: #000;
   white-space: nowrap;
 
   pointer-events: none;
@@ -465,35 +415,19 @@ img, video{ max-width: 100%; display: block; }
   text-rendering: geometricPrecision;
 }
 
-/* K = 2× visual (más largo que antes) */
+/* K ocupa 2 líneas (doble visual) */
 .cooltura-kool .kool-k{
   grid-column: 1;
   grid-row: 1 / span 2;
 
   font-weight: 300;
-  letter-spacing: -0.055em;
-  line-height: 0.84;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
 
-  /* 2× respecto a ool/RT (que van al 0.50–0.54) */
-  font-size: calc(var(--cooltura-h) * 1.18);
-
-  /* satinado negro */
-  color: #050505;
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.22) 0%,
-    rgba(255,255,255,0) 26%,
-    rgba(0,0,0,0) 60%,
-    rgba(255,255,255,.08) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.08),
-    0 10px 26px rgba(0,0,0,.06);
+  font-size: calc(var(--cooltura-h) * 1.10);
 }
 
-/* ooL arriba */
+/* ool arriba */
 .cooltura-kool .kool-ool{
   grid-column: 2;
   grid-row: 1;
@@ -507,33 +441,15 @@ img, video{ max-width: 100%; display: block; }
   line-height: 0.92;
 
   font-size: calc(var(--cooltura-h) * 0.54);
-
-  /* satinado negro */
-  color: #050505;
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.22) 0%,
-    rgba(255,255,255,0) 26%,
-    rgba(0,0,0,0) 60%,
-    rgba(255,255,255,.08) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.08),
-    0 10px 26px rgba(0,0,0,.06);
 }
 
-/* Si en HTML te viene "l", lo fuerzo a "L" visual */
-.cooltura-kool .kool-l{ text-transform: uppercase; }
-
-/* RT debajo: mayúsculas garantizadas */
+/* rt debajo alineado a las dos o */
 .cooltura-kool .kool-rt{
   grid-column: 2;
   grid-row: 2;
 
   display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr; /* R bajo 1ª o | T bajo 2ª o | col para L */
+  grid-template-columns: 1fr 1fr 1fr; /* r bajo 1ª o | t bajo 2ª o | col para l */
   column-gap: 0;
 
   font-weight: 300;
@@ -541,22 +457,6 @@ img, video{ max-width: 100%; display: block; }
   line-height: 0.92;
 
   font-size: calc(var(--cooltura-h) * 0.54);
-  text-transform: uppercase;
-
-  /* satinado negro */
-  color: #050505;
-  background-image: linear-gradient(180deg,
-    rgba(255,255,255,.22) 0%,
-    rgba(255,255,255,0) 26%,
-    rgba(0,0,0,0) 60%,
-    rgba(255,255,255,.08) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.08),
-    0 10px 26px rgba(0,0,0,.06);
 }
 .cooltura-kool .kool-r{ grid-column: 1; }
 .cooltura-kool .kool-t{ grid-column: 2; }
@@ -590,9 +490,10 @@ img, video{ max-width: 100%; display: block; }
 .k-lg{ width: var(--sq-xl); }
 .k-md{ width: var(--sq-lg); }
 .k-sm{ width: var(--sq-md); }
-.k-xs{ width: var(--sq-sm); } /* preparado */
+/* 4º tamaño preparado (si lo usas en HTML) */
+.k-xs{ width: var(--sq-sm); }
 
-/* “foto” placeholder: SIEMPRE cuadrado */
+/* “foto” placeholder: ahora SIEMPRE cuadrado */
 .k-photo{
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -635,7 +536,7 @@ img, video{ max-width: 100%; display: block; }
   font-weight: 800;
 }
 
-/* POSICIONES (mantenidas; afinaremos luego si quieres) */
+/* POSICIONES (las mantenemos; luego las afinamos con los nuevos tamaños) */
 .card-directo{ left: 58%; top: 10%; }
 .card-expo{ left: 74%; top: 48%; }
 .card-cartelera{ left: 6%; top: 34%; }
@@ -795,6 +696,7 @@ img, video{ max-width: 100%; display: block; }
 
   .cooltura-canvas{ height: clamp(520px, 58vh, 820px); }
 
+  /* En tablet/móvil: mosaic pasa a grid para evitar solapes */
   .cooltura-mosaic{
     position: relative;
     inset: auto;
@@ -807,6 +709,7 @@ img, video{ max-width: 100%; display: block; }
   .k-card{ position: static; }
   .k-lg, .k-md, .k-sm, .k-xs{ width: 100%; }
 
+  /* Texto extremos: reducimos un pelín si lo necesitas */
   .cooltura-tura{ transform: scale(.92); transform-origin: top left; }
   .cooltura-kool{ transform: scale(.92); transform-origin: top right; }
 }
