@@ -15,8 +15,8 @@
   /* Cooltura canvas */
   --ivory: #F3F1EA;
 
-  /* azul grisáceo VISIBLE */
-  --cooltura-blue: #6E91AA;
+  /* ✅ tura: celeste gris más intenso */
+  --cooltura-blue: #4F86B0;
 
   /* Social proof star */
   --mustard: #C9A24A;
@@ -298,7 +298,7 @@ img, video{ max-width: 100%; display: block; }
   background: var(--ivory);
 }
 
-/* ✅ AHORA el canvas ocupa TODO el ancho real (sin caja 1200, sin padding) */
+/* ✅ el canvas ocupa TODO el ancho real (sin caja 1200, sin padding) */
 .cooltura-canvas{
   position: relative;
   height: var(--cool-hero-h);
@@ -316,8 +316,7 @@ img, video{ max-width: 100%; display: block; }
   z-index: 3;
   max-width: 520px;
 
-  /* si quieres que el texto editorial siga “alineado a container”
-     lo podemos mantener con un padding lateral aquí, pero NO en el canvas */
+  /* mantenemos el texto editorial alineado a container (solo aquí) */
   padding-left: 24px;
   padding-top: 22px;
 }
@@ -340,33 +339,32 @@ img, video{ max-width: 100%; display: block; }
   font-size: 14.5px;
 }
 
-/* ✅ COOLTURA: MÁS ARRIBA + 10px MÁS A LA DERECHA */
+/* ✅ COOLTURA: pegado ARRIBA + IZQUIERDA, sin aire, más fino y con más estilo */
 .cooltura-word{
   position: absolute;
-  right: -10px;          /* ✅ 10px más a la derecha */
+  left: 0;
   top: 0;
   z-index: 2;
 
   font-family: var(--font-sans);
-  font-weight: 800;
-  letter-spacing: -0.055em;
-  line-height: 0.90;
+  font-weight: 600;          /* ✅ más fino (antes 800) */
+  letter-spacing: -0.035em;  /* ✅ menos “basto” */
+  line-height: 0.92;
 
   font-size: var(--cooltura-h);
   white-space: nowrap;
 
   padding: 0;
-  transform: translateY(-12px); /* ✅ más arriba (ajuste fino) */
-
-  opacity: .32;
+  transform: none;           /* ✅ sin desplazamientos */
+  opacity: .34;
 
   pointer-events: none;
   user-select: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
-.cooltura-word .cool{ color: #111111; }
-.cooltura-word .tura{ color: var(--cooltura-blue); }
+.cooltura-word .cool{ color: #000000; }               /* ✅ negro negro */
+.cooltura-word .tura{ color: var(--cooltura-blue); }  /* ✅ celeste gris intenso */
 
 /* Collage flotante */
 .cooltura-mosaic{
@@ -604,8 +602,6 @@ img, video{ max-width: 100%; display: block; }
   .container{ width: min(100% - 32px, var(--max)); }
   .hero-copy{ padding: 44px 0; transform: translateX(-14px); }
 
-  /* en móvil/tablet NO conviene full-bleed con head alineado al container:
-     mantenemos full-bleed, pero ajustamos padding del head */
   .cooltura-head{
     padding-left: 18px;
     padding-top: 18px;
