@@ -18,7 +18,6 @@
   /* ==========================================================
      COOLTURA — fondo tipo Kultiveret (base + luz + esmalte + papel)
   ========================================================== */
-
   --ivory: #EFECDD;
   --cooltura-blue: #3E7FAE;
   --mustard: #C9A24A;
@@ -363,8 +362,6 @@ img, video{ max-width: 100%; display: block; }
 /* ==========================================================
    TIPOGRAFÍA EXTREMOS (KOOL / TURA) — Epilogue exacto
 ========================================================== */
-
-/* Base: igualar “feeling Kultiveret” */
 .cooltura-tura,
 .cooltura-kool{
   font-family: var(--font-cooltura);
@@ -372,7 +369,7 @@ img, video{ max-width: 100%; display: block; }
   letter-spacing: -0.07em;
 }
 
-/* clip de fondo al texto (para satinado); si lo quieres plano, lo quitamos */
+/* S edit: satinado */
 .cooltura-tura .tura,
 .cooltura-kool .kool-k,
 .cooltura-kool .kool-ool,
@@ -510,6 +507,7 @@ img, video{ max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   z-index: 4;
+  isolation: isolate;
 }
 
 .k-card{
@@ -524,6 +522,9 @@ img, video{ max-width: 100%; display: block; }
 
   display: grid;
   gap: 10px;
+
+  transform-origin: center;
+  z-index: 1;
 }
 
 .k-lg{ width: var(--sq-xl); }
@@ -543,7 +544,9 @@ img, video{ max-width: 100%; display: block; }
     repeating-linear-gradient(90deg, rgba(0,0,0,.055) 0 12px, rgba(0,0,0,.028) 12px 24px);
 
   box-shadow: 0 18px 46px rgba(0,0,0,.10);
-  transition: transform .22s ease, box-shadow .22s ease;
+
+  /* No hacemos zoom aquí para evitar “doble transform” */
+  transition: box-shadow .35s ease;
 }
 
 .k-card-title{
@@ -571,6 +574,7 @@ img, video{ max-width: 100%; display: block; }
   font-weight: 800;
 }
 
+/* POSICIONES */
 .card-directo{ left: 58%; top: 10%; }
 .card-expo{ left: 74%; top: 48%; }
 .card-cartelera{ left: 6%; top: 34%; }
@@ -581,22 +585,60 @@ img, video{ max-width: 100%; display: block; }
 }
 .card-ninos{ left: 26%; top: 76%; }
 
-#kMosaic:hover .k-card:hover .k-photo{
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 26px 70px rgba(0,0,0,.14);
-}
-
+/* Focus visible */
 .k-card:focus-visible .k-photo{
   outline: 2px solid rgba(17,17,17,.22);
   outline-offset: 4px;
 }
 
+/* ==============================
+   EFECTO PREMIUM: zoom + foco/desenfoque
+   - Hover: preview (JS pone is-active/is-dim)
+   - Click: pinned + modal
+============================== */
+.k-card{
+  transition:
+    transform 1.05s cubic-bezier(.16,1,.3,1),
+    filter .65s ease,
+    opacity .65s ease;
+  will-change: transform, filter, opacity;
+}
+
+.cooltura-mosaic.is-dim .k-card{
+  opacity: .55;
+  filter: blur(1.25px) saturate(.92);
+  transform: scale(.985);
+}
+
+.cooltura-mosaic.is-dim .k-card.is-active{
+  opacity: 1;
+  filter: none;
+  transform: translateY(-6px) scale(1.05);
+  z-index: 10;
+}
+
+.cooltura-mosaic.is-dim .k-card.is-active .k-photo{
+  box-shadow: 0 26px 70px rgba(0,0,0,.14);
+}
+
+/* Hover solo sombra (sin zoom) — evita cortocircuito */
+#kMosaic:hover .k-card:hover .k-photo{
+  box-shadow: 0 26px 70px rgba(0,0,0,.14);
+}
+
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
   .k-photo{ transition: none; }
+  .k-card{ transition: none; }
+  .cooltura-mosaic.is-dim .k-card{
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
 
 /* ==========================================================
-   MODAL / OVERLAY (sin cambios)
+   MODAL / OVERLAY (premium focus-in)
 ========================================================== */
 .k-modal{
   position: fixed;
@@ -625,9 +667,14 @@ img, video{ max-width: 100%; display: block; }
   overflow: hidden;
 
   opacity: 0;
-  transform: translateY(10px);
-  filter: blur(10px);
-  transition: opacity .22s ease, transform .22s ease, filter .30s ease;
+  transform: translateY(12px);
+  filter: blur(14px);
+
+  /* Más lento y premium */
+  transition:
+    opacity .55s cubic-bezier(.16,1,.3,1),
+    transform .70s cubic-bezier(.16,1,.3,1),
+    filter 1.05s cubic-bezier(.16,1,.3,1);
 }
 .k-modal.is-open .k-sheet{
   opacity: 1;
@@ -727,6 +774,7 @@ img, video{ max-width: 100%; display: block; }
 
   .cooltura-canvas{ height: clamp(520px, 58vh, 820px); }
 
+  /* En tablet/móvil: mosaic pasa a grid */
   .cooltura-mosaic{
     position: relative;
     inset: auto;
