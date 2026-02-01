@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,500&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,500&family=Inter:wght@300;400;500;600;700;800&family=Epilogue:wght@300;400;500;600;700;800&display=swap');
 
 :root{
   --bg: #ffffff;
@@ -12,36 +12,32 @@
   --font-serif: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
+  /* Fuente exacta estilo Kultiveret para KOOL/TURA */
+  --font-cooltura: "Epilogue", Arial, sans-serif;
+
   /* ==========================================================
      COOLTURA — fondo tipo Kultiveret (base + luz + esmalte + papel)
   ========================================================== */
 
-  /* Base marfil cálido (más “Kultiveret” que blanco roto frío) */
   --ivory: #EFECDD;
-
-  /* Tura */
   --cooltura-blue: #3E7FAE;
-
-  /* Social proof star */
   --mustard: #C9A24A;
 
-  /* Altura hero Cooltura (más grande) */
+  --cooltura-edge: 14px;
   --cool-hero-h: clamp(520px, 54vh, 760px);
 
   /* ==========================================================
      CARDS — 4 tamaños cuadrados
-     (tu HTML usa k-lg/k-md/k-sm; dejo 4º listo con k-xs)
   ========================================================== */
   --u: clamp(180px, 18vw, 240px);
 
-  --sq-xl: calc(var(--u) * 1.10); /* 1 */
-  --sq-lg: var(--u);              /* 2 */
-  --sq-md: calc(var(--u) * 0.72); /* 3 */
-  --sq-sm: calc(var(--u) * 0.46); /* 4 */
+  --sq-xl: calc(var(--u) * 1.10);
+  --sq-lg: var(--u);
+  --sq-md: calc(var(--u) * 0.72);
+  --sq-sm: calc(var(--u) * 0.46);
 
   --gap-sm: calc(var(--u) * 0.06);
 
-  /* Tipos KOOL/TURA (base; afinaremos luego si quieres) */
   --cooltura-h: 130px;
 }
 
@@ -54,10 +50,24 @@ body{
   color: var(--text);
   font-family: var(--font-sans);
   line-height: 1.55;
+  overflow-x: hidden;
 }
 a{ color: inherit; text-decoration: none; }
 button{ font-family: inherit; }
 img, video{ max-width: 100%; display: block; }
+
+/* Visually hidden (SEO/Accesibilidad) */
+.sr-only{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 
 /* Container */
 .container{
@@ -296,22 +306,14 @@ img, video{ max-width: 100%; display: block; }
 
 /* ==========================================================
    COOLTURA CANVAS — Kultiveret-like background treatment
-   - sin márgenes/padding
-   - papel + luz cenital + micro-esmalte
 ========================================================== */
 .section-quehacer{
   padding: 0;
   margin: 0;
   position: relative;
 
-  /* Base */
   background-color: var(--ivory);
 
-  /* CAPAS:
-     1) textura papel (tu archivo en repo)
-     2) luz cenital (top light)
-     3) micro-esmalte (sheen)
-  */
   background-image:
     url("assets/backgrounds/cooltura-bg-paper.jpg"),
     radial-gradient(1100px 520px at 50% 0%,
@@ -320,8 +322,8 @@ img, video{ max-width: 100%; display: block; }
       rgba(255,255,255,0) 72%
     ),
     linear-gradient(180deg,
-      rgba(255,255,255,.20) 0%,
-      rgba(255,255,255,0) 46%
+      rgba(255,255,255,.18) 0%,
+      rgba(255,255,255,0) 48%
     );
 
   background-repeat:
@@ -339,14 +341,12 @@ img, video{ max-width: 100%; display: block; }
     top center,
     top center;
 
-  /* Mezcla fina (sin “quemar”) */
   background-blend-mode:
     multiply,
     screen,
     normal;
 }
 
-/* Canvas full-bleed real (sin padding) */
 .cooltura-canvas{
   position: relative;
   height: var(--cool-hero-h);
@@ -357,27 +357,43 @@ img, video{ max-width: 100%; display: block; }
 
   padding: 0;
   overflow: hidden;
+  isolation: isolate;
 }
 
 /* ==========================================================
-   TIPOGRAFÍA EXTREMOS (KOOL / TURA)
-   Nota: requiere 2 divs en HTML (snippet al final).
+   TIPOGRAFÍA EXTREMOS (KOOL / TURA) — Epilogue exacto
 ========================================================== */
+
+/* Base: igualar “feeling Kultiveret” */
+.cooltura-tura,
+.cooltura-kool{
+  font-family: var(--font-cooltura);
+  font-weight: 600;
+  letter-spacing: -0.07em;
+}
+
+/* clip de fondo al texto (para satinado); si lo quieres plano, lo quitamos */
+.cooltura-tura .tura,
+.cooltura-kool .kool-k,
+.cooltura-kool .kool-ool,
+.cooltura-kool .kool-rt{
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* TURA */
 .cooltura-tura{
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--cooltura-edge);
+  left: var(--cooltura-edge);
   z-index: 6;
 
   margin: 0;
   padding: 0;
 
-  font-family: var(--font-sans);
-  font-weight: 300;              /* más fino */
-  letter-spacing: -0.03em;
-  line-height: 0.92;
-
   font-size: var(--cooltura-h);
+  line-height: .7;
   white-space: nowrap;
 
   pointer-events: none;
@@ -385,12 +401,29 @@ img, video{ max-width: 100%; display: block; }
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
-.cooltura-tura .tura{ color: var(--cooltura-blue); }
 
+/* Azul satinado */
+.cooltura-tura .tura{
+  background-image:
+    linear-gradient(180deg,
+      rgba(255,255,255,.40) 0%,
+      rgba(255,255,255,.10) 18%,
+      rgba(0,0,0,.10) 55%,
+      rgba(255,255,255,.08) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(62,127,174,1) 0%,
+      rgba(62,127,174,1) 100%
+    );
+  background-blend-mode: screen, normal;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.10));
+}
+
+/* KOOL */
 .cooltura-kool{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: var(--cooltura-edge);
+  right: var(--cooltura-edge);
   z-index: 7;
 
   margin: 0;
@@ -405,8 +438,6 @@ img, video{ max-width: 100%; display: block; }
   align-items: start;
   justify-items: start;
 
-  font-family: var(--font-sans);
-  color: #000;
   white-space: nowrap;
 
   pointer-events: none;
@@ -415,16 +446,32 @@ img, video{ max-width: 100%; display: block; }
   text-rendering: geometricPrecision;
 }
 
-/* K ocupa 2 líneas (doble visual) */
+/* Negro satinado */
+.cooltura-kool .kool-k,
+.cooltura-kool .kool-ool,
+.cooltura-kool .kool-rt{
+  background-image:
+    linear-gradient(180deg,
+      rgba(255,255,255,.34) 0%,
+      rgba(255,255,255,.10) 18%,
+      rgba(0,0,0,.18) 58%,
+      rgba(255,255,255,.10) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(10,10,10,1) 0%,
+      rgba(10,10,10,1) 100%
+    );
+  background-blend-mode: screen, normal;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.12));
+}
+
+/* K ocupa 2 líneas */
 .cooltura-kool .kool-k{
   grid-column: 1;
   grid-row: 1 / span 2;
 
-  font-weight: 300;
-  letter-spacing: -0.045em;
-  line-height: 0.86;
-
   font-size: calc(var(--cooltura-h) * 1.10);
+  line-height: .7;
 }
 
 /* ool arriba */
@@ -436,27 +483,21 @@ img, video{ max-width: 100%; display: block; }
   grid-auto-flow: column;
   column-gap: 0;
 
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
-
   font-size: calc(var(--cooltura-h) * 0.54);
+  line-height: .7;
 }
 
-/* rt debajo alineado a las dos o */
+/* rt debajo */
 .cooltura-kool .kool-rt{
   grid-column: 2;
   grid-row: 2;
 
   display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr; /* r bajo 1ª o | t bajo 2ª o | col para l */
+  grid-template-columns: 1fr 1fr 1fr;
   column-gap: 0;
 
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
-
   font-size: calc(var(--cooltura-h) * 0.54);
+  line-height: .7;
 }
 .cooltura-kool .kool-r{ grid-column: 1; }
 .cooltura-kool .kool-t{ grid-column: 2; }
@@ -471,7 +512,6 @@ img, video{ max-width: 100%; display: block; }
   z-index: 4;
 }
 
-/* Card base */
 .k-card{
   position: absolute;
   appearance: none;
@@ -486,14 +526,11 @@ img, video{ max-width: 100%; display: block; }
   gap: 10px;
 }
 
-/* Map de tamaños a tus clases actuales */
 .k-lg{ width: var(--sq-xl); }
 .k-md{ width: var(--sq-lg); }
 .k-sm{ width: var(--sq-md); }
-/* 4º tamaño preparado (si lo usas en HTML) */
 .k-xs{ width: var(--sq-sm); }
 
-/* “foto” placeholder: ahora SIEMPRE cuadrado */
 .k-photo{
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -509,7 +546,6 @@ img, video{ max-width: 100%; display: block; }
   transition: transform .22s ease, box-shadow .22s ease;
 }
 
-/* título debajo */
 .k-card-title{
   font-size: 15px;
   font-weight: 700;
@@ -517,7 +553,6 @@ img, video{ max-width: 100%; display: block; }
   color: rgba(17,17,17,.92);
 }
 
-/* split tipográfico */
 .k-card-title--split{
   display: inline-flex;
   align-items: baseline;
@@ -536,7 +571,6 @@ img, video{ max-width: 100%; display: block; }
   font-weight: 800;
 }
 
-/* POSICIONES (las mantenemos; luego las afinamos con los nuevos tamaños) */
 .card-directo{ left: 58%; top: 10%; }
 .card-expo{ left: 74%; top: 48%; }
 .card-cartelera{ left: 6%; top: 34%; }
@@ -547,19 +581,16 @@ img, video{ max-width: 100%; display: block; }
 }
 .card-ninos{ left: 26%; top: 76%; }
 
-/* Hover limpio */
 #kMosaic:hover .k-card:hover .k-photo{
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 26px 70px rgba(0,0,0,.14);
 }
 
-/* Focus visible */
 .k-card:focus-visible .k-photo{
   outline: 2px solid rgba(17,17,17,.22);
   outline-offset: 4px;
 }
 
-/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
   .k-photo{ transition: none; }
 }
@@ -696,7 +727,6 @@ img, video{ max-width: 100%; display: block; }
 
   .cooltura-canvas{ height: clamp(520px, 58vh, 820px); }
 
-  /* En tablet/móvil: mosaic pasa a grid para evitar solapes */
   .cooltura-mosaic{
     position: relative;
     inset: auto;
@@ -709,7 +739,6 @@ img, video{ max-width: 100%; display: block; }
   .k-card{ position: static; }
   .k-lg, .k-md, .k-sm, .k-xs{ width: 100%; }
 
-  /* Texto extremos: reducimos un pelín si lo necesitas */
   .cooltura-tura{ transform: scale(.92); transform-origin: top left; }
   .cooltura-kool{ transform: scale(.92); transform-origin: top right; }
 }
