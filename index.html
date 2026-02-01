@@ -9,20 +9,14 @@
 
   <link rel="stylesheet" href="./styles.css" />
 
-  <!-- Preload del vídeo para que el hero arranque más rápido -->
   <link rel="preload" as="video" href="assets/video/hero.mp4" type="video/mp4" />
-
-  <!-- (Opcional pero recomendable) si añades un poster:
-       crea assets/video/hero-poster.jpg y descomenta el preload de imagen -->
   <!-- <link rel="preload" as="image" href="assets/video/hero-poster.jpg" /> -->
 </head>
 
 <body>
 
-  <!-- HEADER -->
   <header class="site-header" id="inicio">
     <div class="container header-inner">
-
       <a class="brand" href="#inicio" aria-label="Paseando Madrid, inicio">
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-word">Paseando Madrid</span>
@@ -36,13 +30,11 @@
         <a class="nav-link" href="#que-hacer">Qué hacer en Madrid</a>
         <a class="nav-link" href="#contacto">Contacto</a>
       </nav>
-
     </div>
   </header>
 
   <main>
 
-    <!-- HERO VIDEO -->
     <section class="home-hero" aria-label="Hero">
       <div class="hero-frame hero-frame--full">
 
@@ -63,7 +55,6 @@
 
         <div class="container">
           <div class="hero-copy">
-
             <h1 class="hero-title">Madrid, contada paso a paso.</h1>
 
             <p class="hero-subtitle">
@@ -76,7 +67,6 @@
               <a class="hero-cta hero-cta--ghost" href="#que-hacer">Cooltura →</a>
             </div>
 
-            <!-- PRUEBA SOCIAL -->
             <p class="hero-proof" aria-label="Valoración de opiniones">
               <em>Lo que dicen de nosotros</em>
               <span class="hero-proof-sep" aria-hidden="true">·</span>
@@ -84,11 +74,9 @@
               <strong class="hero-proof-score">4.9</strong>
               <a class="hero-proof-link" href="#opiniones">Ver opiniones</a>
             </p>
-
           </div>
         </div>
 
-        <!-- Fallback editorial si el vídeo no carga o tarda (solo visible sin soporte de video) -->
         <noscript>
           <style>
             .hero-video{ display:none !important; }
@@ -103,89 +91,67 @@
       </div>
     </section>
 
-    <!-- FREE TOURS -->
     <section class="section" id="free-tours" aria-label="Free tours">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Free tours</h2>
-          <p class="section-lead">
-            Aquí irá la sección de familias (carruseles) en el siguiente paso.
-          </p>
+          <p class="section-lead">Aquí irá la sección de familias (carruseles) en el siguiente paso.</p>
         </div>
-
         <div class="placeholder">
           <p><strong>OK:</strong> si ves esto al bajar, el hero + header están bien.</p>
         </div>
       </div>
     </section>
 
-    <!-- TOURS A MEDIDA -->
     <section class="section section-soft" id="tours-a-medida" aria-label="Tours a medida">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Tours a medida</h2>
           <p class="section-lead">Placeholder para mantener estructura.</p>
         </div>
-
-        <div class="placeholder">
-          <p>Contenido a medida aquí.</p>
-        </div>
+        <div class="placeholder"><p>Contenido a medida aquí.</p></div>
       </div>
     </section>
 
-    <!-- QUIÉNES SOMOS -->
     <section class="section" id="quienes" aria-label="Quiénes somos">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Quiénes somos</h2>
           <p class="section-lead">Placeholder para mantener estructura.</p>
         </div>
-
-        <div class="placeholder">
-          <p>Texto editorial + foto (opcional) aquí.</p>
-        </div>
+        <div class="placeholder"><p>Texto editorial + foto (opcional) aquí.</p></div>
       </div>
     </section>
 
-    <!-- OPINIONES -->
     <section class="section" id="opiniones" aria-label="Opiniones">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Opiniones</h2>
           <p class="section-lead">Aquí mostraremos reseñas reales (Google/Tripadvisor) con diseño editorial.</p>
         </div>
-
-        <div class="placeholder">
-          <p>Bloque de reseñas aquí.</p>
-        </div>
+        <div class="placeholder"><p>Bloque de reseñas aquí.</p></div>
       </div>
     </section>
 
-    <!-- COOLTURA (HERO EDITORIAL MARFIL) -->
     <section class="section-quehacer" id="que-hacer" aria-label="Cooltura">
       <h2 class="sr-only">Qué hacer en Madrid</h2>
 
       <div class="cooltura-canvas" role="region" aria-label="Cooltura: qué hacer en Madrid">
 
-        <!-- Tura: extremo IZQUIERDO + arriba -->
         <div class="cooltura-tura" aria-hidden="true">
           <span class="tura">Tura</span>
         </div>
 
-        <!-- Kool: extremo DERECHO + arriba -->
         <div class="cooltura-kool" aria-hidden="true">
           <span class="kool-k">K</span>
-
           <span class="kool-ool">
             <span class="kool-o">o</span><span class="kool-o">o</span><span class="kool-l">l</span>
           </span>
-
           <span class="kool-rt">
             <span class="kool-r">r</span><span class="kool-t">t</span><span class="kool-spacer" aria-hidden="true"></span>
           </span>
         </div>
 
-        <!-- Collage flotante -->
         <div class="cooltura-mosaic" id="kMosaic" aria-label="Selección Cooltura">
 
           <button class="k-card k-lg card-directo" type="button" data-open="directo" aria-label="En directo">
@@ -228,17 +194,13 @@
 
   </main>
 
-  <!-- CONTACTO -->
   <footer class="footer" id="contacto" aria-label="Contacto">
     <div class="container footer-inner">
       <p class="footer-brand">Paseando Madrid</p>
-      <p class="footer-note">
-        Contacto: <a href="mailto:info@paseandomadrid.com">info@paseandomadrid.com</a>
-      </p>
+      <p class="footer-note">Contacto: <a href="mailto:info@paseandomadrid.com">info@paseandomadrid.com</a></p>
     </div>
   </footer>
 
-  <!-- OVERLAY / MODAL -->
   <div class="k-modal" id="kModal" aria-hidden="true">
     <div class="k-backdrop" data-close></div>
 
@@ -258,7 +220,6 @@
     </article>
   </div>
 
-  <!-- JS: overlay + carga JSON + foco/desenfoque premium -->
   <script>
     const modal = document.getElementById('kModal');
     const kTitle = document.getElementById('kTitle');
@@ -268,36 +229,6 @@
 
     const mosaic = document.getElementById('kMosaic');
     const cards  = Array.from(document.querySelectorAll('.k-card'));
-
-    // Estado de foco: hover (preview) + click (pinned)
-    let pinned = false;
-
-    function setActive(el){
-      if(!mosaic) return;
-      mosaic.classList.add('is-dim');
-      cards.forEach(c => c.classList.toggle('is-active', c === el));
-    }
-
-    function clearActive(){
-      if(!mosaic) return;
-      mosaic.classList.remove('is-dim');
-      cards.forEach(c => c.classList.remove('is-active'));
-    }
-
-    // Preview con hover (solo si no está pinned)
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        if(pinned) return;
-        setActive(card);
-      });
-    });
-
-    if(mosaic){
-      mosaic.addEventListener('mouseleave', () => {
-        if(pinned) return;
-        clearActive();
-      });
-    }
 
     const CFG = {
       directo: {
@@ -345,16 +276,11 @@
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
     }
-
     function closeModal(){
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow = '';
       kList.innerHTML = '';
-
-      // Al cerrar: soltamos foco premium
-      pinned = false;
-      clearActive();
     }
 
     document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
@@ -363,11 +289,9 @@
     });
 
     function fmtDate(d){
-      try {
-        return new Date(d).toLocaleDateString('es-ES', { year:'numeric', month:'short', day:'2-digit' });
-      } catch { return "—"; }
+      try { return new Date(d).toLocaleDateString('es-ES', { year:'numeric', month:'short', day:'2-digit' }); }
+      catch { return "—"; }
     }
-
     function fmtWhen(start){
       if(!start) return "";
       try {
@@ -398,12 +322,6 @@
 
     async function loadAndRender(key){
       const cfg = CFG[key];
-
-      // Click: fijamos foco antes de abrir
-      const activeBtn = cards.find(c => c.dataset.open === key);
-      pinned = true;
-      if(activeBtn) setActive(activeBtn);
-
       kTitle.textContent = cfg.title;
       kDeck.textContent  = cfg.deck;
       kMeta.textContent  = 'Cargando…';
@@ -438,9 +356,64 @@
       }
     }
 
-    // ÚNICO listener de click (evita duplicar): aquí fijamos foco + abrimos modal
+    /* ==========
+       EFECTO KULTIVERET: hover/focus = zoom + desenfoque del resto
+       ========== */
+    let hoverTimer = null;
+    let clearTimer = null;
+
+    function setActiveCard(card){
+      cards.forEach(c => c.classList.toggle('is-active', c === card));
+      mosaic.classList.add('is-dim');
+    }
+
+    function clearActive(){
+      cards.forEach(c => c.classList.remove('is-active'));
+      mosaic.classList.remove('is-dim');
+    }
+
+    function scheduleActive(card){
+      clearTimeout(clearTimer);
+      clearTimeout(hoverTimer);
+      // micro delay para sensación premium (evita “nervioso”)
+      hoverTimer = setTimeout(() => setActiveCard(card), 60);
+    }
+
+    function scheduleClear(){
+      clearTimeout(hoverTimer);
+      clearTimeout(clearTimer);
+      // un pelín más lento al salir (premium)
+      clearTimer = setTimeout(() => clearActive(), 140);
+    }
+
     cards.forEach(btn => {
-      btn.addEventListener('click', () => loadAndRender(btn.dataset.open));
+      btn.addEventListener('pointerenter', () => scheduleActive(btn));
+      btn.addEventListener('pointerleave', () => scheduleClear());
+
+      // Accesibilidad teclado: foco = activa
+      btn.addEventListener('focusin', () => scheduleActive(btn));
+      btn.addEventListener('focusout', () => scheduleClear());
+
+      // Click abre modal (y mantiene activo mientras esté abierto)
+      btn.addEventListener('click', () => {
+        setActiveCard(btn);
+        loadAndRender(btn.dataset.open);
+      });
+    });
+
+    // Si el ratón sale del mosaic entero
+    mosaic.addEventListener('pointerleave', () => {
+      if(!modal.classList.contains('is-open')) scheduleClear();
+    });
+
+    // Al cerrar modal, quitamos active/dim
+    document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => {
+      clearActive();
+    }));
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && modal.classList.contains('is-open')) {
+        clearActive();
+      }
     });
   </script>
 
