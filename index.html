@@ -222,7 +222,6 @@
 
   <script>
     const modal = document.getElementById('kModal');
-    const sheet = modal.querySelector('.k-sheet');
 
     const kTitle = document.getElementById('kTitle');
     const kDeck  = document.getElementById('kDeck');
@@ -232,49 +231,20 @@
     const mosaic = document.getElementById('kMosaic');
     const cards  = Array.from(document.querySelectorAll('.k-card'));
 
+    // NUEVO: referencia al botón cerrar para foco (no afecta al look)
+    const closeBtn = modal.querySelector('.k-close');
+
     const CFG = {
-      directo: {
-        title: "Conciertos esta semana",
-        deck: "Una selección breve para escuchar Madrid en directo.",
-        json: "data/agenda-weekly.json",
-        mode: "items"
-      },
-      ninos: {
-        title: "Disfrutar Madrid con niños",
-        deck: "Planes culturales y fáciles para hacerlo con ellos esta semana.",
-        json: "data/kids-weekly.json",
-        mode: "items"
-      },
-      expos: {
-        title: "Exposiciones de este mes",
-        deck: "Salas, museos y montajes que merecen la visita.",
-        json: "data/agenda-monthly.json",
-        mode: "group",
-        group: "exhibitions"
-      },
-      cartelera: {
-        title: "Obras destacadas",
-        deck: "Teatro en cartel: propuestas con criterio para este mes.",
-        json: "data/agenda-monthly.json",
-        mode: "group",
-        group: "theatre"
-      },
-      museo: {
-        title: "Horarios de museos",
-        deck: "Horarios, días clave y notas útiles para planificar.",
-        json: "data/museums.json",
-        mode: "items"
-      },
-      alarga: {
-        title: "Para alargar el paseo",
-        deck: "Mercados, mesas y barras para seguir con Madrid a otro ritmo.",
-        json: "data/leisure.json",
-        mode: "items"
-      }
+      directo:  { title:"Conciertos esta semana", deck:"Una selección breve para escuchar Madrid en directo.", json:"data/agenda-weekly.json", mode:"items" },
+      ninos:    { title:"Disfrutar Madrid con niños", deck:"Planes culturales y fáciles para hacerlo con ellos esta semana.", json:"data/kids-weekly.json", mode:"items" },
+      expos:    { title:"Exposiciones de este mes", deck:"Salas, museos y montajes que merecen la visita.", json:"data/agenda-monthly.json", mode:"group", group:"exhibitions" },
+      cartelera:{ title:"Obras destacadas", deck:"Teatro en cartel: propuestas con criterio para este mes.", json:"data/agenda-monthly.json", mode:"group", group:"theatre" },
+      museo:    { title:"Horarios de museos", deck:"Horarios, días clave y notas útiles para planificar.", json:"data/museums.json", mode:"items" },
+      alarga:   { title:"Para alargar el paseo", deck:"Mercados, mesas y barras para seguir con Madrid a otro ritmo.", json:"data/leisure.json", mode:"items" }
     };
 
     /* ==========
-       DIM / ACTIVE (Kultiveret hover/focus)
+       DIM / ACTIVE (hover/focus premium)
        ========== */
     let hoverTimer = null;
     let clearTimer = null;
@@ -306,26 +276,23 @@
       btn.addEventListener('focusin', () => scheduleActive(btn));
       btn.addEventListener('focusout', () => scheduleClear());
     });
-
     mosaic.addEventListener('pointerleave', () => scheduleClear());
 
     /* ==========
-       MODAL open/close (blur -> focus siempre)
+       MODAL open/close (sin display:none)
        ========== */
     function openModal(){
-      // 1) mostrar (display:block) sin .is-open aún
-      modal.style.display = 'block';
-      modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
 
-      // Forzamos layout para que el estado blur/opacity 0 aplique
-      // antes de activar transición (evita “instantáneo”)
-      void sheet.offsetWidth;
+      // Fuerza reflow para que anime al añadir is-open (evita apertura instantánea)
+      void modal.offsetWidth;
 
-      // 2) en el siguiente frame, activamos .is-open => transiciona blur->0
       requestAnimationFrame(() => {
         modal.classList.add('is-open');
+
+        // NUEVO: llevamos el foco al botón cerrar (accesibilidad; no toca el look)
+        if(closeBtn) closeBtn.focus({ preventScroll: true });
       });
     }
 
@@ -334,19 +301,9 @@
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow = '';
       kList.innerHTML = '';
-
-      // cuando termina la transición, ocultamos (display:none)
-      const onEnd = (e) => {
-        if(e.target !== sheet) return;
-        modal.style.display = '';
-        sheet.removeEventListener('transitionend', onEnd);
-      };
-      sheet.addEventListener('transitionend', onEnd);
-
       clearActive();
     }
 
-    // Unificamos cierres (sin duplicados)
     document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
     document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
@@ -420,9 +377,12 @@
       }
     }
 
-    // Click: fija active + abre modal
+    // Click: fija active + abre modal (NUEVO: cancelamos timers para que nada “limpie” tras el click)
     cards.forEach(btn => {
       btn.addEventListener('click', () => {
+        clearTimeout(hoverTimer);
+        clearTimeout(clearTimer);
+
         setActiveCard(btn);
         loadAndRender(btn.dataset.open);
       });
