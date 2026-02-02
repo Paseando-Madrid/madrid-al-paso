@@ -222,6 +222,8 @@
 
   <script>
     const modal = document.getElementById('kModal');
+    const sheet = modal.querySelector('.k-sheet');
+
     const kTitle = document.getElementById('kTitle');
     const kDeck  = document.getElementById('kDeck');
     const kMeta  = document.getElementById('kMeta');
@@ -271,18 +273,80 @@
       }
     };
 
+    /* ==========
+       DIM / ACTIVE (Kultiveret hover/focus)
+       ========== */
+    let hoverTimer = null;
+    let clearTimer = null;
+
+    function setActiveCard(card){
+      cards.forEach(c => c.classList.toggle('is-active', c === card));
+      mosaic.classList.add('is-dim');
+    }
+    function clearActive(){
+      cards.forEach(c => c.classList.remove('is-active'));
+      mosaic.classList.remove('is-dim');
+    }
+    function scheduleActive(card){
+      clearTimeout(clearTimer);
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => setActiveCard(card), 60);
+    }
+    function scheduleClear(){
+      clearTimeout(hoverTimer);
+      clearTimeout(clearTimer);
+      clearTimer = setTimeout(() => {
+        if(!modal.classList.contains('is-open')) clearActive();
+      }, 140);
+    }
+
+    cards.forEach(btn => {
+      btn.addEventListener('pointerenter', () => scheduleActive(btn));
+      btn.addEventListener('pointerleave', () => scheduleClear());
+      btn.addEventListener('focusin', () => scheduleActive(btn));
+      btn.addEventListener('focusout', () => scheduleClear());
+    });
+
+    mosaic.addEventListener('pointerleave', () => scheduleClear());
+
+    /* ==========
+       MODAL open/close (blur -> focus siempre)
+       ========== */
     function openModal(){
-      modal.classList.add('is-open');
+      // 1) mostrar (display:block) sin .is-open aún
+      modal.style.display = 'block';
+      modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
+
+      // Forzamos layout para que el estado blur/opacity 0 aplique
+      // antes de activar transición (evita “instantáneo”)
+      void sheet.offsetWidth;
+
+      // 2) en el siguiente frame, activamos .is-open => transiciona blur->0
+      requestAnimationFrame(() => {
+        modal.classList.add('is-open');
+      });
     }
+
     function closeModal(){
       modal.classList.remove('is-open');
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow = '';
       kList.innerHTML = '';
+
+      // cuando termina la transición, ocultamos (display:none)
+      const onEnd = (e) => {
+        if(e.target !== sheet) return;
+        modal.style.display = '';
+        sheet.removeEventListener('transitionend', onEnd);
+      };
+      sheet.addEventListener('transitionend', onEnd);
+
+      clearActive();
     }
 
+    // Unificamos cierres (sin duplicados)
     document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
     document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
@@ -356,64 +420,12 @@
       }
     }
 
-    /* ==========
-       EFECTO KULTIVERET: hover/focus = zoom + desenfoque del resto
-       ========== */
-    let hoverTimer = null;
-    let clearTimer = null;
-
-    function setActiveCard(card){
-      cards.forEach(c => c.classList.toggle('is-active', c === card));
-      mosaic.classList.add('is-dim');
-    }
-
-    function clearActive(){
-      cards.forEach(c => c.classList.remove('is-active'));
-      mosaic.classList.remove('is-dim');
-    }
-
-    function scheduleActive(card){
-      clearTimeout(clearTimer);
-      clearTimeout(hoverTimer);
-      // micro delay para sensación premium (evita “nervioso”)
-      hoverTimer = setTimeout(() => setActiveCard(card), 60);
-    }
-
-    function scheduleClear(){
-      clearTimeout(hoverTimer);
-      clearTimeout(clearTimer);
-      // un pelín más lento al salir (premium)
-      clearTimer = setTimeout(() => clearActive(), 140);
-    }
-
+    // Click: fija active + abre modal
     cards.forEach(btn => {
-      btn.addEventListener('pointerenter', () => scheduleActive(btn));
-      btn.addEventListener('pointerleave', () => scheduleClear());
-
-      // Accesibilidad teclado: foco = activa
-      btn.addEventListener('focusin', () => scheduleActive(btn));
-      btn.addEventListener('focusout', () => scheduleClear());
-
-      // Click abre modal (y mantiene activo mientras esté abierto)
       btn.addEventListener('click', () => {
         setActiveCard(btn);
         loadAndRender(btn.dataset.open);
       });
-    });
-
-    // Si el ratón sale del mosaic entero
-    mosaic.addEventListener('pointerleave', () => {
-      if(!modal.classList.contains('is-open')) scheduleClear();
-    });
-
-    // Al cerrar modal, quitamos active/dim
-    document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => {
-      clearActive();
-    }));
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape' && modal.classList.contains('is-open')) {
-        clearActive();
-      }
     });
   </script>
 
